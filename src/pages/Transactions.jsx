@@ -134,7 +134,11 @@ function Transactions() {
                 setEndDate={setEndDate}
             />
 
-            <TransactionList transactions={filteredTransactions} onEdit={handleEdit} onDelete={deleteTransaction} />
+            <TransactionList
+                transactions={filteredTransactions}
+                editTransaction={handleEdit}
+                deleteTransaction={deleteTransaction}
+            />
         </div>
     );
 }
