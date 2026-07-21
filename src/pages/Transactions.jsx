@@ -4,14 +4,7 @@ import TransactionList from "../components/TransactionList";
 import AddTransaction from "../components/AddTransaction";
 import TransactionToolbar from "../components/TransactionToolbar";
 import { useTranslation } from "react-i18next";
-import {
-    startOfToday,
-    startOfMonth,
-    startOfYear,
-    endOfToday,
-    endOfMonth,
-    endOfYear,
-} from "date-fns";
+import { startOfToday, startOfMonth, startOfYear, endOfToday, endOfMonth, endOfYear } from "date-fns";
 
 function Transactions() {
     const { t } = useTranslation();
@@ -135,6 +128,7 @@ function Transactions() {
             />
 
             <TransactionList
+                title={t("transactions.title")}
                 transactions={filteredTransactions}
                 editTransaction={handleEdit}
                 deleteTransaction={deleteTransaction}
