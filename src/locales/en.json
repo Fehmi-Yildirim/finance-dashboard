@@ -30,6 +30,7 @@
         "exportPdf": "Export to PDF",
         "appearance": "Appearance",
         "darkMode": "Dark mode",
+        "lightMode": "Light mode",
         "messages": {
             "dataCleared": "All transactions have been deleted successfully.",
             "csvExportSuccess": "CSV file exported successfully.",

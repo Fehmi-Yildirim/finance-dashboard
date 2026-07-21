@@ -152,7 +152,11 @@ function Settings() {
                 <Form.Check
                     type="switch"
                     id="dark-mode-switch"
-                    label={t("settings.darkMode")}
+                    label={
+                        darkMode
+                            ? t("settings.lightMode")
+                            : t("settings.darkMode")
+                    }
                     checked={darkMode}
                     onChange={(e) => {
                         const enabled = e.target.checked;

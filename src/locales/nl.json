@@ -30,6 +30,7 @@
         "exportPdf": "Exporteer naar PDF",
         "appearance": "Weergave",
         "darkMode": "Donkere modus",
+        "lightMode": "Lichte modus",
         "messages": {
             "dataCleared": "Alle transacties zijn succesvol verwijderd.",
             "csvExportSuccess": "CSV-bestand succesvol geëxporteerd.",
