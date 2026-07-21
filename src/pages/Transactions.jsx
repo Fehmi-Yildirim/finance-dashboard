@@ -5,6 +5,7 @@ import AddTransaction from "../components/AddTransaction";
 import TransactionToolbar from "../components/TransactionToolbar";
 import { useTranslation } from "react-i18next";
 import { startOfToday, startOfMonth, startOfYear, endOfToday, endOfMonth, endOfYear } from "date-fns";
+import TransactionDrawer from "../components/TransactionDrawer";
 
 function Transactions() {
     const { t } = useTranslation();
@@ -16,8 +17,9 @@ function Transactions() {
         deleteTransaction,
     } = useTransactions();
 
-    const [editingTransaction, setEditingTransaction] = useState(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    // Drawer pop-up
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const [selectedTransaction, setSelectedTransaction] = useState(null);
 
     const [search, setSearch] = useState("");
     const [filter, setFilter] = useState("all");
@@ -84,19 +86,19 @@ function Transactions() {
         );
     }, [transactions, search, filter, dateFilter, startDate, endDate]);
 
-    function handleEdit(transaction) {
-        setEditingTransaction(transaction);
-        setIsModalOpen(true);
-    }
-
     function handleAdd() {
-        setEditingTransaction(null);
-        setIsModalOpen(true);
+        setSelectedTransaction(null);
+        setIsDrawerOpen(true);
     }
 
-    function handleClose() {
-        setIsModalOpen(false);
-        setEditingTransaction(null);
+    function handleEdit(transaction) {
+        setSelectedTransaction(transaction);
+        setIsDrawerOpen(true);
+    }
+
+    function handleCloseDrawer() {
+        setIsDrawerOpen(false);
+        setSelectedTransaction(null);
     }
 
     return (
@@ -105,14 +107,15 @@ function Transactions() {
 
             <button onClick={handleAdd}>{t("transactions.new")}</button>
 
-            {isModalOpen && (
-                <AddTransaction
-                    addTransaction={addTransaction}
-                    updateTransaction={updateTransaction}
-                    editingTransaction={editingTransaction}
-                    onClose={handleClose}
-                />
-            )}
+
+            <TransactionDrawer
+                open={isDrawerOpen}
+                onClose={handleCloseDrawer}
+                transaction={selectedTransaction}
+                addTransaction={addTransaction}
+                updateTransaction={updateTransaction}
+            />
+
 
             <TransactionToolbar
                 search={search}
