@@ -46,3 +46,12 @@ cd finance-dashboard
 npm install
 
 npm run dev
+
+LICENSE
+
+Copyright © 2026 Fehmi Yildirim
+
+All rights reserved.
+
+This software and source code may not be copied, modified,
+distributed, or used without explicit permission from the author.
