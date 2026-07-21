@@ -11,6 +11,7 @@ import { Route, Routes } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
 import { nl, enGB } from "date-fns/locale";
+import { useEffect } from "react";
 
 // Register locales for date-fns
 registerLocale("nl", nl);
@@ -18,6 +19,16 @@ registerLocale("en", enGB);
 
 
 function App() {
+
+  useEffect(() => {
+    const darkMode = localStorage.getItem("darkMode") === "true";
+
+    document.documentElement.classList.toggle(
+      "dark-mode",
+      darkMode
+    );
+  }, []);
+
   return (
     <MainLayout>
 

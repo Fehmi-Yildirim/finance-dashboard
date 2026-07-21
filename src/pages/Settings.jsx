@@ -22,25 +22,9 @@ function Settings() {
     const [showModal, setShowModal] = useState(false);
     const [message, setMessage] = useState(null);
 
-    const [darkMode, setDarkMode] = useState(() => {
-        const saved = localStorage.getItem("darkMode") === "true";
-
-        if (saved) {
-            document.documentElement.classList.add("dark-mode");
-        }
-        return saved;
-    });
-
-    useEffect(() => {
-        const savedMode = localStorage.getItem("darkMode") === "true";
-
-        document.documentElement.classList.toggle(
-            "dark-mode",
-            savedMode
-        );
-
-        setDarkMode(savedMode);
-    }, []);
+    const [darkMode, setDarkMode] = useState(
+        localStorage.getItem("darkMode") === "true"
+    );
 
     const handleLanguageChange = (lang) => {
         setLanguage(lang);
