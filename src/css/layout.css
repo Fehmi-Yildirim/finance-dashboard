@@ -1,0 +1,63 @@
+.layout {
+    min-height: 100vh;
+}
+
+.layout main {
+    margin-left: var(--sidebar-width);
+}
+
+aside {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: var(--sidebar-width);
+    height: calc(100vh - 70px);
+    background: var(--surface-color);
+    border-right: 1px solid var(--border-color);
+    padding: 1.5rem;
+}
+
+aside ul {
+    list-style: none;
+}
+
+aside li {
+    margin-bottom: 1rem;
+}
+
+aside a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+aside a:hover {
+    color: var(--primary-color);
+}
+
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    flex: 1;
+    padding-top: calc(var(--header-height) + 20px);
+}
+
+.app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-footer {
+    margin-top: 40px;
+    padding: 20px;
+    background: var(--surface-color);
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    color: var(--muted-color);
+    font-size: 14px;
+}
+
+.footer-content p {
+    margin: 5px 0;
+}

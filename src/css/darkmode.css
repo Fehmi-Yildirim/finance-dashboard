@@ -1,0 +1,123 @@
+:root {
+    --bg-color: #f5f7fb;
+    --surface-color: #ffffff;
+    --text-color: #1f2937;
+    --muted-color: #64748b;
+    --border-color: #e5e7eb;
+    --hover-color: #f3f4f6;
+    --input-bg: #ffffff;
+    --shadow-color: rgba(0, 0, 0, .08);
+    --sidebar-width: 220px;
+    --primary-color: #2563eb;
+    --danger-color: #dc2626;
+    --success-color: #16a34a;
+    --secondary-color: #6b7280;
+    --primary-hover: #1d4ed8;
+}
+
+html.dark-mode {
+    --bg-color: #111827;
+    --surface-color: #1f2937;
+    --text-color: #f9fafb;
+    --muted-color: #9ca3af;
+    --border-color: #374151;
+    --hover-color: #374151;
+    --input-bg: #1f2937;
+    --shadow-color: rgba(0, 0, 0, .4);
+    --primary-color: #60a5fa;
+    --danger-color: #f87171;
+    --success-color: #4ade80;
+    --secondary-color: #4b5563;
+    --primary-hover: #93c5fd;
+}
+
+html.dark-mode,
+html.dark-mode body,
+html.dark-mode #root,
+html.dark-mode .app,
+html.dark-mode .layout {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+html.dark-mode h1,
+html.dark-mode h2,
+html.dark-mode h3,
+html.dark-mode p,
+html.dark-mode span,
+html.dark-mode td,
+html.dark-mode th,
+html.dark-mode label,
+html.dark-mode .form-check-label {
+    color: var(--text-color);
+}
+
+html.dark-mode .card,
+html.dark-mode .modal-content {
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+html.dark-mode .modal-header,
+html.dark-mode .modal-footer {
+    border-color: var(--border-color);
+}
+
+html.dark-mode header {
+    background: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+html.dark-mode .transaction-table,
+html.dark-mode .category-table {
+    color: var(--text-color);
+}
+
+html.dark-mode .transaction-table tbody tr,
+html.dark-mode .category-table tbody tr,
+html.dark-mode .transaction-table th,
+html.dark-mode .category-table th {
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+html.dark-mode .category-bar {
+    background: var(--border-color);
+}
+
+html.dark-mode aside a {
+    color: var(--text-color);
+}
+
+html.dark-mode aside a:hover {
+    color: var(--primary-color);
+}
+
+/* Primary action buttons */
+html.dark-mode .btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #111827;
+}
+
+html.dark-mode .btn-danger {
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+}
+
+html.dark-mode .btn-secondary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+html.dark-mode .csv-upload-button {
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+html.dark-mode .csv-upload-button:hover {
+    background-color: var(--hover-color);
+}

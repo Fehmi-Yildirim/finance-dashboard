@@ -1,0 +1,148 @@
+{
+    "common": {
+        "add": "Toevoegen",
+        "save": "Opslaan",
+        "cancel": "Annuleren",
+        "delete": "Verwijderen"
+    },
+    "dashboard": {
+        "title": "Dashboard",
+        "income": "Inkomsten",
+        "expenses": "Uitgaven",
+        "balance": "Saldo",
+        "recentTransactions": "Recente transacties"
+    },
+    "sidebar": {
+        "dashboard": "Dashboard",
+        "transactions": "Transacties",
+        "reports": "Rapporten",
+        "settings": "Instellingen"
+    },
+    "settings": {
+        "title": "Instellingen",
+        "language": "Taal",
+        "data": "Gegevens",
+        "clearData": "Alle gegevens wissen",
+        "confirmation": "Bevestiging",
+        "clearDataMessage": "Weet je zeker dat je alle gegevens wilt wissen? Deze actie kan niet ongedaan worden gemaakt.",
+        "importExport": "Import & Export",
+        "exportCsv": "Exporteer naar CSV",
+        "exportPdf": "Exporteer naar PDF",
+        "appearance": "Weergave",
+        "darkMode": "Donkere modus",
+        "messages": {
+            "dataCleared": "Alle transacties zijn succesvol verwijderd.",
+            "csvExportSuccess": "CSV-bestand succesvol geëxporteerd.",
+            "pdfExportSuccess": "PDF succesvol geëxporteerd."
+        }
+    },
+    "categories": {
+        "title": "Uitgaven per categorie",
+        "salary": "Salaris",
+        "bonus": "Bonus",
+        "investment": "Investering",
+        "gift": "Cadeau",
+        "otherIncome": "Overige inkomsten",
+        "food": "Boodschappen",
+        "transport": "Vervoer",
+        "rent": "Huur",
+        "shopping": "Winkelen",
+        "health": "Gezondheid",
+        "otherExpense": "Overige uitgaven",
+        "noExpenses": "Er zijn nog geen uitgaven geregistreerd.",
+        "housing": "Wonen",
+        "income": "Inkomen",
+        "leisure": "Vrije tijd",
+        "energy": "Energie",
+        "internet": "Internet",
+        "other": "Overig",
+        "freelance": "Freelance",
+        "sales": "Verkoop",
+        "subscriptions": "Abonnementen",
+        "insurance": "Verzekeringen",
+        "clothing": "Kleding"
+    },
+    "csvImport": {
+        "chooseFile": "Bestand kiezen",
+        "existing": "Bestaand",
+        "new": "Nieuw",
+        "noNew": "Alle transacties bestaan al. Er is niets toegevoegd.",
+        "success": "Import succesvol! {{newCount}} transacties toegevoegd, {{existingCount}} bestonden al (totaal: {{total}})."
+    },
+    "csvPreview": {
+        "transactionsFound": "{{count}} transacties gevonden",
+        "date": "Datum",
+        "description": "Omschrijving",
+        "amount": "Bedrag",
+        "type": "Type",
+        "firstTen": "Eerste 10 van {{count}} transacties worden getoond",
+        "import": "Importeren"
+    },
+    "dateFilter": {
+        "period": "Periode",
+        "all": "Alles",
+        "today": "Vandaag",
+        "month": "Deze maand",
+        "year": "Dit jaar",
+        "custom": "Aangepast",
+        "from": "Van",
+        "to": "Tot",
+        "placeholder": "dd-mm-jjjj"
+    },
+    "transactions": {
+        "title": "Transacties",
+        "overview": "Transactieoverzicht",
+        "new": "Nieuwe transactie",
+        "edit": "Transactie bewerken",
+        "description": "Beschrijving",
+        "amount": "Bedrag",
+        "income": "Inkomst",
+        "expense": "Uitgave",
+        "search": "Zoek transacties..."
+    },
+    "filter": {
+        "all": "Alles",
+        "income": "Inkomsten",
+        "expense": "Uitgaven"
+    },
+    "transactionList": {
+        "date": "Datum",
+        "description": "Omschrijving",
+        "category": "Categorie",
+        "type": "Type",
+        "amount": "Bedrag",
+        "actions": "Acties",
+        "noTransactions": "Geen transacties gevonden."
+    },
+    "pagination": {
+        "previous": "Vorige",
+        "next": "Volgende",
+        "pageOf": "Pagina {{current}} van {{total}}"
+    },
+    "chart": {
+        "title": "Inkomsten vs Uitgaven per maand",
+        "income": "Inkomsten",
+        "expenses": "Uitgaven",
+        "noData": "Er zijn nog geen transacties geregistreerd."
+    },
+    "statistics": {
+        "averageExpense": "Gemiddelde uitgave",
+        "largestExpense": "Grootste uitgave",
+        "totalTransactions": "Transacties"
+    },
+    "reports": {
+        "title": "Rapporten"
+    },
+    "footer": {
+        "rights": "Alle rechten voorbehouden.",
+        "lastBuild": "Laatste build",
+        "copyright": "© 2026 Finance Dashboard"
+    },
+    "transactionActions": {
+        "edit": "Bewerken",
+        "delete": "Verwijderen",
+        "deleteTitle": "Transactie verwijderen",
+        "deleteMessage": "Weet je zeker dat je deze transactie wilt verwijderen?",
+        "cancel": "Annuleren"
+    }
+}

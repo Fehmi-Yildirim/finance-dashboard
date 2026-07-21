@@ -1,0 +1,148 @@
+{
+    "common": {
+        "add": "Add",
+        "save": "Save",
+        "cancel": "Cancel",
+        "delete": "Delete"
+    },
+    "dashboard": {
+        "title": "Dashboard",
+        "income": "Income",
+        "expenses": "Expenses",
+        "balance": "Balance",
+        "recentTransactions": "Recent transactions"
+    },
+    "sidebar": {
+        "dashboard": "Dashboard",
+        "transactions": "Transactions",
+        "reports": "Reports",
+        "settings": "Settings"
+    },
+    "settings": {
+        "title": "Settings",
+        "language": "Language",
+        "data": "Data",
+        "clearData": "Clear all data",
+        "confirmation": "Confirmation",
+        "clearDataMessage": "Are you sure you want to delete all data? This action cannot be undone.",
+        "importExport": "Import & Export",
+        "exportCsv": "Export to CSV",
+        "exportPdf": "Export to PDF",
+        "appearance": "Appearance",
+        "darkMode": "Dark mode",
+        "messages": {
+            "dataCleared": "All transactions have been deleted successfully.",
+            "csvExportSuccess": "CSV file exported successfully.",
+            "pdfExportSuccess": "PDF exported successfully."
+        }
+    },
+    "categories": {
+        "title": "Expenses by category",
+        "salary": "Salary",
+        "bonus": "Bonus",
+        "investment": "Investment",
+        "gift": "Gift",
+        "otherIncome": "Other income",
+        "food": "Groceries",
+        "transport": "Transport",
+        "rent": "Rent",
+        "shopping": "Shopping",
+        "health": "Health",
+        "otherExpense": "Other expenses",
+        "noExpenses": "No expenses have been recorded yet.",
+        "energy": "Energy",
+        "internet": "Internet",
+        "housing": "Housing",
+        "income": "Income",
+        "leisure": "Leisure",
+        "other": "Other",
+        "freelance": "Freelance",
+        "sales": "Sales",
+        "subscriptions": "Subscriptions",
+        "insurance": "Insurance",
+        "clothing": "Clothing"
+    },
+    "csvImport": {
+        "chooseFile": "Choose file",
+        "existing": "Existing",
+        "new": "New",
+        "noNew": "All transactions already exist. Nothing was added.",
+        "success": "Import successful! {{newCount}} transactions added, {{existingCount}} already existed (total: {{total}})."
+    },
+    "csvPreview": {
+        "transactionsFound": "{{count}} transactions found",
+        "date": "Date",
+        "description": "Description",
+        "amount": "Amount",
+        "type": "Type",
+        "firstTen": "First 10 of {{count}} transactions are shown",
+        "import": "Import"
+    },
+    "dateFilter": {
+        "period": "Period",
+        "all": "All",
+        "today": "Today",
+        "month": "This month",
+        "year": "This year",
+        "custom": "Custom",
+        "from": "From",
+        "to": "To",
+        "placeholder": "dd-mm-yyyy"
+    },
+    "transactions": {
+        "title": "Transactions",
+        "overview": "Transaction overview",
+        "new": "New transaction",
+        "edit": "Edit transaction",
+        "description": "Description",
+        "amount": "Amount",
+        "income": "Income",
+        "expense": "Expense",
+        "search": "Search transactions..."
+    },
+    "filter": {
+        "all": "All",
+        "income": "Income",
+        "expense": "Expenses"
+    },
+    "transactionList": {
+        "date": "Date",
+        "description": "Description",
+        "category": "Category",
+        "type": "Type",
+        "amount": "Amount",
+        "actions": "Actions",
+        "noTransactions": "No transactions found."
+    },
+    "pagination": {
+        "previous": "Previous",
+        "next": "Next",
+        "pageOf": "Page {{current}} of {{total}}"
+    },
+    "chart": {
+        "title": "Income vs Expenses per month",
+        "income": "Income",
+        "expenses": "Expenses",
+        "noData": "No transactions have been recorded yet."
+    },
+    "statistics": {
+        "averageExpense": "Average expense",
+        "largestExpense": "Largest expense",
+        "totalTransactions": "Transactions"
+    },
+    "reports": {
+        "title": "Reports"
+    },
+    "footer": {
+        "rights": "All rights reserved.",
+        "lastBuild": "Latest build",
+        "copyright": "© 2026 Finance Dashboard"
+    },
+    "transactionActions": {
+        "edit": "Edit",
+        "delete": "Delete",
+        "deleteTitle": "Delete transaction",
+        "deleteMessage": "Are you sure you want to delete this transaction?",
+        "cancel": "Cancel"
+    }
+}

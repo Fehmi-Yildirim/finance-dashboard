@@ -1,0 +1,45 @@
+header {
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    height: var(--header-height);
+    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+
+    /* Keep the header fixed at the top of the page */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    /* Ensures the header stays on top of other content */
+}
+
+.brand-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.brand-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo {
+    height: 100px;
+    width: auto;
+    object-fit: contain;
+}
+
+.brand-text {
+    font-size: 2.15rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.brand-fy {
+    color: #2381fc;
+    font-weight: 700;
+}
