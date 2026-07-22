@@ -52,7 +52,7 @@ function MonthlyCashflowChart({ transactions }) {
             <p>{t("reports.noCashflowData")}</p>
         );
     }
-    console.log(monthlyData);
+
     return (
         <ResponsiveContainer width="100%" height={350}>
             <BarChart data={monthlyData}>

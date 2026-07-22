@@ -121,3 +121,23 @@ html.dark-mode .csv-upload-button {
 html.dark-mode .csv-upload-button:hover {
     background-color: var(--hover-color);
 }
+
+/* DatePicker */
+html.dark-mode .react-datepicker {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+html.dark-mode .react-datepicker__header {
+    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+html.dark-mode .react-datepicker__current-month,
+html.dark-mode .react-datepicker__day-name,
+html.dark-mode .react-datepicker__day,
+html.dark-mode .react-datepicker__time-name,
+html.dark-mode .react-datepicker__navigation-icon::before {
+    color: var(--text-color);
+}
