@@ -10,16 +10,14 @@ function ExpenseCategoryChart({ transactions }) {
 
         const totals = {};
 
+
         transactions
             .filter(transaction => transaction.type === "expense")
             .forEach(transaction => {
-
                 if (!totals[transaction.category]) {
                     totals[transaction.category] = 0;
                 }
-
                 totals[transaction.category] += Number(transaction.amount);
-
             });
 
         return Object.entries(totals)
@@ -41,30 +39,25 @@ function ExpenseCategoryChart({ transactions }) {
         <table className="category-table">
 
             <thead>
-
                 <tr>
                     <th>{t("transactions.category")}</th>
                     <th>{t("reports.amount")}</th>
                 </tr>
-
             </thead>
 
             <tbody>
-
                 {
                     categoryData.map(item => (
-
                         <tr key={item.category}>
-
-                            <td>{item.category}</td>
-
+                            <td>
+                                {t(`categories.${item.category}`, {
+                                    defaultValue: item.category.charAt(0).toUpperCase() + item.category.slice(1)
+                                })}
+                            </td>
                             <td>{formatCurrency(item.amount)}</td>
-
                         </tr>
-
                     ))
                 }
-
             </tbody>
 
         </table>
