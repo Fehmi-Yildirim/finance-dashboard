@@ -1,28 +1,49 @@
+![React](https://img.shields.io/badge/React-2026-blue)
+![Vite](https://img.shields.io/badge/Vite-fast-purple)
+![License](https://img.shields.io/badge/license-All%20rights%20reserved-red)
+
 # Finance Dashboard
 
 A modern React application for managing personal finances. Track your income and expenses, visualize your financial data with interactive reports, and import or export your transactions with ease.
 
-![Dashboard](screenshots/dashboard-darkmode.png)
-![Transactions](screenshots/transactions-darkmode.png)
-![Reports](screenshots/reports-darkmode.png)
-![Settings](screenshots/settings-darkmode.png)
+---
 
+## Highlights
 
+* Modern React + Vite architecture
+* Fully responsive finance dashboard
+* Multi-language support (English / Dutch)
+* Dark mode support
+* Persistent local storage
+* Interactive financial charts
+* CSV and PDF export
 
 ---
 
-## ✨ Features
+## Screenshots
 
-### Dashboard
+![Dashboard](screenshots/dashboard-darkmode.png)
+
+![Transactions](screenshots/transactions-darkmode.png)
+
+![Reports](screenshots/reports-darkmode.png)
+
+![Settings](screenshots/settings-darkmode.png)
+
+---
+
+# ✨ Features
+
+## Dashboard
 
 * Financial overview
 * Income, expenses and balance cards
 * Key financial statistics
-* Income vs. expense chart
+* Income vs expense chart
 * Expense summary by category
 * Recent transactions
 
-### Transactions
+## Transactions
 
 * Create, edit and delete transactions
 * Drawer-based create/edit form
@@ -32,61 +53,67 @@ A modern React application for managing personal finances. Track your income and
 * Sorting
 * Pagination
 
-### Reports
+## Reports
 
 * Financial statistics
 * Expense distribution by category
 * Monthly cashflow chart
 * Interactive charts powered by Recharts
 
-### Import & Export
+## Import & Export
 
 * ING CSV import
 * CSV export
 * PDF export
 
-### Settings
+## Settings
 
 * Dark / Light mode
 * Dutch / English language support
 * Clear all application data
 
-### General
+## General
 
 * Automatic transaction categorization
 * Responsive design
 * Local storage persistence
 
----
+## About App
 
-## Screenshots
-
-* Dashboard
-* Transactions
-* Reports
-* Settings
-* Dark Mode
+* Application information page
+* Version information
+* Developer information
+* Technologies overview
+* License information
 
 ---
 
-## Built With
+# Built With
+
+## Frontend
 
 * React
 * Vite
 * React Router
 * React Bootstrap
 * Material UI (Drawer)
+
+## Data & Visualization
+
 * Recharts
 * Chart.js
+* date-fns
+
+## Utilities
+
 * PapaParse
 * jsPDF
-* date-fns
 * react-datepicker
 * react-i18next
 
 ---
 
-## Installation
+# Installation
 
 ```bash
 git clone https://github.com/Fehmi-Yildirim/finance-dashboard.git
@@ -100,20 +127,131 @@ npm run dev
 
 ---
 
-## Roadmap
+# Roadmap
 
-Planned improvements include:
+## Finance Features
 
 * Budget management
-* Advanced reports
 * Goal tracking
+* Multiple accounts
+* Recurring transactions
+* Currency support
+
+## Analytics
+
+* Advanced reports
+* Improved analytics
+* Financial trends
+
+## Data Management
+
 * Data backup & restore
 * Additional import formats
-* Improved analytics
+* Cloud synchronization
+
+## User Experience
+
+* User profiles
+* Budget notifications
 
 ---
 
-## License
+# Project Structure
+
+```text
+FINANCE-DASHBOARD
+
+├── public
+│
+├── screenshots
+│
+├── src
+│
+├── assets
+│
+├── components
+│   ├── AddTransaction.jsx
+│   ├── Card.jsx
+│   ├── Cards.jsx
+│   ├── CategorySummary.jsx
+│   ├── CSVImport.jsx
+│   ├── Footer.jsx
+│   ├── Header.jsx
+│   ├── Sidebar.jsx
+│   ├── TransactionDrawer.jsx
+│   ├── TransactionsList.jsx
+│   └── TransactionsToolbar.jsx
+│
+├── config
+│   └── appConfig.js
+│
+├── css
+│   ├── components.css
+│   ├── darkmode.css
+│   ├── layout.css
+│   └── variables.css
+│
+├── data
+│   ├── categories.js
+│   └── demoTransactions.js
+│
+├── hooks
+│   ├── useFilteredTransactions.jsx
+│   └── useTransactions.js
+│
+├── layouts
+│   └── MainLayout.jsx
+│
+├── locales
+│   ├── en.json
+│   └── nl.json
+│
+├── pages
+│   ├── Dashboard.jsx
+│   ├── Transactions.jsx
+│   ├── Reports.jsx
+│   ├── Settings.jsx
+│   └── AboutApp.jsx
+│
+├── services
+│   ├── categoryDetector.js
+│   ├── csvParser.js
+│   └── transactionKey.js
+│
+├── utils
+│   ├── addMissingData.js
+│   ├── calculateStatistics.js
+│   ├── chartUtils.js
+│   ├── exportToCSV.js
+│   ├── filterTransactions.js
+│   ├── formatCurrency.js
+│   ├── formatDate.js
+│   ├── formatters.js
+│   └── sortTransactions.js
+│
+├── App.jsx
+├── i18n.js
+├── index.css
+├── main.jsx
+
+├── package.json
+├── vite.config.js
+├── eslint.config.js
+├── .gitignore
+└── README.md
+```
+
+---
+
+# Version
+
+Current version: **1.0.0**
+
+Release year: **2026**
+
+---
+
+# License
 
 Copyright © 2026 Fehmi Yildirim
 

@@ -16,7 +16,8 @@
         "dashboard": "Dashboard",
         "transactions": "Transactions",
         "reports": "Reports",
-        "settings": "Settings"
+        "settings": "Settings",
+        "about": "About this app"
     },
     "settings": {
         "title": "Settings",
@@ -155,5 +156,22 @@
         "deleteTitle": "Delete transaction",
         "deleteMessage": "Are you sure you want to delete this transaction?",
         "cancel": "Cancel"
+    },
+    "about": {
+        "title": "About this app",
+        "description": "This application helps users manage transactions, reports and settings easily.",
+        "version": "Version",
+        "developer": "Developer",
+        "developerName": "My personal dashboard app",
+        "technology": "Technologies used",
+        "features": "Features",
+        "featureTransactions": "Transaction management",
+        "featureReports": "Reports and analytics",
+        "featureSettings": "Personal settings",
+        "featureLanguages": "Multi-language support",
+        "contact": "Contact",
+        "license": "License",
+        "email": "Email",
+        "licenseName": "MIT License"
     }
 }

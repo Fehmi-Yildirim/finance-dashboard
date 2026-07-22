@@ -1,13 +1,14 @@
 import MainLayout from "./layouts/MainLayout";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
+import Footer from './components/Footer';
 import Dashboard from "./pages/Dashboard";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Footer from './components/Footer'; // Adjust the path if your file is located elsewhere
 import Transactions from "./pages/Transactions";
 import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
+import AboutApp from "./pages/AboutApp";
 import { Route, Routes } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { registerLocale } from "react-datepicker";
 import { nl, enGB } from "date-fns/locale";
@@ -22,7 +23,6 @@ function App() {
 
   useEffect(() => {
     const darkMode = localStorage.getItem("darkMode") === "true";
-
     document.documentElement.classList.toggle(
       "dark-mode",
       darkMode
@@ -31,22 +31,18 @@ function App() {
 
   return (
     <MainLayout>
-
       <Header />
-
       <Sidebar />
-
       <main>
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/transactions" element={<Transactions />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/about" element={<AboutApp />} />
         </Routes>
       </main>
-
       <Footer />
-
     </MainLayout>
   );
 }

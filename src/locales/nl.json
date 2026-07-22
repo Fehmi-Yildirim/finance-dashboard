@@ -16,7 +16,8 @@
         "dashboard": "Dashboard",
         "transactions": "Transacties",
         "reports": "Rapportages",
-        "settings": "Instellingen"
+        "settings": "Instellingen",
+        "about": "Over deze app"
     },
     "settings": {
         "title": "Instellingen",
@@ -155,5 +156,22 @@
         "deleteTitle": "Transactie verwijderen",
         "deleteMessage": "Weet je zeker dat je deze transactie wilt verwijderen?",
         "cancel": "Annuleren"
+    },
+    "about": {
+        "title": "Over deze app",
+        "description": "Deze applicatie helpt gebruikers om transacties, rapportages en instellingen eenvoudig te beheren.",
+        "version": "Versie",
+        "developer": "Ontwikkelaar",
+        "developerName": "Mijn persoonlijke dashboard app",
+        "technology": "Gebruikte technologieën",
+        "features": "Functionaliteiten",
+        "featureTransactions": "Beheer van transacties",
+        "featureReports": "Rapportages en analyses",
+        "featureSettings": "Persoonlijke instellingen",
+        "featureLanguages": "Meertalige ondersteuning",
+        "contact": "Contact",
+        "license": "Licentie",
+        "email": "E-mail",
+        "licenseName": "MIT Licentie"
     }
 }
