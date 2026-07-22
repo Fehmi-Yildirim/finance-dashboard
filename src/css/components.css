@@ -332,8 +332,14 @@ input::placeholder {
 
 section {
     margin-top: 2rem;
-    box-shadow: 0 4px 12px var(--shadow-color);
     padding: 2rem;
+    background: var(--surface-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.report-section h2 {
+    margin-bottom: 1.5rem;
 }
 
 .transaction-list {

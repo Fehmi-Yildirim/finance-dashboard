@@ -15,7 +15,7 @@
     "sidebar": {
         "dashboard": "Dashboard",
         "transactions": "Transacties",
-        "reports": "Rapporten",
+        "reports": "Rapportages",
         "settings": "Instellingen"
     },
     "settings": {
@@ -96,6 +96,7 @@
         "new": "Nieuwe transactie",
         "edit": "Transactie bewerken",
         "description": "Beschrijving",
+        "category": "Categorie",
         "amount": "Bedrag",
         "income": "Inkomst",
         "expense": "Uitgave",
@@ -132,7 +133,16 @@
         "totalTransactions": "Transacties"
     },
     "reports": {
-        "title": "Rapporten"
+        "title": "Rapportages",
+        "income": "Inkomsten",
+        "expenses": "Uitgaven",
+        "balance": "Saldo",
+        "expensesByCategory": "Uitgaven per categorie",
+        "monthlyCashflow": "Maandelijkse kasstroom",
+        "noCashflowData": "Geen transacties beschikbaar.",
+        "noData": "Geen transacties beschikbaar",
+        "amount": "Bedrag",
+        "noExpenseData": "Geen uitgaven beschikbaar."
     },
     "footer": {
         "rights": "Alle rechten voorbehouden.",

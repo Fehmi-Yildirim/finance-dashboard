@@ -97,6 +97,7 @@
         "edit": "Edit transaction",
         "description": "Description",
         "amount": "Amount",
+        "category": "Category",
         "income": "Income",
         "expense": "Expense",
         "search": "Search transactions..."
@@ -132,7 +133,16 @@
         "totalTransactions": "Transactions"
     },
     "reports": {
-        "title": "Reports"
+        "title": "Reports",
+        "income": "Income",
+        "expenses": "Expenses",
+        "balance": "Balance",
+        "expensesByCategory": "Expenses by category",
+        "monthlyCashflow": "Monthly cash flow",
+        "noCashflowData": "No transactions available.",
+        "noData": "No transactions available",
+        "amount": "Amount",
+        "noExpenseData": "No expense data available."
     },
     "footer": {
         "rights": "All rights reserved.",
