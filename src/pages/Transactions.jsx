@@ -9,7 +9,7 @@ import TransactionDrawer from "../components/TransactionDrawer";
 
 function Transactions() {
 
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     const {
         transactions,
@@ -27,6 +27,22 @@ function Transactions() {
     const [dateFilter, setDateFilter] = useState("custom"); // all, today, year or custom
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
+
+    function getCategorySearchTerms(category) {
+        return [
+            category,
+
+            i18n.t(`categories.${category}`, {
+                lng: "nl",
+            }),
+
+            i18n.t(`categories.${category}`, {
+                lng: "en",
+            }),
+        ]
+            .filter(Boolean)
+            .map(value => value.toLowerCase());
+    }
 
     const filteredTransactions = useMemo(() => {
         let dateFiltered = transactions;
@@ -83,16 +99,26 @@ function Transactions() {
                 `categories.${transaction.category}`
             ).toLowerCase();
 
+            const categoryTerms = getCategorySearchTerms(
+                transaction.category
+            );
+
+            const matchesCategory = categoryTerms.some(term =>
+                term.includes(searchTerm)
+            );
+
             const matchesSearch =
                 transaction.description
                     .toLowerCase()
                     .includes(searchTerm) ||
 
-                transaction.category
-                    .toLowerCase()
-                    .includes(searchTerm) ||
+                matchesCategory ||
 
-                translatedCategory.includes(searchTerm);
+                transaction.amount
+                    .toString()
+                    .includes(searchTerm);
+
+            translatedCategory.includes(searchTerm);
 
             const matchesFilter =
                 filter === "all" ||
