@@ -15,6 +15,7 @@
     "sidebar": {
         "dashboard": "Dashboard",
         "transactions": "Transactions",
+        "budgets": "Budgets",
         "reports": "Reports",
         "settings": "Settings",
         "about": "About this app"
@@ -102,6 +103,23 @@
         "income": "Income",
         "expense": "Expense",
         "search": "Search transactions..."
+    },
+    "budgets": {
+        "title": "Budgets",
+        "description": "Manage your budgets per category.",
+        "listTitle": "My budgets",
+        "noBudgets": "No budgets added yet.",
+        "actions": "Actions",
+        "addTitle": "Add Budget",
+        "selectCategory": "Select a category",
+        "amount": "Budget Amount",
+        "save": "Save Budget",
+        "budget": "Budget",
+        "spent": "Spent",
+        "remaining": "Remaining",
+        "overview": "Budget Overview",
+        "totalBudget": "Total Budget",
+        "status": "Status"
     },
     "filter": {
         "all": "All",

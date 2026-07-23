@@ -484,3 +484,43 @@ button,
     line-height: 1;
     cursor: pointer;
 }
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    width: 100%;
+    padding-left: 38px;
+    padding-right: 38px;
+}
+
+.search-icon-button,
+.clear-search-button {
+    position: absolute;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    padding: 0;
+    border-radius: 0;
+}
+
+.search-icon-button {
+    left: 8px;
+}
+
+.clear-search-button {
+    right: 8px;
+}
+
+.search-icon-button:hover,
+.clear-search-button:hover {
+    background: transparent;
+    color: var(--primary-color);
+}

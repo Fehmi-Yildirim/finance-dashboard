@@ -6,6 +6,11 @@ import CategorySummary from "../components/CategorySummary";
 import IncomeExpenseChart from "../components/IncomeExpenseChart";
 import { useTransactions } from "../hooks/useTransactions";
 import { useTranslation } from "react-i18next";
+import BudgetCard from "../components/BudgetCard";
+import useBudgets from "../hooks/useBudgets";
+import { calculateBudgetProgress } from "../utils/calculateBudgetProgress";
+import { calculateBudgetTotals } from "../utils/calculateBudgetTotals";
+
 
 function Dashboard() {
 
@@ -16,6 +21,19 @@ function Dashboard() {
         statistics,
         recentTransactions,
     } = useTransactions();
+
+    const { budgets } = useBudgets();
+
+    const budgetProgress =
+        calculateBudgetProgress(
+            budgets,
+            transactions
+        );
+
+    const totals =
+        calculateBudgetTotals(
+            budgetProgress
+        );
 
     return (
         <div>
@@ -36,6 +54,13 @@ function Dashboard() {
                     value={statistics.balance}
                 />
             </Cards>
+
+            <BudgetCard
+                totalBudget={totals.totalBudget}
+                totalSpent={totals.totalSpent}
+                remaining={totals.remaining}
+                percentage={totals.percentage}
+            />
 
             <StatisticsCards
                 statistics={statistics}

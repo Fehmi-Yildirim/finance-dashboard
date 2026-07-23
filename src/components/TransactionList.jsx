@@ -18,6 +18,7 @@ function TransactionList({
     showSorting = true,
 }) {
 
+
     const { t } = useTranslation();
 
     const [currentPage, setCurrentPage] = useState(1);

@@ -12,7 +12,7 @@ function AboutApp() {
     ];
 
     return (
-        <div className="container mt-4">
+        <div className="about-app-page">
 
             <div className="card shadow-sm">
                 <div className="card-body">

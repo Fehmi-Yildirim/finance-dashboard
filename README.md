@@ -158,9 +158,7 @@ npm run dev
 
 # Project Structure
 
-```text
 FINANCE-DASHBOARD
-
 ├── public
 │
 ├── screenshots
@@ -171,6 +169,10 @@ FINANCE-DASHBOARD
 │
 ├── components
 │   ├── AddTransaction.jsx
+│   ├── BudgetForm.jsx
+│   ├── BudgetList.jsx
+│   ├── BudgetCard.jsx
+│   └── BudgetProgress.jsx
 │   ├── Card.jsx
 │   ├── Cards.jsx
 │   ├── CategorySummary.jsx
@@ -196,8 +198,8 @@ FINANCE-DASHBOARD
 │   └── demoTransactions.js
 │
 ├── hooks
-│   ├── useFilteredTransactions.jsx
 │   └── useTransactions.js
+│   └── useBudgets.js
 │
 ├── layouts
 │   └── MainLayout.jsx
@@ -211,6 +213,7 @@ FINANCE-DASHBOARD
 │   ├── Transactions.jsx
 │   ├── Reports.jsx
 │   ├── Settings.jsx
+│   ├── Budgets.jsx
 │   └── AboutApp.jsx
 │
 ├── services
@@ -220,10 +223,10 @@ FINANCE-DASHBOARD
 │
 ├── utils
 │   ├── addMissingData.js
+│   └── calculateBudgetProgress.js
 │   ├── calculateStatistics.js
 │   ├── chartUtils.js
 │   ├── exportToCSV.js
-│   ├── filterTransactions.js
 │   ├── formatCurrency.js
 │   ├── formatDate.js
 │   ├── formatters.js
@@ -239,7 +242,6 @@ FINANCE-DASHBOARD
 ├── eslint.config.js
 ├── .gitignore
 └── README.md
-```
 
 ---
 

@@ -8,6 +8,7 @@ import { startOfToday, startOfMonth, startOfYear, endOfToday, endOfMonth, endOfY
 import TransactionDrawer from "../components/TransactionDrawer";
 
 function Transactions() {
+
     const { t } = useTranslation();
 
     const {
@@ -74,16 +75,36 @@ function Transactions() {
             return true;
         });
 
-        return dateFiltered.filter(
-            (transaction) =>
-                (transaction.description
+        return dateFiltered.filter((transaction) => {
+
+            const searchTerm = search.toLowerCase().trim();
+
+            const translatedCategory = t(
+                `categories.${transaction.category}`
+            ).toLowerCase();
+
+            const matchesSearch =
+                transaction.description
                     .toLowerCase()
-                    .includes(search.toLowerCase()) ||
-                    transaction.category
-                        .toLowerCase()
-                        .includes(search.toLowerCase())) &&
-                (filter === "all" || transaction.type === filter)
-        );
+                    .includes(searchTerm) ||
+
+                transaction.category
+                    .toLowerCase()
+                    .includes(searchTerm) ||
+
+                translatedCategory.includes(searchTerm);
+
+            const matchesFilter =
+                filter === "all" ||
+                transaction.type === filter;
+
+            return (
+                matchesSearch &&
+                matchesFilter
+            );
+        });
+
+
     }, [transactions, search, filter, dateFilter, startDate, endDate]);
 
     function handleAdd() {
@@ -107,7 +128,6 @@ function Transactions() {
 
             <button onClick={handleAdd}>{t("transactions.new")}</button>
 
-
             <TransactionDrawer
                 open={isDrawerOpen}
                 onClose={handleCloseDrawer}
@@ -115,7 +135,6 @@ function Transactions() {
                 addTransaction={addTransaction}
                 updateTransaction={updateTransaction}
             />
-
 
             <TransactionToolbar
                 search={search}

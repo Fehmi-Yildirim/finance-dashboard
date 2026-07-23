@@ -15,6 +15,7 @@
     "sidebar": {
         "dashboard": "Dashboard",
         "transactions": "Transacties",
+        "budgets": "Budgetten",
         "reports": "Rapportages",
         "settings": "Instellingen",
         "about": "Over deze app"
@@ -102,6 +103,23 @@
         "income": "Inkomst",
         "expense": "Uitgave",
         "search": "Zoek transacties..."
+    },
+    "budgets": {
+        "title": "Budgetten",
+        "description": "Beheer je budgetten per categorie.",
+        "listTitle": "Mijn budgetten",
+        "noBudgets": "Nog geen budgetten toegevoegd.",
+        "actions": "Acties",
+        "addTitle": "Budget toevoegen",
+        "selectCategory": "Selecteer een categorie",
+        "amount": "Budgetbedrag",
+        "save": "Budget opslaan",
+        "budget": "Budget",
+        "spent": "Uitgegeven",
+        "remaining": "Resterend",
+        "overview": "Budgetoverzicht",
+        "totalBudget": "Totaal budget",
+        "status": "Status"
     },
     "filter": {
         "all": "Alles",
