@@ -1,10 +1,9 @@
 import { useState, useMemo, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import SortableHeader from "./SortableHeader";
+import ActionsDropdown from "./ActionsDropdown";
 import { formatCurrency } from "../utils/formatCurrency";
 import { formatDate } from "../utils/formatDate";
-import TransactionActions from "./TransactionActions";
-import { useTranslation } from "react-i18next";
-
 
 function TransactionList({
     title,
@@ -17,7 +16,6 @@ function TransactionList({
     showActions = true,
     showSorting = true,
 }) {
-
 
     const { t } = useTranslation();
 
@@ -167,10 +165,11 @@ function TransactionList({
                                 </td>
                                 {showActions && (
                                     <td>
-                                        <TransactionActions
-                                            transaction={transaction}
-                                            editTransaction={editTransaction}
-                                            deleteTransaction={deleteTransaction}
+                                        <ActionsDropdown
+                                            item={transaction}
+                                            onEdit={editTransaction}
+                                            onDelete={deleteTransaction}
+                                            translationKey="transactionActions"
                                         />
                                     </td>
                                 )}

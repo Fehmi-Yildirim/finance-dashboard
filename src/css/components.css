@@ -524,3 +524,98 @@ button,
     background: transparent;
     color: var(--primary-color);
 }
+
+.budgets-page {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.add-budget-button {
+    width: fit-content;
+    align-self: flex-start;
+    padding: .65rem 1.25rem;
+}
+
+.budgets-page .card {
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--surface-color);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.budgets-page h1 {
+    margin-bottom: .25rem;
+}
+
+.budgets-page p {
+    color: var(--muted-color);
+}
+
+.budget-progress {
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.25rem;
+    background: var(--surface-color);
+}
+
+.budget-progress h5 {
+    margin-bottom: .75rem;
+    font-weight: 600;
+}
+
+.budget-percentage {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.budget-label {
+    color: var(--muted-color);
+}
+
+.progress {
+    height: 12px;
+    border-radius: 8px;
+}
+
+.progress-bar {
+    transition: width .35s ease;
+}
+
+.btn-sm {
+    min-width: 80px;
+}
+
+.btn {
+    border-radius: 8px;
+}
+
+.status-cell {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.budget-progress-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1rem;
+}
+
+.MuiDrawer-paper {
+    background: var(--surface-color) !important;
+    color: var(--text-color);
+}
+
+.budget-table {
+    width: 100%;
+    overflow: visible;
+}
+
+.budget-table td:last-child,
+.budget-table th:last-child {
+    position: relative;
+}
+
+.dropdown-menu {
+    z-index: 2000 !important;
+}

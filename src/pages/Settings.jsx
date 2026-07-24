@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-import { Modal, Button, Form, Alert } from "react-bootstrap";
+import { useState } from "react";
+import { Button, Form, Alert } from "react-bootstrap";
+import ConfirmationDialog from "../components/ConfirmationDialog";
 import { useTransactions } from "../hooks/useTransactions";
 import CSVImport from "../components/CSVImport";
 import { exportToCSV } from "../utils/exportToCSV";
@@ -19,7 +20,7 @@ function Settings() {
         transactions,
     } = useTransactions();
 
-    const [showModal, setShowModal] = useState(false);
+    const [showConfirmation, setShowConfirmation] = useState(false);
     const [message, setMessage] = useState(null);
 
     const [darkMode, setDarkMode] = useState(
@@ -32,20 +33,24 @@ function Settings() {
         localStorage.setItem("language", lang);
     };
 
-    const handleCloseModal = () => setShowModal(false);
-    const handleShowModal = () => {
+    const handleCloseConfirmation = () =>
+        setShowConfirmation(false);
+
+    const handleShowConfirmation = () => {
         setMessage(null);
-        setShowModal(true);
+        setShowConfirmation(true);
     };
 
     const handleConfirmClear = () => {
+
         clearAllData();
-        handleCloseModal();
+
         setMessage({
             type: "success",
             text: t("settings.messages.dataCleared"),
             section: "data",
         });
+
     };
 
     const handleExportToCSV = () => {
@@ -65,7 +70,7 @@ function Settings() {
 
         setMessage({
             type: "success",
-            text: t("settings.messages.csvExportSuccess"),
+            text: t("settings.messages.pdfExportSuccess"),
             section: "import-export",
         });
 
@@ -90,7 +95,10 @@ function Settings() {
 
             <section>
                 <h2>{t("settings.data")}</h2>
-                <Button variant="danger" onClick={handleShowModal}>
+                <Button
+                    variant="danger"
+                    onClick={handleShowConfirmation}
+                >
                     {t("settings.clearData")}
                 </Button>
                 {message && message.section === "data" && (
@@ -100,23 +108,15 @@ function Settings() {
                 )}
             </section>
 
-            <Modal show={showModal} onHide={handleCloseModal}>
-                <Modal.Header closeButton>
-                    <Modal.Title>{t("settings.confirmation")}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {t("settings.clearDataMessage")}
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseModal}>
-                        {t("common.cancel")}
-                    </Button>
-
-                    <Button variant="danger" onClick={handleConfirmClear}>
-                        {t("common.delete")}
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            <ConfirmationDialog
+                show={showConfirmation}
+                onClose={handleCloseConfirmation}
+                onConfirm={handleConfirmClear}
+                title={t("settings.confirmation")}
+                message={t("settings.clearDataMessage")}
+                confirmText={t("settings.clearData")}
+                confirmVariant="danger"
+            />
 
             <section>
                 <h2>{t("settings.importExport")}</h2>

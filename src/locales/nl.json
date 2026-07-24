@@ -3,7 +3,9 @@
         "add": "Toevoegen",
         "save": "Opslaan",
         "cancel": "Annuleren",
-        "delete": "Verwijderen"
+        "delete": "Verwijderen",
+        "edit": "Bewerken",
+        "close": "Sluiten"
     },
     "dashboard": {
         "title": "Dashboard",
@@ -119,7 +121,16 @@
         "remaining": "Resterend",
         "overview": "Budgetoverzicht",
         "totalBudget": "Totaal budget",
-        "status": "Status"
+        "status": "Status",
+        "editTitle": "Budget bewerken",
+        "deleteTitle": "Budget verwijderen",
+        "deleteMessage": "Weet je zeker dat je dit budget wilt verwijderen?"
+    },
+    "budgetActions": {
+        "edit": "Bewerken",
+        "delete": "Verwijderen",
+        "deleteTitle": "Budget verwijderen?",
+        "deleteMessage": "Weet je zeker dat je dit budget wilt verwijderen?"
     },
     "filter": {
         "all": "Alles",

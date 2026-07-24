@@ -9,7 +9,7 @@ export function calculateBudgetProgress(budgets, transactions) {
             )
             .reduce(
                 (total, transaction) =>
-                    total + Number(transaction.amount),
+                    total + Math.abs(Number(transaction.amount)),
                 0
             );
 
@@ -17,10 +17,7 @@ export function calculateBudgetProgress(budgets, transactions) {
 
         const percentage =
             budget.amount > 0
-                ? Math.min(
-                    (spent / budget.amount) * 100,
-                    100
-                )
+                ? (spent / budget.amount) * 100
                 : 0;
 
         return {

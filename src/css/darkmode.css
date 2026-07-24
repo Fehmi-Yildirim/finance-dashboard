@@ -141,3 +141,30 @@ html.dark-mode .react-datepicker__time-name,
 html.dark-mode .react-datepicker__navigation-icon::before {
     color: var(--text-color);
 }
+
+html.dark-mode .MuiDrawer-paper {
+    background: var(--surface-color);
+    color: var(--text-color);
+}
+
+/* Tables */
+html.dark-mode .table {
+    color: var(--text-color);
+    background-color: var(--surface-color);
+}
+
+html.dark-mode .table thead th {
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+html.dark-mode .table tbody td {
+    background-color: var(--surface-color);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+html.dark-mode .table-hover tbody tr:hover td {
+    background-color: var(--hover-color);
+}

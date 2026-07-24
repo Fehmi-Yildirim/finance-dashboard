@@ -168,18 +168,29 @@ FINANCE-DASHBOARD
 ├── assets
 │
 ├── components
+│   ├── ActionsDropdown.jsx
 │   ├── AddTransaction.jsx
+│   ├── BudgetCard.jsx
+│   ├── BudgetDrawer.jsx
 │   ├── BudgetForm.jsx
 │   ├── BudgetList.jsx
-│   ├── BudgetCard.jsx
 │   └── BudgetProgress.jsx
 │   ├── Card.jsx
 │   ├── Cards.jsx
 │   ├── CategorySummary.jsx
+│   ├── ComfirmationDialog.jsx
 │   ├── CSVImport.jsx
+│   ├── ExpenseCategoryChart.jsx
 │   ├── Footer.jsx
+│   ├── Header.css
 │   ├── Header.jsx
+│   ├── IncomeExpenseChart.jsx
+│   ├── MonthlyCashflowChart.jsx
+│   ├── ReportSection.jsx
+│   ├── Sidebar.css
 │   ├── Sidebar.jsx
+│   ├── SortableHeader.jsx
+│   ├── StatisticsCards.jsx
 │   ├── TransactionDrawer.jsx
 │   ├── TransactionsList.jsx
 │   └── TransactionsToolbar.jsx
