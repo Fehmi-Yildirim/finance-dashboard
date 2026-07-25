@@ -6,6 +6,8 @@ import CSVImport from "../components/CSVImport";
 import { exportToCSV } from "../utils/exportToCSV";
 import { exportToPDF } from "../utils/exportToPDF";
 import { useTranslation } from "react-i18next";
+import useBudgets from "../hooks/useBudgets";
+
 
 function Settings() {
 
@@ -16,9 +18,37 @@ function Settings() {
     );
 
     const {
-        clearAllData,
+        clearTransactions,
         transactions,
     } = useTransactions();
+
+    const {
+        clearBudgets,
+    } = useBudgets();
+
+    const [showBudgetConfirmation, setShowBudgetConfirmation] = useState(false);
+
+    const handleCloseBudgetConfirmation = () =>
+        setShowBudgetConfirmation(false);
+
+    const handleShowBudgetConfirmation = () => {
+        setMessage(null);
+        setShowBudgetConfirmation(true);
+    };
+
+    const handleConfirmClearBudgets = () => {
+
+        clearBudgets();
+
+        setShowBudgetConfirmation(false);
+
+        setMessage({
+            type: "success",
+            text: t("settings.messages.budgetsCleared"),
+            section: "data",
+        });
+
+    };
 
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [message, setMessage] = useState(null);
@@ -37,13 +67,16 @@ function Settings() {
         setShowConfirmation(false);
 
     const handleShowConfirmation = () => {
+
         setMessage(null);
+
         setShowConfirmation(true);
+
     };
 
     const handleConfirmClear = () => {
 
-        clearAllData();
+        clearTransactions();
 
         setMessage({
             type: "success",
@@ -95,17 +128,33 @@ function Settings() {
 
             <section>
                 <h2>{t("settings.data")}</h2>
-                <Button
-                    variant="danger"
-                    onClick={handleShowConfirmation}
-                >
-                    {t("settings.clearData")}
-                </Button>
+
                 {message && message.section === "data" && (
                     <Alert variant={message.type} style={{ marginTop: '1rem' }}>
                         {message.text}
                     </Alert>
                 )}
+                <h3>{t("settings.transactions")}</h3>
+                <p>
+                    {t("settings.clearTransactionsDescription")}
+                </p>
+                <Button
+                    variant="danger"
+                    onClick={handleShowConfirmation}
+                >
+                    {t("settings.clearTransactions")}
+                </Button>
+
+                <h3>{t("settings.budgets")}</h3>
+                <p>
+                    {t("settings.clearBudgetsDescription")}
+                </p>
+                <Button
+                    variant="warning"
+                    onClick={handleShowBudgetConfirmation}
+                >
+                    {t("settings.clearBudgets")}
+                </Button>
             </section>
 
             <ConfirmationDialog
@@ -120,13 +169,17 @@ function Settings() {
 
             <section>
                 <h2>{t("settings.importExport")}</h2>
+
+                <h3>{t("settings.importTransactions")}</h3>
+                <p>{t("settings.importTransactionsDescription")}</p>
                 <CSVImport
                     setMessage={setMessage}
                 />
+
+                <h3>{t("settings.exportTransactions")}</h3>
                 <Button
                     variant="primary"
                     onClick={handleExportToCSV}
-                    style={{ marginTop: "1rem" }}
                     disabled={transactions.length === 0}
                 >
                     {t("settings.exportCsv")}
@@ -134,18 +187,29 @@ function Settings() {
                 <Button
                     variant="secondary"
                     onClick={handleExportToPDF}
-                    style={{ marginTop: "1rem", marginLeft: "1rem" }}
+                    style={{ marginLeft: "1rem" }}
                     disabled={transactions.length === 0}
                 >
                     {t("settings.exportPdf")}
                 </Button>
-
                 {message && message.section === "import-export" && (
-                    <Alert variant={message.type} style={{ marginTop: '1rem' }}>
+                    <Alert
+                        variant={message.type}
+                    >
                         {message.text}
                     </Alert>
                 )}
             </section>
+
+            <ConfirmationDialog
+                show={showBudgetConfirmation}
+                onClose={handleCloseBudgetConfirmation}
+                onConfirm={handleConfirmClearBudgets}
+                title={t("settings.confirmation")}
+                message={t("settings.clearBudgetsDescription")}
+                confirmText={t("settings.clearBudgets")}
+                confirmVariant="warning"
+            />
 
             <section>
                 <h2>{t("settings.appearance")}</h2>

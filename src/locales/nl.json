@@ -29,16 +29,31 @@
         "clearData": "Alle gegevens wissen",
         "confirmation": "Bevestiging",
         "clearDataMessage": "Weet je zeker dat je alle gegevens wilt wissen? Deze actie kan niet ongedaan worden gemaakt.",
-        "importExport": "Import & Export",
+        "importExport": "Importeren en exporteren",
         "exportCsv": "Exporteer naar CSV",
         "exportPdf": "Exporteer naar PDF",
         "appearance": "Weergave",
         "darkMode": "Donkere modus",
         "lightMode": "Lichte modus",
+        "importTransactions": "Transacties importeren",
+        "exportTransactions": "Transacties exporteren",
+        "importTransactionsDescription": "Importeer een CSV-bestand met uw transacties. Bij de eerste import worden de demotransacties automatisch vervangen.",
+        "transactions": "Transacties",
+        "budgets": "Budgetten",
+        "clearTransactions": "Alle transacties wissen",
+        "clearBudgets": "Alle budgetten wissen",
+        "clearBudgetsDescription": "Verwijdert alle opgeslagen budgetten.",
+        "application": "Toepassing",
+        "clearApplicationData": "Alle toepassingsgegevens wissen",
+        "clearTransactionsDescription": "Verwijdert alle opgeslagen transacties en voegt de demotransacties terug.",
+        "clearApplicationDescription": "Verwijdert alle toepassingsgegevens, inclusief transacties, budgetten en instellingen.",
+        "clearBudgetsMessage": "Weet je zeker dat je alle budgetten wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
         "messages": {
             "dataCleared": "Alle transacties zijn succesvol verwijderd.",
             "csvExportSuccess": "CSV-bestand succesvol geëxporteerd.",
-            "pdfExportSuccess": "PDF succesvol geëxporteerd."
+            "pdfExportSuccess": "PDF succesvol geëxporteerd.",
+            "budgetsCleared": "Alle budgetten zijn succesvol verwijderd.",
+            "applicationDataCleared": "Alle toepassingsgegevens zijn succesvol verwijderd."
         }
     },
     "categories": {
@@ -109,7 +124,7 @@
     "budgets": {
         "title": "Budgetten",
         "description": "Beheer je budgetten per categorie.",
-        "listTitle": "Mijn budgetten",
+        "listTitle": "Budgetten",
         "noBudgets": "Nog geen budgetten toegevoegd.",
         "actions": "Acties",
         "addTitle": "Budget toevoegen",

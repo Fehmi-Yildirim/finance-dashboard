@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { parseCSV } from "../services/csvParser";
 import { useTransactions } from "../hooks/useTransactions";
 import { formatCurrency } from "../utils/formatCurrency";
+import useBudgets from "../hooks/useBudgets";
+import { createBudgetCategories } from "../utils/createBudgetCategories";
 
 function CSVImport({ setMessage }) {
 
@@ -12,6 +14,10 @@ function CSVImport({ setMessage }) {
         transactions,
         importTransactions,
     } = useTransactions();
+
+    const {
+        initializeBudgets,
+    } = useBudgets();
 
     const [newTransactions, setNewTransactions] = useState([]);
     const [existingCount, setExistingCount] = useState(0);
@@ -83,6 +89,9 @@ function CSVImport({ setMessage }) {
     function handleImport() {
 
         importTransactions(newTransactions);
+
+        const categories = createBudgetCategories(newTransactions);
+        initializeBudgets(categories);
 
         setMessage({
             type: "success",

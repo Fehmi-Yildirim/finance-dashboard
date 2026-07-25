@@ -29,16 +29,31 @@
         "clearData": "Clear all data",
         "confirmation": "Confirmation",
         "clearDataMessage": "Are you sure you want to delete all data? This action cannot be undone.",
-        "importExport": "Import & Export",
+        "importExport": "Import and Export",
         "exportCsv": "Export to CSV",
         "exportPdf": "Export to PDF",
         "appearance": "Appearance",
         "darkMode": "Dark mode",
         "lightMode": "Light mode",
+        "importTransactions": "Import Transactions",
+        "exportTransactions": "Export Transactions",
+        "importTransactionsDescription": "Import a CSV file containing your transactions. The first import automatically replaces the demo transactions.",
+        "transactions": "Transactions",
+        "budgets": "Budgets",
+        "application": "Application",
+        "clearTransactions": "Clear all transactions",
+        "clearBudgets": "Clear all budgets",
+        "clearApplicationData": "Clear application data",
+        "clearTransactionsDescription": "Delete all stored transactions and restore the demo transactions.",
+        "clearBudgetsDescription": "Delete all stored budgets.",
+        "clearApplicationDescription": "Delete all application data, including transactions, budgets, and settings.",
+        "clearBudgetsMessage": "Are you sure you want to delete all budgets? This action cannot be undone.",
         "messages": {
             "dataCleared": "All transactions have been deleted successfully.",
             "csvExportSuccess": "CSV file exported successfully.",
-            "pdfExportSuccess": "PDF exported successfully."
+            "pdfExportSuccess": "PDF exported successfully.",
+            "budgetsCleared": "All budgets have been deleted successfully.",
+            "applicationDataCleared": "All application data has been deleted successfully."
         }
     },
     "categories": {

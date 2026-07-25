@@ -206,6 +206,7 @@ FINANCE-DASHBOARD
 │
 ├── data
 │   ├── categories.js
+│   └── demoBudgets.js
 │   └── demoTransactions.js
 │
 ├── hooks
@@ -234,9 +235,11 @@ FINANCE-DASHBOARD
 │
 ├── utils
 │   ├── addMissingData.js
-│   └── calculateBudgetProgress.js
+│   └── calculateBudgetProgress.js 
+│   ├── calculateBudgetTotals.js
 │   ├── calculateStatistics.js
 │   ├── chartUtils.js
+│   ├── createBudgetCategories.js
 │   ├── exportToCSV.js
 │   ├── formatCurrency.js
 │   ├── formatDate.js

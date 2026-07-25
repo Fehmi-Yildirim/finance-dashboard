@@ -1,6 +1,7 @@
 import { Card, ProgressBar } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { formatCurrency } from "../utils/formatCurrency";
+import Cards from "../components/Cards";
 
 function BudgetCard({
     totalBudget,
@@ -13,16 +14,14 @@ function BudgetCard({
 
     if (totalBudget === 0) {
         return (
-            <Card className="shadow-sm mb-4">
-                <Card.Body>
-                    <Card.Title>
-                        💰 {t("budgets.overview")}
-                    </Card.Title>
+            <Cards>
+                <Card>
+                    {t("budgets.overview")}
                     <p>
                         {t("budgets.noBudgets")}
                     </p>
-                </Card.Body>
-            </Card>
+                </Card>
+            </Cards>
         );
     }
 
