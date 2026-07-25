@@ -100,7 +100,7 @@ function CSVImport({ setMessage }) {
                 existingCount,
                 total: newCount + existingCount,
             }),
-            section: "import-export",
+            section: "import",
         });
 
         resetImport();

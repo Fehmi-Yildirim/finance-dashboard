@@ -67,11 +67,8 @@ function Settings() {
         setShowConfirmation(false);
 
     const handleShowConfirmation = () => {
-
         setMessage(null);
-
         setShowConfirmation(true);
-
     };
 
     const handleConfirmClear = () => {
@@ -93,7 +90,7 @@ function Settings() {
         setMessage({
             type: "success",
             text: t("settings.messages.csvExportSuccess"),
-            section: "import-export",
+            section: "export",
         });
     };
 
@@ -104,7 +101,7 @@ function Settings() {
         setMessage({
             type: "success",
             text: t("settings.messages.pdfExportSuccess"),
-            section: "import-export",
+            section: "export",
         });
 
     };
@@ -166,17 +163,18 @@ function Settings() {
                 confirmText={t("settings.clearData")}
                 confirmVariant="danger"
             />
+            <section>
+                <h2>{t("settings.importTransactions")}</h2>
+                <CSVImport setMessage={setMessage} />
+                {message && message.section === "import" && (
+                    <Alert variant={message.type} >
+                        {message.text}
+                    </Alert>
+                )}
+            </section>
 
             <section>
-                <h2>{t("settings.importExport")}</h2>
-
-                <h3>{t("settings.importTransactions")}</h3>
-                <p>{t("settings.importTransactionsDescription")}</p>
-                <CSVImport
-                    setMessage={setMessage}
-                />
-
-                <h3>{t("settings.exportTransactions")}</h3>
+                <h2>{t("settings.exportTransactions")}</h2>
                 <Button
                     variant="primary"
                     onClick={handleExportToCSV}
@@ -192,10 +190,8 @@ function Settings() {
                 >
                     {t("settings.exportPdf")}
                 </Button>
-                {message && message.section === "import-export" && (
-                    <Alert
-                        variant={message.type}
-                    >
+                {message && message.section === "export" && (
+                    <Alert variant={message.type} style={{ marginTop: '1rem' }}>
                         {message.text}
                     </Alert>
                 )}
