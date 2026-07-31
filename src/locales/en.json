@@ -64,6 +64,7 @@
         "gift": "Gift",
         "otherIncome": "Other income",
         "food": "Food",
+        "oceries": "Groceries",
         "transport": "Transport",
         "rent": "Rent",
         "shopping": "Shopping",
@@ -80,17 +81,24 @@
         "sales": "Sales",
         "subscriptions": "Subscriptions",
         "insurance": "Insurance",
-        "clothing": "Clothing"
+        "clothing": "Clothing",
+        "fixed_costs": "Fixed Costs",
+        "healthcare": "Health Insurance",
+        "personal": "Personal Care",
+        "taxes": "Taxes",
+        "savings": "Savings",
+        "banking": "Bank Fees"
     },
-    "csvImport": {
+    "importView": {
         "chooseFile": "Choose file",
         "existing": "Existing",
         "new": "New",
         "noNew": "All transactions already exist. Nothing was added.",
         "success": "Import successful! {{newCount}} transactions added, {{existingCount}} already existed (total: {{total}})."
     },
-    "csvPreview": {
+    "importPreview": {
         "transactionsFound": "{{count}} transactions found",
+        "name": "Name",
         "date": "Date",
         "description": "Description",
         "amount": "Amount",
@@ -153,6 +161,7 @@
         "expense": "Expenses"
     },
     "transactionList": {
+        "name": "Name",
         "date": "Date",
         "description": "Description",
         "category": "Category",

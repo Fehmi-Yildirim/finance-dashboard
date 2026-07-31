@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Form, Alert } from "react-bootstrap";
 import ConfirmationDialog from "../components/ConfirmationDialog";
 import { useTransactions } from "../hooks/useTransactions";
-import CSVImport from "../components/CSVImport";
+import ImportView from "../components/ImportView";
 import { exportToCSV } from "../utils/exportToCSV";
 import { exportToPDF } from "../utils/exportToPDF";
 import { useTranslation } from "react-i18next";
@@ -165,7 +165,7 @@ function Settings() {
             />
             <section>
                 <h2>{t("settings.importTransactions")}</h2>
-                <CSVImport setMessage={setMessage} />
+                <ImportView setMessage={setMessage} />
                 {message && message.section === "import" && (
                     <Alert variant={message.type} >
                         {message.text}

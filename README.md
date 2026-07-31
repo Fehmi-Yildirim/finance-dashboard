@@ -159,12 +159,11 @@ npm run dev
 # Project Structure
 
 FINANCE-DASHBOARD
-├── public
+public/
 │
-├── screenshots
+screenshots/
 │
-├── src
-│
+src/
 ├── assets
 │
 ├── components
@@ -228,10 +227,81 @@ FINANCE-DASHBOARD
 │   ├── Budgets.jsx
 │   └── AboutApp.jsx
 │
-├── services
-│   ├── categoryDetector.js
-│   ├── csvParser.js
-│   └── transactionKey.js
+└── services/
+|    ├── categoryDetector.js
+|    ├── transactionKey.js
+|    │
+|    └── import/
+|        ├── index.js
+|        ├── runImportTest.js
+|        ├── runPipelineTrace.js
+|        │
+|        ├── analyzer/
+|        │   ├── analyzer.js
+|        │   ├── constants.js
+|        │   └── helpers.js
+|        │
+|        ├── definitions/
+|        │   ├── account.js
+|        │   ├── amount.js
+|        │   ├── balance.js
+|        │   ├── date.js
+|        │   ├── description.js
+|        │   ├── direction.js
+|        │   ├── index.js
+|        │   ├── name.js
+|        │   └── notes.js
+|        │
+|        ├── engine/
+|        │   ├── ImportContext.js
+|        │   ├── ImportEngine.js
+|        │   ├── Pipeline.js
+|        │   ├── PipelineBuilder.js
+|        │   ├── Stage.js
+|        │   └── stages/
+|        │       ├── AnalyzerStage.js 
+|        │       ├── MappingStage.js
+|        │       ├── NormalizerStage.js 
+|        │       ├── ProfileStage.js
+|        │       ├── ReaderStage.js
+|        │       └── ValidationStage.js
+|        │
+|        ├── mapper/
+|        │   ├── autoMapper.js
+|        │   ├── columnProfiler.js 
+|        │   ├── headerMatcher.js
+|        │   ├── helpers.js
+|        │   ├── profileMatcher.js
+|        │   ├── profileRegistry.js 
+|        │   └── scoreEngine.js
+|        │
+|        ├── normalizer/
+|        │   ├── converters.js 
+|        │   ├── index.js 
+|        │   ├── normalizer.js
+|        │   └── transactionFactory.js
+|        │   └── valueExtractors.js
+|        │
+|        ├── profiles/
+|        │   ├── ABNAMRO.js 
+|        │   ├── Generic.js
+|        │   ├── ING.js
+|        │   ├── Rabobank.js
+|        │
+|        ├── readers/
+|        │   └── csvReader.js
+|        │
+|        ├── tests/
+|        │   └── import.test.js
+|        │
+|        └── validators/
+|            ├── AmountValidator.js 
+|            ├── DateValidator.js
+|            ├── DuplicateValidator.js 
+|            ├── RequiredValidator.js
+|            ├── ValidationEngine.js
+|            ├── ValidationResult.js
+|            ├── Validator.js
 │
 ├── utils
 │   ├── addMissingData.js
@@ -240,6 +310,7 @@ FINANCE-DASHBOARD
 │   ├── calculateStatistics.js
 │   ├── chartUtils.js
 │   ├── createBudgetCategories.js
+│   ├── createTranactionKey.js
 │   ├── exportToCSV.js
 │   ├── formatCurrency.js
 │   ├── formatDate.js

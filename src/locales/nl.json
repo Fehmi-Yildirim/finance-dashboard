@@ -64,6 +64,7 @@
         "gift": "Cadeau",
         "otherIncome": "Overige inkomsten",
         "food": "Boodschappen",
+        "groceries": "Boodschappen",
         "transport": "Vervoer",
         "rent": "Huur",
         "shopping": "Winkelen",
@@ -80,17 +81,24 @@
         "sales": "Verkoop",
         "subscriptions": "Abonnementen",
         "insurance": "Verzekeringen",
-        "clothing": "Kleding"
+        "clothing": "Kleding",
+        "fixed_costs": "Vaste Lasten",
+        "healthcare": "Zorgverzekering",
+        "personal": "Persoonlijke verzorging",
+        "taxes": "Belastingen",
+        "savings": "Sparen",
+        "banking": "Bankkosten"
     },
-    "csvImport": {
+    "importView": {
         "chooseFile": "Bestand kiezen",
         "existing": "Bestaand",
         "new": "Nieuw",
         "noNew": "Alle transacties bestaan al. Er is niets toegevoegd.",
         "success": "Import succesvol! {{newCount}} transacties toegevoegd, {{existingCount}} bestonden al (totaal: {{total}})."
     },
-    "csvPreview": {
+    "importPreview": {
         "transactionsFound": "{{count}} transacties gevonden",
+        "name": "Naam",
         "date": "Datum",
         "description": "Omschrijving",
         "amount": "Bedrag",
@@ -153,6 +161,7 @@
         "expense": "Uitgaven"
     },
     "transactionList": {
+        "name": "Naam",
         "date": "Datum",
         "description": "Omschrijving",
         "category": "Categorie",

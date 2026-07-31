@@ -112,13 +112,13 @@ html.dark-mode .btn-secondary {
     color: var(--text-color);
 }
 
-html.dark-mode .csv-upload-button {
+html.dark-mode .import-upload-button {
     background-color: var(--surface-color);
     color: var(--text-color);
     border: 1px solid var(--border-color);
 }
 
-html.dark-mode .csv-upload-button:hover {
+html.dark-mode .import-upload-button:hover {
     background-color: var(--hover-color);
 }
 

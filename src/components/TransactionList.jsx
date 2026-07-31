@@ -10,16 +10,22 @@ function TransactionList({
     transactions,
     deleteTransaction,
     editTransaction,
-    sortColumn,
-    sortDirection,
-    handleSort,
+    sortColumn: initialSortColumn,
+    sortDirection: initialSortDirection,
+    handleSort: onSort,
     showActions = true,
     showSorting = true,
 }) {
 
+
+
     const { t } = useTranslation();
 
     const [currentPage, setCurrentPage] = useState(1);
+
+    const [sortColumn, setSortColumn] = useState(initialSortColumn);
+    const [sortDirection, setSortDirection] = useState(initialSortDirection);
+
 
     const itemsPerPage = 10;
 
@@ -63,6 +69,16 @@ function TransactionList({
         totalPages
     ]);
 
+    const handleSort = (column) => {
+        if (onSort) {
+            onSort(column);
+        } else {
+            const newDirection = sortColumn === column && sortDirection === 'asc' ? 'desc' : 'asc';
+            setSortColumn(column);
+            setSortDirection(newDirection);
+        }
+    };
+
     return (
 
         <section>
@@ -82,10 +98,22 @@ function TransactionList({
                                     column="date"
                                     sortColumn={sortColumn}
                                     sortDirection={sortDirection}
-                                    onSort={handleSort}
+                                    onSort={onSort || handleSort}
                                 />
                             ) : (
-                                <th>{t("transactionList.date")}</th>
+                                <th className="nowrap">{t("transactionList.date")}</th>
+                            )}
+
+                            {showSorting ? (
+                                <SortableHeader
+                                    label={t("transactionList.name")}
+                                    column="name"
+                                    sortColumn={sortColumn}
+                                    sortDirection={sortDirection}
+                                    onSort={onSort || handleSort}
+                                />
+                            ) : (
+                                <th>{t("transactionList.name")}</th>
                             )}
 
                             {showSorting ? (
@@ -94,7 +122,7 @@ function TransactionList({
                                     column="description"
                                     sortColumn={sortColumn}
                                     sortDirection={sortDirection}
-                                    onSort={handleSort}
+                                    onSort={onSort || handleSort}
                                 />
                             ) : (
                                 <th>{t("transactionList.description")}</th>
@@ -106,10 +134,10 @@ function TransactionList({
                                     column="category"
                                     sortColumn={sortColumn}
                                     sortDirection={sortDirection}
-                                    onSort={handleSort}
+                                    onSort={onSort || handleSort}
                                 />
                             ) : (
-                                <th>{t("transactionList.category")}</th>
+                                <th className="nowrap">{t("transactionList.category")}</th>
                             )}
 
                             {showSorting ? (
@@ -118,7 +146,7 @@ function TransactionList({
                                     column="type"
                                     sortColumn={sortColumn}
                                     sortDirection={sortDirection}
-                                    onSort={handleSort}
+                                    onSort={onSort || handleSort}
                                 />
                             ) : (
                                 <th>{t("transactionList.type")}</th>
@@ -130,7 +158,7 @@ function TransactionList({
                                     column="amount"
                                     sortColumn={sortColumn}
                                     sortDirection={sortDirection}
-                                    onSort={handleSort}
+                                    onSort={onSort || handleSort}
                                 />
                             ) : (
                                 <th>{t("transactionList.amount")}</th>
@@ -143,7 +171,8 @@ function TransactionList({
                         {visibleTransactions.map((transaction) => (
 
                             <tr key={transaction.id}>
-                                <td>{formatDate(transaction.date)}</td>
+                                <td className="nowrap">{formatDate(transaction.date)}</td>
+                                <td>{transaction.name}</td>
                                 <td>{transaction.description}</td>
                                 <td>{t(`categories.${transaction.category}`)}</td>
                                 <td>
@@ -159,7 +188,7 @@ function TransactionList({
                                                 : "income"
                                         }
                                     >
-                                        {transaction.amount < 0 ? "-" : "+"}{" "}
+                                        {transaction.amount < 0 || transaction.type === "expense" ? "-" : "+"}{" "}
                                         {formatCurrency(Math.abs(transaction.amount))}
                                     </span>
                                 </td>

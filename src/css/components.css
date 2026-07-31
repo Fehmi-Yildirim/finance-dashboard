@@ -161,39 +161,39 @@ aside a:hover {
     background: var(--hover-color);
 }
 
-/*CVSimport*/
-.csv-import {
+/*ImportView*/
+.import-view {
     background: var(--surface-color);
     padding: 1.5rem;
     border-radius: 12px;
     margin-top: 2rem;
 }
 
-.csv-upload-button {
+.import-upload-button {
     display: inline-block;
     padding: 0.6rem 1rem;
     border-radius: 12px;
     cursor: pointer;
-    border: 1px solid var border-color;
-    background: var surface-color;
-    color: var text-color;
+    border: 1px solid var(--border-color);
+    background: var(--surface-color);
+    color: var(--text-color);
 }
 
-.csv-preview {
+.import-preview {
     margin-top: 1.5rem;
 }
 
-.csv-preview h3 {
+.import-preview h3 {
     margin-bottom: 1rem;
 }
 
-.csv-actions {
+.import-actions {
     display: flex;
     gap: 1rem;
     margin-top: 1rem;
 }
 
-.csv-actions .delete-button {
+.import-actions .delete-button {
     background: var(--danger-color);
 }
 
@@ -326,7 +326,7 @@ input::placeholder {
 .category-summary,
 .chart-container,
 .date-filter,
-.csv-import {
+.import-view {
     box-shadow: 0 4px 12px var(--shadow-color);
 }
 
@@ -372,6 +372,7 @@ section {
     cursor: pointer;
     user-select: none;
     transition: .2s;
+    white-space: nowrap;
 }
 
 .sortable-header:hover {
