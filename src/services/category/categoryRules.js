@@ -1,8 +1,4 @@
-/**
- * Transaction category detection rules.
- */
-
-const CATEGORY_RULES = {
+export const CATEGORY_RULES = {
 
     food: [
         "albert heijn",
@@ -12,18 +8,15 @@ const CATEGORY_RULES = {
         "lidl",
         "plus",
         "spar",
-        "etos",
         "hema",
-        "slagerij",
+        "slager",
         "bakker",
         "groente",
-        "groenten",
         "mcdonald",
         "restaurant",
         "cafetaria",
         "snackbar",
     ],
-
 
     healthcare: [
         "zorgverzekering",
@@ -38,16 +31,13 @@ const CATEGORY_RULES = {
         "basisverzekering",
     ],
 
-
     personal: [
         "kruidvat",
         "etos",
-        "hema",
         "trekpleister",
         "drogist",
         "drogisterij",
     ],
-
 
     taxes: [
         "belastingdienst",
@@ -58,18 +48,14 @@ const CATEGORY_RULES = {
         "waterschap",
     ],
 
-
     savings: [
         "spaarrekening",
         "sparen",
         "spaargeld",
-        "oranje spaar",
-        "overboeking sparen",
+        "spaar",
     ],
 
-
     banking: [
-        "kosten basispakket",
         "bankkosten",
         "rekeningkosten",
         "servicekosten",
@@ -77,17 +63,14 @@ const CATEGORY_RULES = {
         "betaalpakket",
     ],
 
-
     housing: [
         "huur",
         "huurbetaling",
         "woning",
         "hypotheek",
-        "hypotheekbank",
         "vve",
         "servicekosten woning",
     ],
-
 
     energy: [
         "eneco",
@@ -99,7 +82,6 @@ const CATEGORY_RULES = {
         "water",
     ],
 
-
     internet: [
         "ziggo",
         "kpn",
@@ -109,8 +91,7 @@ const CATEGORY_RULES = {
         "glasvezel",
     ],
 
-
-    income: [
+    salary: [
         "salaris",
         "loon",
         "werkgever",
@@ -118,7 +99,6 @@ const CATEGORY_RULES = {
         "uitkering",
         "pensioen",
     ],
-
 
     transport: [
         "ns reis",
@@ -135,72 +115,28 @@ const CATEGORY_RULES = {
         "tankstation",
     ],
 
-
     leisure: [
         "pathe",
         "bioscoop",
         "netflix",
         "spotify",
         "disney",
-        "zara",
-        "h&m",
         "vakantie",
     ],
 
+    clothing: [
+        "zara",
+        "h&m",
+        "kleding",
+        "mode",
+    ],
+
+    subscriptions: [
+        "abonnement",
+        "netflix",
+        "spotify",
+        "disney",
+        "amazon prime",
+    ],
+
 };
-
-/**
- * Detects the category of a transaction.
- *
- * @param {Object} transaction
- * @returns {string}
- */
-export default function detectCategory(transaction = {}) {
-
-    const text = [
-        transaction.name,
-        transaction.description,
-        transaction.notes,
-    ]
-        .filter(Boolean)
-        .join(" ")
-        .toLowerCase()
-        .replace(/[^a-z0-9\s]/g, " ");
-
-
-    let bestMatch = {
-        category: "other",
-        score: 0,
-    };
-
-
-    for (const [category, keywords] of Object.entries(CATEGORY_RULES)) {
-
-        for (const keyword of keywords) {
-
-            if (text.includes(keyword)) {
-
-                const score = keyword.length;
-
-                if (score > bestMatch.score) {
-
-                    bestMatch = {
-                        category,
-                        score,
-                    };
-
-                }
-            }
-        }
-    }
-
-
-    // Alleen betrouwbare matches accepteren
-    if (bestMatch.score < 5) {
-        return "other";
-    }
-
-
-    return bestMatch.category;
-
-}

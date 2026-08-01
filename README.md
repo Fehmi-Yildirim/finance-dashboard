@@ -207,6 +207,7 @@ src/
 │   ├── categories.js
 │   └── demoBudgets.js
 │   └── demoTransactions.js
+│   └── categoryDefinitions.js 
 │
 ├── hooks
 │   └── useTransactions.js
@@ -230,14 +231,17 @@ src/
 └── services/
 |    ├── categoryDetector.js
 |    ├── transactionKey.js
+│    ├── categoryService.js         
+│    ├── categoryMigration.js       
+│    └── budgetMigration.js        
 |    │
 |    └── import/
-|        ├── index.js
-|        ├── runImportTest.js
-|        ├── runPipelineTrace.js
-|        │
-|        ├── analyzer/
-|        │   ├── analyzer.js
+|    |   ├── index.js
+|    |   ├── runImportTest.js
+|    |   ├── runPipelineTrace.js
+|    |   |
+|    |   ├── analyzer/
+|    |   |   ├── analyzer.js
 |        │   ├── constants.js
 |        │   └── helpers.js
 |        │
@@ -295,13 +299,13 @@ src/
 |        │   └── import.test.js
 |        │
 |        └── validators/
-|            ├── AmountValidator.js 
-|            ├── DateValidator.js
-|            ├── DuplicateValidator.js 
-|            ├── RequiredValidator.js
-|            ├── ValidationEngine.js
-|            ├── ValidationResult.js
-|            ├── Validator.js
+|            └── AmountValidator.js 
+|            └── DateValidator.js
+|            └── DuplicateValidator.js 
+|            └── RequiredValidator.js
+|            └── ValidationEngine.js
+|            └── ValidationResult.js
+|            └── Validator.js
 │
 ├── utils
 │   ├── addMissingData.js

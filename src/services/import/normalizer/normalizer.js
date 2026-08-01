@@ -1,5 +1,5 @@
 import detectCategory
-    from "../../categoryDetector";
+    from "../../category/categoryDetector";
 
 import {
     createTransaction

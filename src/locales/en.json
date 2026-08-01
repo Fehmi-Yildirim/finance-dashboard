@@ -122,6 +122,7 @@
         "overview": "Transaction overview",
         "new": "New transaction",
         "edit": "Edit transaction",
+        "name": "Name",
         "description": "Description",
         "amount": "Amount",
         "category": "Category",

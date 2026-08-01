@@ -122,6 +122,7 @@
         "overview": "Transactieoverzicht",
         "new": "Nieuwe transactie",
         "edit": "Transactie bewerken",
+        "name": "Naam",
         "description": "Beschrijving",
         "category": "Categorie",
         "amount": "Bedrag",

@@ -1,23 +1,13 @@
-import {
-    transactionKey
-} from "../../transactionKey";
-
+import { transactionKey } from "../../transactionKey";
 import {
     convertAmount,
     convertDate,
     convertText,
-    determineType
-}
-    from "./converters";
+    determineType,
+} from "./converters";
+import detectCategory from "../../category/categoryDetector";
 
 
-/**
- * Gets a mapped value from a row.
- *
- * @param {Object} row
- * @param {string|null} column
- * @returns {*}
- */
 function getValue(row, column) {
 
     if (!column) {
@@ -25,28 +15,19 @@ function getValue(row, column) {
     }
 
     return row[column] ?? null;
-
 }
 
 
 function getAmountValue(row, mapping) {
 
     const fields = [
-
         mapping.amount,
-
         "Bedrag",
-
         "Bedrag (EUR)",
-
         "Mutatiebedrag",
-
         "Bedrag EUR",
-
-        "Amount"
-
+        "Amount",
     ];
-
 
     for (const field of fields) {
 
@@ -54,25 +35,18 @@ function getAmountValue(row, mapping) {
             continue;
         }
 
-
         const value = row[field];
-
 
         if (
             value !== undefined &&
             value !== null &&
             String(value).trim() !== ""
         ) {
-
             return value;
-
         }
-
     }
 
-
     return null;
-
 }
 
 
@@ -82,184 +56,122 @@ function parseBankText(value) {
         return null;
     }
 
-
     const text = String(value).trim();
 
-
     const result = {
-
         name: "",
         description: "",
         iban: "",
-        paymentReference: ""
-
+        paymentReference: "",
     };
 
 
-    const name =
-        text.match(
-            /Naam:\s*(.*?)\s+(Omschrijving:|IBAN:|Kenmerk:|Valutadatum:)/i
-        );
-
+    const name = text.match(
+        /Naam:\s*(.*?)\s+(Omschrijving:|IBAN:|Kenmerk:|Valutadatum:)/i
+    );
 
     if (!name && !/Naam:|Omschrijving:|IBAN:|Kenmerk:/.test(text)) {
-
         result.name =
             text.split(/Pasvolgnr:|Kaartnr:/)[0].trim();
-
     }
-
 
     if (name) {
-
-        result.name =
-            name[1].trim();
-
+        result.name = name[1].trim();
     }
 
 
-    const description =
-        text.match(
-            /Omschrijving:\s*(.*?)\s+(IBAN:|Kenmerk:|Valutadatum:|$)/i
-        );
-
+    const description = text.match(
+        /Omschrijving:\s*(.*?)\s+(IBAN:|Kenmerk:|Valutadatum:|$)/i
+    );
 
     if (description) {
-
-        result.description =
-            description[1].trim();
-
+        result.description = description[1].trim();
     }
 
 
-    const iban =
-        text.match(
-            /IBAN:\s*([A-Z]{2}[0-9A-Z]+)/i
-        );
-
+    const iban = text.match(
+        /IBAN:\s*([A-Z]{2}[0-9A-Z]+)/i
+    );
 
     if (iban) {
-
-        result.iban =
-            iban[1].trim();
-
+        result.iban = iban[1].trim();
     }
 
 
-    const reference =
-        text.match(
-            /Kenmerk:\s*(.*?)\s+(Valutadatum:|$)/i
-        );
-
+    const reference = text.match(
+        /Kenmerk:\s*(.*?)\s+(Valutadatum:|$)/i
+    );
 
     if (reference) {
-
-        result.paymentReference =
-            reference[1].trim();
-
+        result.paymentReference = reference[1].trim();
     }
 
 
     return result;
-
 }
 
 
 function getDescription(row, mapping) {
 
-    const descriptionRaw =
+    const raw =
         row[mapping.description] ??
-        row[mapping.notes];
-
-    const nameRaw =
+        row[mapping.notes] ??
         row[mapping.name];
 
 
     const parsed =
-        parseBankText(
-            descriptionRaw ?? nameRaw
-        );
+        parseBankText(raw);
 
 
-    if (
-        parsed &&
-        parsed.description
-    ) {
-
+    if (parsed?.description) {
         return parsed.description;
-
     }
 
 
-    if (
-        descriptionRaw &&
-        String(descriptionRaw).trim()
-    ) {
-
-        return String(descriptionRaw).trim();
-
+    if (raw && String(raw).trim()) {
+        return String(raw).trim();
     }
 
 
     return "Onbekende transactie";
-
 }
 
 
 function getCounterparty(row, mapping) {
 
-    const descriptionRaw =
+    const raw =
         row[mapping.description] ??
-        row[mapping.notes];
-
-    const nameRaw =
+        row[mapping.notes] ??
         row[mapping.name];
 
 
     const parsed =
-        parseBankText(
-            descriptionRaw ?? nameRaw
-        );
+        parseBankText(raw);
 
 
     return {
-
         name:
-            nameRaw ??
+            row[mapping.name] ??
             parsed?.name ??
             row["Naam tegenpartij"] ??
             row["Naam uiteindelijke partij"] ??
             row["Naam initiërende partij"] ??
             "",
 
-
         iban:
             parsed?.iban ??
             row["Tegenrekening IBAN/BBAN"] ??
             "",
 
-
         paymentReference:
             parsed?.paymentReference ??
             row["Betalingskenmerk"] ??
-            ""
-
+            "",
     };
-
 }
 
 
-/**
- * Creates a normalized transaction.
- *
- * @param {Object} row
- * @param {Object} mapping
- * @returns {Object}
- */
-export function createTransaction(
-    row,
-    mapping
-) {
+export function createTransaction(row, mapping) {
 
     const rawAmount =
         convertAmount(
@@ -270,10 +182,6 @@ export function createTransaction(
         );
 
 
-    const amount =
-        Math.abs(rawAmount);
-
-
     const type =
         determineType(
             rawAmount,
@@ -282,6 +190,10 @@ export function createTransaction(
                 mapping.direction
             )
         );
+
+
+    const amount =
+        Math.abs(rawAmount);
 
 
     const counterparty =
@@ -298,6 +210,37 @@ export function createTransaction(
         );
 
 
+    const name =
+        convertText(
+            getValue(
+                row,
+                mapping.name
+            )
+        )
+        ||
+        counterparty.name
+        ||
+        description;
+
+
+    const notes =
+        convertText(
+            getValue(
+                row,
+                mapping.notes
+            )
+        );
+
+
+    const category =
+        detectCategory({
+            name,
+            description,
+            notes,
+            type,
+        });
+
+
     const transaction = {
 
         date:
@@ -308,19 +251,7 @@ export function createTransaction(
                 )
             ),
 
-
-        name:
-            convertText(
-                getValue(
-                    row,
-                    mapping.name
-                )
-            )
-            ||
-            counterparty.name
-            ||
-            description,
-
+        name,
 
         description,
 
@@ -334,7 +265,6 @@ export function createTransaction(
                 )
             ),
 
-
         account:
             convertText(
                 getValue(
@@ -343,18 +273,13 @@ export function createTransaction(
                 )
             ),
 
-
         type,
+
+        category,
 
         counterparty,
 
-        notes:
-            convertText(
-                getValue(
-                    row,
-                    mapping.notes
-                )
-            )
+        notes,
 
     };
 
@@ -366,5 +291,4 @@ export function createTransaction(
 
 
     return transaction;
-
 }

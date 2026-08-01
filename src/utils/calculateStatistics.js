@@ -1,69 +1,58 @@
 export function calculateStatistics(transactions) {
 
-    const incomeTransactions =
-        transactions.filter(
-            t => t.type === "income"
+    const statistics =
+        transactions.reduce(
+
+            (stats, transaction) => {
+
+                const amount =
+                    Number(transaction.amount);
+
+                stats.totalTransactions++;
+
+                if (transaction.type === "income") {
+
+                    stats.income += amount;
+
+                } else {
+
+                    stats.expenses += amount;
+                    stats.expenseCount++;
+
+                    if (amount > stats.largestExpense) {
+                        stats.largestExpense = amount;
+                    }
+                }
+                return stats;
+            },
+
+            {
+                income: 0,
+                expenses: 0,
+                totalTransactions: 0,
+                expenseCount: 0,
+                largestExpense: 0,
+            }
+
         );
-
-
-    const expenseTransactions =
-        transactions.filter(
-            t => t.type === "expense"
-        );
-
-
-    const income =
-        incomeTransactions.reduce(
-            (sum, t) =>
-                sum + Number(t.amount),
-            0
-        );
-
-
-    const expenses =
-        expenseTransactions.reduce(
-            (sum, t) =>
-                sum + Number(t.amount),
-            0
-        );
-
-
-    const balance =
-        income - expenses;
-
-
-    const totalTransactions =
-        transactions.length;
-
-
-    const averageExpense =
-        expenseTransactions.length === 0
-            ? 0
-            : expenses / expenseTransactions.length;
-
-
-    const largestExpense =
-        Math.max(
-            ...expenseTransactions.map(
-                t => Number(t.amount)
-            ),
-            0
-        );
-
 
     return {
-
-        income,
-
-        expenses,
-
-        balance,
-
-        totalTransactions,
-
-        averageExpense,
-
-        largestExpense,
+        income:
+            statistics.income,
+        expenses:
+            statistics.expenses,
+        balance:
+            statistics.income -
+            statistics.expenses,
+        totalTransactions:
+            statistics.totalTransactions,
+        averageExpense:
+            statistics.expenseCount > 0
+                ? statistics.expenses /
+                statistics.expenseCount
+                : 0,
+        largestExpense:
+            statistics.largestExpense,
 
     };
 

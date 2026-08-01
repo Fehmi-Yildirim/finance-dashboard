@@ -1,15 +1,16 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-
 import nl from "./locales/nl.json";
 import en from "./locales/en.json";
+import { STORAGE_KEYS } from "./services/storage/storageKeys";
 
-const savedLanguage = localStorage.getItem("language");
+const savedLanguage =
+    localStorage.getItem(
+        STORAGE_KEYS.language
+    );
 
 const supportedLanguages = ["nl", "en"];
-
 const browserLanguage = navigator.language.split("-")[0];
-
 const defaultLanguage = supportedLanguages.includes(browserLanguage)
     ? browserLanguage
     : "en";

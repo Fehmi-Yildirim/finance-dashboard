@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { categories } from "../data/categories";
+import { getExpenseCategoryIds } from "../data/categories";
+
+const expenseCategories = getExpenseCategoryIds();
 
 function BudgetForm({
     editingBudget,
@@ -10,116 +12,169 @@ function BudgetForm({
 }) {
 
     const { t } = useTranslation();
-
     const [category, setCategory] = useState("");
     const [amount, setAmount] = useState("");
 
     useEffect(() => {
 
         if (editingBudget) {
-            setCategory(editingBudget.category);
-            setAmount(editingBudget.amount);
+            setCategory(
+                editingBudget.category
+            );
+            setAmount(
+                editingBudget.amount
+            );
         } else {
-            setCategory("");
-            setAmount("");
+            resetForm();
         }
-
     }, [editingBudget]);
 
-    const handleSubmit = (e) => {
 
-        e.preventDefault();
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        if (!category || !amount) {
+            return;
+        }
 
         const budget = {
-            id: editingBudget?.id ?? Date.now(),
+            id:
+                editingBudget?.id ??
+                Date.now(),
             category,
             amount: Number(amount),
         };
 
+
         if (editingBudget) {
-            updateBudget(budget);
+            updateBudget(
+                budget
+            );
+
         } else {
-            addBudget(budget);
+            addBudget(
+                budget
+            );
         }
 
+        resetForm();
         onClose();
+    }
 
-    };
+
+    function resetForm() {
+        setCategory("");
+        setAmount("");
+    }
 
     return (
-        <form onSubmit={handleSubmit}>
-
+        <form
+            onSubmit={handleSubmit}
+        >
             <div className="mb-3">
                 <label className="form-label">
-                    <strong>{t("budgets.selectCategory")}</strong>
+                    <strong>
+                        {
+                            t(
+                                "budgets.selectCategory"
+                            )
+                        }
+                    </strong>
                 </label>
-
                 <select
                     className="form-select"
                     value={category}
-                    onChange={(e) => setCategory(e.target.value)}
+                    onChange={({ target }) =>
+                        setCategory(
+                            target.value
+                        )
+                    }
                 >
-
                     <option value="">
-                        {t("budgets.selectCategory")}
+
+                        {
+                            t(
+                                "budgets.selectCategory"
+                            )
+                        }
                     </option>
+                    {
+                        expenseCategories.map(
+                            (item) => (
 
-                    {categories.expense.map((item) => (
-                        <option
-                            key={item}
-                            value={item}
-                        >
-                            {t(`categories.${item}`, {
-                                defaultValue:
-                                    item.charAt(0).toUpperCase() +
-                                    item.slice(1),
-                            })}
-                        </option>
-                    ))}
+                                <option
+                                    key={item}
+                                    value={item}
+                                >
+                                    {
+                                        t(
+                                            `categories.${item}`,
+                                            {
+                                                defaultValue:
+                                                    item
+                                                        .charAt(0)
+                                                        .toUpperCase()
+                                                    +
+                                                    item.slice(1),
+                                            }
+                                        )
+                                    }
 
+                                </option>
+                            )
+                        )
+                    }
                 </select>
             </div>
-
             <div className="mb-3">
-
                 <label className="form-label">
-                    <strong>{t("budgets.amount")}</strong>
+                    <strong>
+                        {
+                            t(
+                                "budgets.amount"
+                            )
+                        }
+                    </strong>
                 </label>
-
                 <input
                     type="number"
                     className="form-control"
                     value={amount}
                     min="0"
                     step="0.01"
-                    onChange={(e) => setAmount(e.target.value)}
+                    onChange={({ target }) =>
+                        setAmount(
+                            target.value
+                        )
+                    }
                 />
-
             </div>
-
             <div className="d-flex justify-content-end gap-2">
-
                 <button
                     type="button"
                     className="btn btn-secondary"
                     onClick={onClose}
                 >
-                    {t("common.cancel")}
+                    {
+                        t(
+                            "common.cancel"
+                        )
+                    }
                 </button>
-
                 <button
                     type="submit"
                     className="btn btn-primary"
                 >
-                    {editingBudget
-                        ? t("common.save")
-                        : t("budgets.save")}
+                    {
+                        editingBudget
+                            ? t("common.save")
+                            : t("budgets.save")
+                    }
                 </button>
-
             </div>
-
         </form>
     );
 }
+
 
 export default BudgetForm;
