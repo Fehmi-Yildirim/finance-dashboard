@@ -15,7 +15,7 @@ export const transactions = [
         date: "2026-07-16",
         name: "Albert Heijn boodschappen",
         description: "DEMO",
-        amount: -85,
+        amount: 85,
         type: "expense",
         category: "food",
         isDemo: true
@@ -25,7 +25,7 @@ export const transactions = [
         date: "2026-07-16",
         name: "Ziggo internet",
         description: "DEMO",
-        amount: -45,
+        amount: 45,
         type: "expense",
         category: "internet",
         isDemo: true
@@ -35,7 +35,7 @@ export const transactions = [
         date: "2026-07-16",
         name: "Huur appartement",
         description: "DEMO",
-        amount: -1200,
+        amount: 1200,
         type: "expense",
         category: "housing",
         isDemo: true
@@ -45,7 +45,7 @@ export const transactions = [
         date: "2026-07-16",
         name: "NS trein abonnement",
         description: "DEMO",
-        amount: -75,
+        amount: 75,
         type: "expense",
         category: "transport",
         isDemo: true
@@ -55,7 +55,7 @@ export const transactions = [
         date: "2026-07-16",
         name: "Netflix abonnement",
         description: "DEMO",
-        amount: -15,
+        amount: 15,
         type: "expense",
         category: "subscriptions",
         isDemo: true
@@ -65,7 +65,7 @@ export const transactions = [
         date: "2026-07-16",
         name: "Pathé bioscoop",
         description: "DEMO",
-        amount: -30,
+        amount: 30,
         type: "expense",
         category: "leisure",
         isDemo: true
