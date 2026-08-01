@@ -1,9 +1,9 @@
 import Cards from "../components/Cards";
 import Card from "../components/Card";
 import ReportSection from "../components/ReportSection";
-import ExpenseCategoryChart from "../components/ExpenseCategoryChart";
+import ExpenseCategoryChart from "../components/charts/ExpenseCategoryChart";
 import { useTransactions } from "../hooks/useTransactions";
-import MonthlyCashflowChart from "../components/MonthlyCashflowChart";
+import MonthlyCashflowChart from "../components/charts/MonthlyCashflowChart";
 import { useTranslation } from "react-i18next";
 import StatisticsCards from "../components/StatisticsCards";
 

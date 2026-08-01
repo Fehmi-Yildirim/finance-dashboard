@@ -10,7 +10,7 @@ import {
     Legend,
     Bar,
 } from "recharts";
-import { formatCurrency } from "../utils/formatCurrency";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 function MonthlyCashflowChart({ transactions }) {
 

@@ -1,5 +1,5 @@
-import { getMonthlyIncomeExpenses } from "../utils/chartUtils";
-import { euroFormatter } from "../utils/formatters";
+import { getMonthlyIncomeExpenses } from "../../utils/chartUtils";
+import { euroFormatter } from "../../utils/formatters";
 import {
     Chart as ChartJS,
     CategoryScale,

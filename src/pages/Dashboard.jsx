@@ -3,7 +3,7 @@ import Card from "../components/Card";
 import Cards from "../components/Cards";
 import StatisticsCards from "../components/StatisticsCards";
 import CategorySummary from "../components/CategorySummary";
-import IncomeExpenseChart from "../components/IncomeExpenseChart";
+import IncomeExpenseChart from "../components/charts/IncomeExpenseChart";
 import { useTransactions } from "../hooks/useTransactions";
 import { useTranslation } from "react-i18next";
 import BudgetCard from "../components/budgets/BudgetCard";

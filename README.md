@@ -177,6 +177,11 @@ src/
 │   │   ├── BudgetList.jsx
 │   │   └── BudgetProgress.jsx
 |   |
+|   └── charts/
+|   |   ├── IncomeExpenseChart.jsx
+|   |   ├── MonthlyCashflowChart.jsx
+|   |   └── ExpenseCategoryChart.jsx
+|   |
 ├── transactions/
 |   │   ├── TransactionsList.jsx
 |   │   ├── TransactionDrawer.jsx
@@ -189,12 +194,9 @@ src/
 │   ├── CategorySummary.jsx
 │   ├── ComfirmationDialog.jsx
 │   ├── CSVImport.jsx
-│   ├── ExpenseCategoryChart.jsx
 │   ├── Footer.jsx
 │   ├── Header.css
 │   ├── Header.jsx
-│   ├── IncomeExpenseChart.jsx
-│   ├── MonthlyCashflowChart.jsx
 │   ├── ReportSection.jsx
 │   ├── Sidebar.css
 │   ├── Sidebar.jsx
