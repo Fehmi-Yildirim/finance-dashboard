@@ -13,21 +13,12 @@ import { createTransactionKey } from "../utils/createTransactionKey";
 function ImportView({ setMessage }) {
 
     const { t } = useTranslation();
-
-    const {
-        transactions,
-        importTransactions,
-    } = useTransactions();
-
-    const {
-        initializeBudgets,
-    } = useBudgets();
-
+    const { transactions, importTransactions } = useTransactions();
+    const { initializeBudgets } = useBudgets();
     const [newTransactions, setNewTransactions] = useState([]);
     const [existingCount, setExistingCount] = useState(0);
     const [newCount, setNewCount] = useState(0);
     const [allImported, setAllImported] = useState([]);
-
     const fileInputRef = useRef(null);
 
     async function handleFile(event) {
@@ -45,9 +36,7 @@ function ImportView({ setMessage }) {
             const result = await importFile(file);
             //const result = await runImportTest(file);
             //const result = await runPipelineTrace(file);
-
             const imported = result.transactions || [];
-
             setAllImported(imported);
             setNewTransactions(imported);
             setNewCount(imported.length);
@@ -93,23 +82,15 @@ function ImportView({ setMessage }) {
         );
 
         setMessage({
-
             type: "success",
-
             text: t("importView.success", {
-
                 newCount,
-
                 existingCount,
-
                 total:
                     newCount +
                     existingCount,
-
             }),
-
             section: "import",
-
         });
 
         resetImport();
@@ -124,7 +105,6 @@ function ImportView({ setMessage }) {
         <div className="import-view">
 
             <div className="import-file-upload">
-
                 <input
                     type="file"
                     accept=".csv,.txt,.xlsx,.xls,.json"
@@ -133,38 +113,29 @@ function ImportView({ setMessage }) {
                     id="import-upload"
                     hidden
                 />
-
                 <label
                     htmlFor="import-upload"
                     className="import-upload-button"
                 >
                     {t("importView.chooseFile")}
                 </label>
-
             </div>
 
             {(existingCount > 0 || newCount > 0) && (
-
                 <div>
-
                     <p>
                         {t("importView.existing")}: {existingCount}
                     </p>
-
                     <p>
                         {t("importView.new")}: {newCount}
                     </p>
-
                 </div>
-
             )}
 
             {newCount === 0 && existingCount > 0 && (
-
                 <p>
                     {t("importView.noNew")}
                 </p>
-
             )}
 
             {allImported.length > 0 && (
@@ -220,48 +191,36 @@ function ImportView({ setMessage }) {
                                 </tr>
                             ))}
                         </tbody>
-
                     </table>
 
                     {allImported.length > 10 && (
-
                         <p>
                             {t("importPreview.firstTen", {
-
                                 count:
                                     allImported.length,
 
                             })}
                         </p>
-
                     )}
 
                     <div className="import-actions">
-
                         <button
                             onClick={handleImport}
                             disabled={!hasNewTransactions}
                         >
                             {t("importPreview.import")}
                         </button>
-
                         <button
                             className="delete-button"
                             onClick={resetImport}
                         >
                             {t("common.cancel")}
                         </button>
-
                     </div>
-
                 </div>
-
             )}
-
         </div>
-
     );
-
 }
 
 export default ImportView;

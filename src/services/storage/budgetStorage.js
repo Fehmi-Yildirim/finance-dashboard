@@ -14,50 +14,46 @@ export function normalizeBudget(budget = {}) {
 
 }
 
+
 export function isDemoBudgetMode() {
-    const value = localStorage.getItem(DEMO_KEY);
-    return (
-        value === null ||
-        value === "true"
-    );
+
+    const value =
+        localStorage.getItem(DEMO_KEY);
+
+    return value === "true";
+
 }
 
+
 export function loadBudgets() {
+
     try {
-        const saved = localStorage.getItem(STORAGE_KEY);
+        const saved =
+            localStorage.getItem(STORAGE_KEY);
 
         if (!saved) {
-            return demoBudgets.map(
-                normalizeBudget
-            );
+            return [];
         }
 
         const parsed =
             JSON.parse(saved);
-        if (
-            Array.isArray(parsed) &&
-            parsed.length === 0 &&
-            isDemoBudgetMode()
-        ) {
-            return demoBudgets.map(
-                normalizeBudget
-            );
+
+        if (!Array.isArray(parsed)) {
+            return [];
         }
 
-        return parsed.map(normalizeBudget);
-
-    } catch {
-        return demoBudgets.map(
+        return parsed.map(
             normalizeBudget
         );
 
+    } catch {
+        return [];
     }
+
 }
 
+
 export function saveBudgets(budgets) {
-    if (isDemoBudgetMode()) {
-        return;
-    }
     localStorage.setItem(
         STORAGE_KEY,
         JSON.stringify(budgets)
@@ -65,7 +61,9 @@ export function saveBudgets(budgets) {
 }
 
 export function enableBudgetDemoMode() {
-    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(
+        STORAGE_KEY
+    );
     localStorage.setItem(
         DEMO_KEY,
         "true"
@@ -81,6 +79,9 @@ export function disableBudgetDemoMode() {
 
 export function getDemoBudgets() {
     return demoBudgets.map(
-        normalizeBudget
+        budget => ({
+            ...normalizeBudget(budget),
+            isDemo: true,
+        })
     );
 }

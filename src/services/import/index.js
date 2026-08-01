@@ -1,8 +1,6 @@
-import ImportEngine
-    from "./engine/ImportEngine";
+import ImportEngine from "./engine/ImportEngine";
 
-const engine =
-    new ImportEngine();
+const engine = new ImportEngine();
 
 /**
  * Imports a file.
