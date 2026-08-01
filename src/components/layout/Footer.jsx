@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { appInfo } from "../config/appInfo";
+import { appInfo } from "../../config/appInfo";
 
 function Footer() {
 

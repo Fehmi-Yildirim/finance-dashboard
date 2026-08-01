@@ -182,12 +182,18 @@ src/
 |   |   ├── MonthlyCashflowChart.jsx
 |   |   └── ExpenseCategoryChart.jsx
 |   |
-├── transactions/
+|   ├── layout/
+│   |   ├── Header.jsx
+│   |   ├── Header.css
+│   |   ├── Sidebar.jsx
+│   |   ├── Sidebar.css
+│   |   └── Footer.jsx
+|   |
+|   ├── transactions/
 |   │   ├── TransactionsList.jsx
 |   │   ├── TransactionDrawer.jsx
 |   │   ├── TransactionsToolbar.jsx
 |   │   └── SortableHeader.jsx
-│   │
 │   |
 │   ├── Card.jsx
 │   ├── Cards.jsx
