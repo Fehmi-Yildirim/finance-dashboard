@@ -164,17 +164,25 @@ public/
 screenshots/
 │
 src/
-├── assets
+└──  assets
 │
-├── components
+└──  components
 │   ├── ActionsDropdown.jsx
 │   ├── AddTransaction.jsx
+|   |
 |   ├── budgets/
 │   │   ├── BudgetCard.jsx
 │   │   ├── BudgetDrawer.jsx
 │   │   ├── BudgetForm.jsx
 │   │   ├── BudgetList.jsx
 │   │   └── BudgetProgress.jsx
+|   |
+├── transactions/
+|   │   ├── TransactionsList.jsx
+|   │   ├── TransactionDrawer.jsx
+|   │   ├── TransactionsToolbar.jsx
+|   │   └── SortableHeader.jsx
+│   │
 │   |
 │   ├── Card.jsx
 │   ├── Cards.jsx
@@ -190,11 +198,7 @@ src/
 │   ├── ReportSection.jsx
 │   ├── Sidebar.css
 │   ├── Sidebar.jsx
-│   ├── SortableHeader.jsx
 │   ├── StatisticsCards.jsx
-│   ├── TransactionDrawer.jsx
-│   ├── TransactionsList.jsx
-│   └── TransactionsToolbar.jsx
 │
 ├── config
 │   └── appConfig.js

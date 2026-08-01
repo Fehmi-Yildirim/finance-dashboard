@@ -1,4 +1,4 @@
-import TransactionList from "../components/TransactionList";
+import TransactionList from "../components/transactions/TransactionList";
 import Card from "../components/Card";
 import Cards from "../components/Cards";
 import StatisticsCards from "../components/StatisticsCards";
