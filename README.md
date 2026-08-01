@@ -177,6 +177,11 @@ src/
 │   │   ├── BudgetList.jsx
 │   │   └── BudgetProgress.jsx
 |   |
+|   └── common/
+|   |   ├── ConfirmationDialog.jsx
+|   |   ├── ActionsDropdown.jsx
+|   |   └── 
+|   |
 |   └── charts/
 |   |   ├── IncomeExpenseChart.jsx
 |   |   ├── MonthlyCashflowChart.jsx
@@ -194,8 +199,9 @@ src/
 |   |    └── CategorySummary.jsx
 |   |
 |   ├── transactions/
-|   │   ├── TransactionsList.jsx
+|   │   ├── AddTransaction.jsx
 |   │   ├── TransactionDrawer.jsx
+|   │   ├── TransactionsList.jsx
 |   │   ├── TransactionsToolbar.jsx
 |   │   └── SortableHeader.jsx
 │   |
@@ -257,7 +263,6 @@ src/
 |    |   ├── index.js
 |    |   ├── runImportTest.js
 |    |   ├── runPipelineTrace.js
-|    |   |
 |    |   ├── analyzer/
 |    |   |   ├── analyzer.js
 |    |   |   ├── constants.js
@@ -272,7 +277,7 @@ src/
 |    |   |   ├── direction.js
 |    |   |   ├── index.js
 |    |   |   ├── name.js
-|    |   |  └── notes.js
+|    |   |   └── notes.js
 |    |   |
 |    |   |── engine/
 |    |   |   ├── ImportContext.js
@@ -288,7 +293,7 @@ src/
 |    |   |       ├── ReaderStage.js
 |    |   |       └── ValidationStage.js
 |    |   |
-|        ├── mapper/
+|    |   ├── mapper/
 |    |   |   ├── autoMapper.js
 |    |   |   ├── columnProfiler.js 
 |    |   |   ├── headerMatcher.js
@@ -313,9 +318,16 @@ src/
 |    |   |── readers/
 |    |   |   └── csvReader.js
 |    |   |
-|    |   |── tests/
-|    |   |   └── import.test.js
-|    |   |   |
+|    |   └── tests/
+|    |   |    ├── fixtures/
+|    |   |    |   └── ing.csv
+|    |   |    ├── helpers/
+|    |   |    │   └── loadFixtures.js 
+|    |   |    │   └── importFixture.js      
+|    |   |    │   └── toComparable.js
+|    |   |    ├── golden-transactions.json 
+|    |   |    └── import.test.js
+|    |   |
 |    |   └── validators/
 |    |       └── AmountValidator.js 
 |    |       └── DateValidator.js

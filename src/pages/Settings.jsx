@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Form, Alert } from "react-bootstrap";
-import ConfirmationDialog from "../components/ConfirmationDialog";
+import ConfirmationDialog from "../components/common/ConfirmationDialog";
 import { useTransactions } from "../hooks/useTransactions";
 import ImportView from "../components/ImportView";
 import { exportToCSV } from "../utils/exportToCSV";

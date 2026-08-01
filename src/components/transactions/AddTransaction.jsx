@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getCategoryIds } from "../data/categories";
+import { getCategoryIds } from "../../data/categories";
 
 const categories = getCategoryIds();
 const defaultIncomeCategory =

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import ConfirmationDialog from "../ConfirmationDialog";
-import ActionsDropdown from "../ActionsDropdown";
+import ConfirmationDialog from "../common/ConfirmationDialog";
+import ActionsDropdown from "../common/ActionsDropdown";
 import { formatCurrency } from "../../utils/formatCurrency";
 
 function BudgetList({

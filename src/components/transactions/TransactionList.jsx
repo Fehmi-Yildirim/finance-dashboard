@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import SortableHeader from "./SortableHeader";
-import ActionsDropdown from "../ActionsDropdown";
+import ActionsDropdown from "../common/ActionsDropdown";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { formatDate } from "../../utils/formatDate";
 

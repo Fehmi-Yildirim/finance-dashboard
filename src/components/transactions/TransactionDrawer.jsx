@@ -2,7 +2,7 @@ import Drawer from "@mui/material/Drawer";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
-import AddTransaction from "../AddTransaction";
+import AddTransaction from "../transactions/AddTransaction";
 
 function TransactionDrawer({
     open,
