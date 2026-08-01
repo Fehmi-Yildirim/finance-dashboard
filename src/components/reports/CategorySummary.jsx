@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { formatCurrency } from "../utils/formatCurrency";
+import { formatCurrency } from "../../utils/formatCurrency";
 import { useTranslation } from "react-i18next";
 
 function CategorySummary({ transactions }) {

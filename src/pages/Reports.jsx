@@ -1,6 +1,6 @@
 import Cards from "../components/Cards";
 import Card from "../components/Card";
-import ReportSection from "../components/ReportSection";
+import ReportSection from "../components/reports/ReportSection";
 import ExpenseCategoryChart from "../components/charts/ExpenseCategoryChart";
 import { useTransactions } from "../hooks/useTransactions";
 import MonthlyCashflowChart from "../components/charts/MonthlyCashflowChart";

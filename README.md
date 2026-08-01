@@ -189,6 +189,10 @@ src/
 │   |   ├── Sidebar.css
 │   |   └── Footer.jsx
 |   |
+|   └── reports/
+|   |    ├── ReportSection.jsx
+|   |    └── CategorySummary.jsx
+|   |
 |   ├── transactions/
 |   │   ├── TransactionsList.jsx
 |   │   ├── TransactionDrawer.jsx
