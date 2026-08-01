@@ -6,7 +6,7 @@ import CategorySummary from "../components/CategorySummary";
 import IncomeExpenseChart from "../components/IncomeExpenseChart";
 import { useTransactions } from "../hooks/useTransactions";
 import { useTranslation } from "react-i18next";
-import BudgetCard from "../components/BudgetCard";
+import BudgetCard from "../components/budgets/BudgetCard";
 import useBudgets from "../hooks/useBudgets";
 import { calculateBudgetProgress } from "../utils/calculateBudgetProgress";
 import { calculateBudgetTotals } from "../utils/calculateBudgetTotals";

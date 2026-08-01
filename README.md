@@ -169,11 +169,13 @@ src/
 ├── components
 │   ├── ActionsDropdown.jsx
 │   ├── AddTransaction.jsx
-│   ├── BudgetCard.jsx
-│   ├── BudgetDrawer.jsx
-│   ├── BudgetForm.jsx
-│   ├── BudgetList.jsx
-│   └── BudgetProgress.jsx
+|   ├── budgets/
+│   │   ├── BudgetCard.jsx
+│   │   ├── BudgetDrawer.jsx
+│   │   ├── BudgetForm.jsx
+│   │   ├── BudgetList.jsx
+│   │   └── BudgetProgress.jsx
+│   |
 │   ├── Card.jsx
 │   ├── Cards.jsx
 │   ├── CategorySummary.jsx
@@ -242,71 +244,71 @@ src/
 |    |   |
 |    |   ├── analyzer/
 |    |   |   ├── analyzer.js
-|        │   ├── constants.js
-|        │   └── helpers.js
-|        │
-|        ├── definitions/
-|        │   ├── account.js
-|        │   ├── amount.js
-|        │   ├── balance.js
-|        │   ├── date.js
-|        │   ├── description.js
-|        │   ├── direction.js
-|        │   ├── index.js
-|        │   ├── name.js
-|        │   └── notes.js
-|        │
-|        ├── engine/
-|        │   ├── ImportContext.js
-|        │   ├── ImportEngine.js
-|        │   ├── Pipeline.js
-|        │   ├── PipelineBuilder.js
-|        │   ├── Stage.js
-|        │   └── stages/
-|        │       ├── AnalyzerStage.js 
-|        │       ├── MappingStage.js
-|        │       ├── NormalizerStage.js 
-|        │       ├── ProfileStage.js
-|        │       ├── ReaderStage.js
-|        │       └── ValidationStage.js
-|        │
+|    |   |   ├── constants.js
+|    |   |   └── helpers.js
+|    |   | 
+|    |   |── definitions/
+|    |   |   ├── account.js
+|    |   |   ├── amount.js
+|    |   |   ├── balance.js
+|    |   |   ├── date.js
+|    |   |   ├── description.js
+|    |   |   ├── direction.js
+|    |   |   ├── index.js
+|    |   |   ├── name.js
+|    |   |  └── notes.js
+|    |   |
+|    |   |── engine/
+|    |   |   ├── ImportContext.js
+|    |   |   ├── ImportEngine.js
+|    |   |   ├── Pipeline.js
+|    |   |   ├── PipelineBuilder.js
+|    |   |   ├── Stage.js
+|    |   |   └── stages/
+|    |   |       ├── AnalyzerStage.js 
+|    |   |       ├── MappingStage.js
+|    |   |       ├── NormalizerStage.js 
+|    |   |       ├── ProfileStage.js
+|    |   |       ├── ReaderStage.js
+|    |   |       └── ValidationStage.js
+|    |   |
 |        ├── mapper/
-|        │   ├── autoMapper.js
-|        │   ├── columnProfiler.js 
-|        │   ├── headerMatcher.js
-|        │   ├── helpers.js
-|        │   ├── profileMatcher.js
-|        │   ├── profileRegistry.js 
-|        │   └── scoreEngine.js
-|        │
-|        ├── normalizer/
-|        │   ├── converters.js 
-|        │   ├── index.js 
-|        │   ├── normalizer.js
-|        │   └── transactionFactory.js
-|        │   └── valueExtractors.js
-|        │
-|        ├── profiles/
-|        │   ├── ABNAMRO.js 
-|        │   ├── Generic.js
-|        │   ├── ING.js
-|        │   ├── Rabobank.js
-|        │
-|        ├── readers/
-|        │   └── csvReader.js
-|        │
-|        ├── tests/
-|        │   └── import.test.js
-|        │
-|        └── validators/
-|            └── AmountValidator.js 
-|            └── DateValidator.js
-|            └── DuplicateValidator.js 
-|            └── RequiredValidator.js
-|            └── ValidationEngine.js
-|            └── ValidationResult.js
-|            └── Validator.js
-│
+|    |   |   ├── autoMapper.js
+|    |   |   ├── columnProfiler.js 
+|    |   |   ├── headerMatcher.js
+|    |   |   ├── helpers.js
+|    |   |   ├── profileMatcher.js
+|    |   |   ├── profileRegistry.js 
+|    |   |   └── scoreEngine.js
+|    |   |
+|    |   |── normalizer/
+|    |   |   ├── converters.js 
+|    |   |   ├── index.js 
+|    |   |   ├── normalizer.js
+|    |   |   └── transactionFactory.js
+|    |   |   └── valueExtractors.js
+|    |   |
+|    |   |── profiles/
+|    |   |   ├── ABNAMRO.js 
+|    |   |   ├── Generic.js
+|    |   |   ├── ING.js
+|    |   |   ├── Rabobank.js
+|    |   |
+|    |   |── readers/
+|    |   |   └── csvReader.js
+|    |   |
+|    |   |── tests/
+|    |   |   └── import.test.js
+|    |   |   |
+|    |   └── validators/
+|    |       └── AmountValidator.js 
+|    |       └── DateValidator.js
+|    |       └── DuplicateValidator.js 
+|    |       └── RequiredValidator.js
+|    |       └── ValidationEngine.js
+|    |       └── ValidationResult.js
+|    |       └── Validator.js
+|    |   
 ├── utils
 │   ├── addMissingData.js
 │   └── calculateBudgetProgress.js 

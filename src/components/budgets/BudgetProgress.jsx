@@ -1,6 +1,6 @@
 import { ProgressBar } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { formatCurrency } from "../utils/formatCurrency";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 function BudgetProgress({ budget }) {
 

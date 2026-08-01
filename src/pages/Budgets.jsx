@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import BudgetList from "../components/BudgetList";
+import BudgetList from "../components/budgets/BudgetList";
 import { calculateBudgetProgress } from "../utils/calculateBudgetProgress";
 import { useTransactions } from "../hooks/useTransactions";
-import BudgetProgress from "../components/BudgetProgress";
+import BudgetProgress from "../components/budgets/BudgetProgress";
 import useBudgets from "../hooks/useBudgets";
-import BudgetDrawer from "../components/BudgetDrawer";
+import BudgetDrawer from "../components/budgets/BudgetDrawer";
 
 function Budgets() {
 

@@ -1,7 +1,7 @@
 import { Card, ProgressBar } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { formatCurrency } from "../utils/formatCurrency";
-import Cards from "../components/Cards";
+import { formatCurrency } from "../../utils/formatCurrency";
+import Cards from "../Cards";
 
 function BudgetCard({
     totalBudget,
