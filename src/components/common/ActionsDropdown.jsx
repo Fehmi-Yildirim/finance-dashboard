@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useTranslation } from "react-i18next";
 import ConfirmationDialog from "./ConfirmationDialog";
@@ -12,12 +12,27 @@ function ActionsDropdown({
 }) {
 
     const { t } = useTranslation();
-
     const [showConfirmation, setShowConfirmation] = useState(false);
+    const toggleRef = useRef(null);
+
+    const removeFocus = () => {
+        toggleRef.current?.blur();
+    };
+
+    const handleEdit = () => {
+        removeFocus();
+        onEdit(item);
+    };
 
     const handleDelete = () => {
+        removeFocus();
         onDelete(item.id);
         setShowConfirmation(false);
+    };
+
+    const openDeleteConfirmation = () => {
+        removeFocus();
+        setShowConfirmation(true);
     };
 
     return (
@@ -25,6 +40,7 @@ function ActionsDropdown({
             <Dropdown align="end">
 
                 <Dropdown.Toggle
+                    ref={toggleRef}
                     variant="light"
                     className="action-dropdown"
                 >
@@ -34,30 +50,30 @@ function ActionsDropdown({
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
+
                     <Dropdown.Item
-                        onClick={() => onEdit(item)}
+                        onClick={handleEdit}
                     >
                         {t(`${translationKey}.edit`)}
                     </Dropdown.Item>
 
                     <Dropdown.Item
                         className="delete-item"
-                        onClick={() =>
-                            setShowConfirmation(true)
-                        }
+                        onClick={openDeleteConfirmation}
                     >
                         {t(`${translationKey}.delete`)}
                     </Dropdown.Item>
+
                 </Dropdown.Menu>
 
             </Dropdown>
 
-
             <ConfirmationDialog
                 show={showConfirmation}
-                onClose={() =>
-                    setShowConfirmation(false)
-                }
+                onClose={() => {
+                    removeFocus();
+                    setShowConfirmation(false);
+                }}
                 onConfirm={handleDelete}
                 title={t(`${translationKey}.deleteTitle`)}
                 message={t(`${translationKey}.deleteMessage`)}

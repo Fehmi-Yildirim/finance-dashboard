@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Drawer from "@mui/material/Drawer";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
@@ -13,11 +14,15 @@ function TransactionDrawer({
 }) {
     const isEditing = !!transaction;
 
+    function handleClose() {
+        onClose();
+    }
+
     return (
         <Drawer
             anchor="right"
             open={open}
-            onClose={onClose}
+            onClose={handleClose}
         >
             <Box sx={{ width: 450, p: 3 }}>
                 <Typography variant="h5" gutterBottom>
@@ -25,14 +30,13 @@ function TransactionDrawer({
                         ? "Bewerken transactie"
                         : "Nieuwe transactie"}
                 </Typography>
-
                 <Divider sx={{ mb: 3 }} />
-
                 <AddTransaction
+                    open={open}
                     editingTransaction={transaction}
                     addTransaction={addTransaction}
                     updateTransaction={updateTransaction}
-                    onClose={onClose}
+                    onClose={handleClose}
                 />
             </Box>
         </Drawer>

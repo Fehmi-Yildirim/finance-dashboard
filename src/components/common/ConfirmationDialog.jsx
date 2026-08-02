@@ -1,6 +1,7 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { useTranslation } from "react-i18next";
+import { useEffect, useRef } from "react";
 
 function ConfirmationDialog({
     show,
@@ -14,6 +15,20 @@ function ConfirmationDialog({
 }) {
     const { t } = useTranslation();
 
+    const confirmButtonRef = useRef(null);
+
+    useEffect(() => {
+        if (show) {
+            setTimeout(() => {
+                confirmButtonRef.current?.focus();
+            }, 100);
+        }
+    }, [show]);
+
+    const handleClose = () => {
+        onClose?.();
+    };
+
     const handleConfirm = () => {
         onConfirm?.();
         onClose?.();
@@ -22,32 +37,40 @@ function ConfirmationDialog({
     return (
         <Modal
             show={show}
-            onHide={onClose}
+            onHide={handleClose}
             centered
             backdrop="static"
             keyboard={false}
         >
             <Modal.Header closeButton>
-                <Modal.Title>{title}</Modal.Title>
+                <Modal.Title>
+                    {title}
+                </Modal.Title>
             </Modal.Header>
 
-            <Modal.Body>{message}</Modal.Body>
+            <Modal.Body>
+                {message}
+            </Modal.Body>
 
             <Modal.Footer>
+
                 <Button
                     variant="secondary"
-                    onClick={onClose}
+                    onClick={handleClose}
                 >
                     {cancelText || t("common.cancel")}
                 </Button>
 
                 <Button
+                    ref={confirmButtonRef}
                     variant={confirmVariant}
                     onClick={handleConfirm}
                 >
                     {confirmText || t("common.delete")}
                 </Button>
+
             </Modal.Footer>
+
         </Modal>
     );
 }

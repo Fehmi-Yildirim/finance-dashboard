@@ -17,57 +17,35 @@ function TransactionList({
     showSorting = true,
 }) {
 
-
-
     const { t } = useTranslation();
-
-    const [currentPage, setCurrentPage] = useState(1);
 
     const [sortColumn, setSortColumn] = useState(initialSortColumn);
     const [sortDirection, setSortDirection] = useState(initialSortDirection);
 
-
     const itemsPerPage = 10;
-
-    const totalPages = Math.ceil(
-        transactions.length / itemsPerPage
-    );
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = Math.ceil(transactions.length / itemsPerPage);
 
     const visibleTransactions = useMemo(() => {
-
         const start =
             (currentPage - 1) * itemsPerPage;
-
-
         return transactions.slice(
             start,
             start + itemsPerPage
         );
-
-    }, [
-        transactions,
-        currentPage
-    ]);
+    }, [transactions, currentPage]);
 
     useEffect(() => {
-
         setCurrentPage(1);
-
     }, [
         transactions
     ]);
 
-
     useEffect(() => {
-
         if (currentPage > totalPages) {
             setCurrentPage(totalPages);
         }
-
-    }, [
-        currentPage,
-        totalPages
-    ]);
+    }, [currentPage, totalPages]);
 
     const handleSort = (column) => {
         if (onSort) {
@@ -161,7 +139,7 @@ function TransactionList({
                                     onSort={onSort || handleSort}
                                 />
                             ) : (
-                                <th>{t("transactionList.amount")}</th>
+                                <th className="nowrap">{t("transactionList.amount")}</th>
                             )}
 
                             {showActions && <th>{t("transactionList.actions")}</th>}
@@ -180,16 +158,14 @@ function TransactionList({
                                         ? t("transactions.income")
                                         : t("transactions.expense")}
                                 </td>
-                                <td>
+                                <td className="nowrap">
                                     <span
-                                        className={
-                                            transaction.amount < 0
-                                                ? "expense"
-                                                : "income"
-                                        }
+                                        className={transaction.type === "expense" ? "expense" : "income"}
                                     >
-                                        {transaction.amount < 0 || transaction.type === "expense" ? "-" : "+"}{" "}
-                                        {formatCurrency(Math.abs(transaction.amount))}
+                                        {transaction.type === "expense" ? "- " : "+ "}
+                                        {formatCurrency(
+                                            Math.abs(transaction.amount)
+                                        )}
                                     </span>
                                 </td>
                                 {showActions && (
@@ -211,7 +187,6 @@ function TransactionList({
             {transactions.length > itemsPerPage && (
 
                 <div className="pagination">
-
                     <button
                         disabled={currentPage === 1}
                         onClick={() =>
@@ -220,16 +195,12 @@ function TransactionList({
                     >
                         {t("pagination.previous")}
                     </button>
-
-
                     <span>
                         {t("pagination.pageOf", {
                             current: currentPage,
                             total: totalPages,
                         })}
                     </span>
-
-
                     <button
                         disabled={currentPage === totalPages}
                         onClick={() =>
@@ -238,7 +209,6 @@ function TransactionList({
                     >
                         {t("pagination.next")}
                     </button>
-
                 </div>
 
             )}

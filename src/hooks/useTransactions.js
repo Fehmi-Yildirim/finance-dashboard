@@ -51,7 +51,7 @@ export function useTransactions() {
             ...current.filter(t => !t.isDemo),
             {
                 ...normalizeTransaction(transaction),
-                id: Date.now(),
+                id: crypto.randomUUID(), // Always generate a new unique ID
                 isDemo: false,
             }
         ]);
@@ -62,10 +62,16 @@ export function useTransactions() {
             (newTransactions) => {
                 disableDemoMode();
 
-                const imported =
-                    newTransactions.map(
-                        normalizeTransaction
-                    );
+                const imported = newTransactions.map((t) => {
+                    const normalized = normalizeTransaction(t);
+                    const value = Math.abs(Number(normalized.amount));
+                    return {
+                        ...normalized,
+                        amount: normalized.type === "expense" ? -value : value,
+                        id: crypto.randomUUID(), // Always generate a new unique ID for imported items
+                        isDemo: false,
+                    };
+                });
 
                 setTransactions(
                     imported
@@ -83,9 +89,9 @@ export function useTransactions() {
         setTransactions(current =>
             current.map(transaction =>
                 transaction.id === id
-                    ? {
+                    ? { // When updating, keep the original transaction's ID
                         ...transaction,
-                        ...normalizeTransaction(transactionData),
+                        ...normalizeTransaction(transactionData), // Apply normalization
                         id: transaction.id,
                         isDemo: false,
                     }

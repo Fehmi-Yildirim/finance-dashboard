@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import DatePicker from "react-datepicker";
 import { nl, enGB } from "date-fns/locale";
 import { Search, X } from "lucide-react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 function TransactionToolbar({
     search,
@@ -36,7 +36,6 @@ function TransactionToolbar({
                     >
                         <Search size={18} />
                     </button>
-
                     <input
                         ref={searchInputRef}
                         className="search-input"
@@ -47,7 +46,6 @@ function TransactionToolbar({
                             setSearch(event.target.value)
                         }
                     />
-
                     {search && (
                         <button
                             type="button"
@@ -58,7 +56,6 @@ function TransactionToolbar({
                             <X size={18} />
                         </button>
                     )}
-
                 </div>
 
                 <div className="filter-buttons">

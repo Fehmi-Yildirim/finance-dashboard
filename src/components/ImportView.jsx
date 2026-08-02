@@ -7,8 +7,6 @@ import { useTransactions } from "../hooks/useTransactions";
 import useBudgets from "../hooks/useBudgets";
 import { formatCurrency } from "../utils/formatCurrency";
 import { createBudgetCategories } from "../utils/createBudgetCategories";
-import { createTransactionKey } from "../utils/createTransactionKey";
-
 
 function ImportView({ setMessage }) {
 
@@ -170,7 +168,7 @@ function ImportView({ setMessage }) {
                         </thead>
                         <tbody>
                             {allImported.slice(0, 10).map((transaction, index) => (
-                                <tr key={`${transaction.id}-${index}`}>
+                                <tr key={transaction.id}>
                                     <td className="date-cell">
                                         {transaction.date}
                                     </td>

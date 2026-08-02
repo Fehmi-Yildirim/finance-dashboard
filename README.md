@@ -255,6 +255,7 @@ src/
 └── services/
 |    ├── categoryDetector.js
 |    ├── transactionKey.js
+|    ├── transactionId.js
 │    ├── categoryService.js         
 │    ├── categoryMigration.js       
 │    └── budgetMigration.js        
