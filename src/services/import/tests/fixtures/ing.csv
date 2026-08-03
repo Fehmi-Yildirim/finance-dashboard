@@ -1,0 +1,6 @@
+Datum,Naam / Omschrijving,Rekening,Tegenrekening,Code,Af Bij,Bedrag (EUR),Mutatiesoort,Mededelingen
+01-07-2026,ACME B.V.,NL00INGB0000000001,NL00ACME0000000001,OV,Bij,"3200,00",Overschrijving,Maandsalaris juli
+02-07-2026,ALBERT HEIJN 1338 AMSTERDAM NLD,NL00INGB0000000001,,BA,Af,"48,65",Betaalautomaat,"Kaartnr: **** Datum: 02-07-2026"
+03-07-2026,NS GROEP N.V.,NL00INGB0000000001,,BA,Af,"12,40",Betaalautomaat,"Treinreis Amsterdam - Utrecht"
+04-07-2026,SPOTIFY,NL00INGB0000000001,,IC,Af,"10,99",Incasso,"Spotify Premium juli"
+05-07-2026,ENECO KLANTEN,NL00INGB0000000001,,IC,Af,"125,50",Incasso,"Voorschot energie juli"

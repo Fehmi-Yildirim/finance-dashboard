@@ -31,9 +31,11 @@ function ImportView({ setMessage }) {
         setMessage(null);
 
         try {
+
             const result = await importFile(file);
             //const result = await runImportTest(file);
             //const result = await runPipelineTrace(file);
+
             const imported = result.transactions || [];
             setAllImported(imported);
             setNewTransactions(imported);

@@ -8,8 +8,7 @@ export default {
 
     supports(analysis) {
 
-        const headers =
-            analysis.normalizedHeaders;
+        const headers = analysis.normalizedHeaders;
 
         let score = 0;
 
@@ -17,27 +16,31 @@ export default {
             score += 25;
         }
 
-        if (headers.includes("bedrag")) {
+        if (headers.includes("bedrag eur")) {
             score += 25;
         }
 
-        if (headers.includes("begunstigde")) {
+        if (headers.includes("naam omschrijving")) {
             score += 25;
         }
 
-        if (headers.includes("af/bij")) {
+        if (headers.includes("af bij")) {
             score += 25;
         }
 
         return score;
     },
 
+
     mapping: {
+
         date: "Datum",
-        description: "Begunstigde",
-        amount: "Bedrag",
+        name: "Naam / Omschrijving",
+        description: "Mededelingen",
+        amount: "Bedrag (EUR)",
         direction: "Af Bij",
         notes: "Mededelingen"
+
     }
 
 };

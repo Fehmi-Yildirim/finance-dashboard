@@ -20,12 +20,12 @@ export default class Pipeline {
 
         for (const stage of this.stages) {
 
-            console.group(stage.name);
+            //console.group(stage.name);
 
             await stage.execute(context);
 
-            console.log(JSON.parse(JSON.stringify(context)));
-            console.groupEnd();
+            //console.log(JSON.parse(JSON.stringify(context)));
+            //console.groupEnd();
 
         }
 

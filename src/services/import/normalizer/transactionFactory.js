@@ -7,7 +7,6 @@ import {
 } from "./converters";
 import detectCategory from "../../category/categoryDetector";
 
-
 function getValue(row, column) {
 
     if (!column) {
@@ -16,7 +15,6 @@ function getValue(row, column) {
 
     return row[column] ?? null;
 }
-
 
 function getAmountValue(row, mapping) {
 
@@ -49,7 +47,6 @@ function getAmountValue(row, mapping) {
     return null;
 }
 
-
 function parseBankText(value) {
 
     if (!value) {
@@ -79,7 +76,6 @@ function parseBankText(value) {
         result.name = name[1].trim();
     }
 
-
     const description = text.match(
         /Omschrijving:\s*(.*?)\s+(IBAN:|Kenmerk:|Valutadatum:|$)/i
     );
@@ -88,7 +84,6 @@ function parseBankText(value) {
         result.description = description[1].trim();
     }
 
-
     const iban = text.match(
         /IBAN:\s*([A-Z]{2}[0-9A-Z]+)/i
     );
@@ -96,7 +91,6 @@ function parseBankText(value) {
     if (iban) {
         result.iban = iban[1].trim();
     }
-
 
     const reference = text.match(
         /Kenmerk:\s*(.*?)\s+(Valutadatum:|$)/i
@@ -118,20 +112,16 @@ function getDescription(row, mapping) {
         row[mapping.notes] ??
         row[mapping.name];
 
-
     const parsed =
         parseBankText(raw);
-
 
     if (parsed?.description) {
         return parsed.description;
     }
 
-
     if (raw && String(raw).trim()) {
         return String(raw).trim();
     }
-
 
     return "Onbekende transactie";
 }
@@ -170,9 +160,7 @@ function getCounterparty(row, mapping) {
     };
 }
 
-
-export function createTransaction(row, mapping) {
-
+function buildTransaction(row, mapping) {
     const rawAmount =
         convertAmount(
             getAmountValue(
@@ -180,7 +168,6 @@ export function createTransaction(row, mapping) {
                 mapping
             )
         );
-
 
     const type =
         determineType(
@@ -191,10 +178,8 @@ export function createTransaction(row, mapping) {
             )
         );
 
-
     const amount =
         Math.abs(rawAmount);
-
 
     const counterparty =
         getCounterparty(
@@ -202,13 +187,11 @@ export function createTransaction(row, mapping) {
             mapping
         );
 
-
     const description =
         getDescription(
             row,
             mapping
         );
-
 
     const name =
         convertText(
@@ -222,6 +205,7 @@ export function createTransaction(row, mapping) {
         ||
         description;
 
+    const balance = convertAmount(getValue(row, mapping.balance));
 
     const notes =
         convertText(
@@ -231,64 +215,17 @@ export function createTransaction(row, mapping) {
             )
         );
 
+    const date = convertDate(getValue(row, mapping.date));
+    const account = convertText(getValue(row, mapping.account));
 
-    const category =
-        detectCategory({
-            name,
-            description,
-            notes,
-            type,
-        });
+    const transaction = { date, name, description, amount, balance, account, type, counterparty, notes };
 
-
-    const transaction = {
-
-        date:
-            convertDate(
-                getValue(
-                    row,
-                    mapping.date
-                )
-            ),
-
-        name,
-
-        description,
-
-        amount,
-
-        balance:
-            convertAmount(
-                getValue(
-                    row,
-                    mapping.balance
-                )
-            ),
-
-        account:
-            convertText(
-                getValue(
-                    row,
-                    mapping.account
-                )
-            ),
-
-        type,
-
-        category,
-
-        counterparty,
-
-        notes,
-
-    };
-
-
-    transaction.id =
-        transactionKey(
-            transaction
-        );
-
+    transaction.category = detectCategory(transaction);
+    transaction.id = transactionKey(transaction);
 
     return transaction;
+}
+
+export function createTransaction(row, mapping) {
+    return buildTransaction(row, mapping);
 }

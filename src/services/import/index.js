@@ -3,13 +3,13 @@ import ImportEngine from "./engine/ImportEngine";
 const engine = new ImportEngine();
 
 /**
- * Imports a file.
+ * Imports CSV input.
  *
- * @param {File} file
+ * @param {File|string} input
  * @returns {Promise<Object>}
  */
-export async function importFile(file) {
+export async function importFile(input) {
 
-    return await engine.import(file);
+    return await engine.import(input);
 
 }

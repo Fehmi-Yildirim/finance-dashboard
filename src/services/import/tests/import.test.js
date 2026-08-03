@@ -1,11 +1,43 @@
-import { importFile } from "../index";
+import { describe, test, expect } from "vitest";
+import goldenTransactions from "./golden-transactions.json";
+import { loadFixtures } from "./helpers/loadFixtures";
+import { importFixture } from "./helpers/importFixture";
+import { toComparableList } from "./helpers/toComparable";
 
-test("imports CSV file", async () => {
+describe(
+    "CSV import",
+    () => {
 
-    const result =
-        await importFile(file);
+        const fixtures =
+            loadFixtures();
 
-    expect(result.transactions)
-        .toHaveLength(10);
+        for (const fixture of fixtures) {
 
-});
+            test(
+
+                `${fixture.name} imports correctly`,
+
+                async () => {
+
+                    const result =
+                        await importFixture(
+                            fixture
+                        );
+
+                    expect(
+                        toComparableList(
+                            result.transactions
+                        )
+                    ).toEqual(
+                        goldenTransactions
+                    );
+
+                }
+
+            );
+
+        }
+
+    }
+
+);

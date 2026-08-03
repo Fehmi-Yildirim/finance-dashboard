@@ -11,11 +11,17 @@ export default class MappingStage extends Stage {
     }
 
     async execute(context) {
-        context.mapping = autoMap({
+
+        const automaticMapping = autoMap({
             analysis: context.analysis,
-            profile: context.profile,
             rows: context.rows,
         });
+
+
+        context.mapping = {
+            ...automaticMapping,
+            ...(context.profile?.mapping ?? {}),
+        };
 
     }
 

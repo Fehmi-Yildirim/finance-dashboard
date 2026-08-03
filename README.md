@@ -365,6 +365,34 @@ src/
 
 ---
 
+# Architecture
+                Browser
+                   │
+             readFileAsText()
+                   │
+                   ▼
+              CSV tekst
+                   │
+                   ▼
+              parseCSV()
+                   │
+        ┌──────────┴──────────┐
+        │                     │
+      React               Vitest
+        │                     │
+        └──────────┬──────────┘
+                   ▼
+              ImportEngine
+                   │
+              Analyzer
+                   │
+               Mapping
+                   │
+             Normalizer
+                   │
+             Validation
+---
+
 # Version
 
 Current version: **1.0.0**
