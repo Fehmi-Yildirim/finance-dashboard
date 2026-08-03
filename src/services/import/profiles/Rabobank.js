@@ -26,19 +26,19 @@ export default {
             score += 20;
         }
 
-        if (headers.includes("saldo na trn")) {
+        if (headers.includes("saldo na mutatie")) {
             score += 15;
         }
 
-        if (
-            headers.includes("naam tegenpartij") ||
-            headers.includes("omschrijving-1")
-        ) {
-            score += 20;
+        if (headers.includes("naam tegenpartij")) {
+            score += 10;
+        }
+
+        if (headers.includes("omschrijving")) {
+            score += 10;
         }
 
         return score;
-
     },
 
 
@@ -46,9 +46,10 @@ export default {
         account: "IBAN/BBAN",
         date: "Datum",
         amount: "Bedrag",
-        balance: "Saldo na trn",
-        description: "Naam tegenpartij",
-        notes: "Omschrijving-1"
+        balance: "Saldo na mutatie",
+        name: "Naam tegenpartij",
+        description: "Omschrijving",
+        notes: "Omschrijving"
     }
 
 };

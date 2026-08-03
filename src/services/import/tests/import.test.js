@@ -1,5 +1,6 @@
 import { describe, test, expect } from "vitest";
-import goldenTransactions from "./golden-transactions.json";
+
+import { loadGolden } from "./helpers/loadGolden";
 import { loadFixtures } from "./helpers/loadFixtures";
 import { importFixture } from "./helpers/importFixture";
 import { toComparableList } from "./helpers/toComparable";
@@ -29,7 +30,9 @@ describe(
                             result.transactions
                         )
                     ).toEqual(
-                        goldenTransactions
+                        loadGolden(
+                            fixture.name
+                        )
                     );
 
                 }

@@ -1,0 +1,6 @@
+"IBAN/BBAN";"Munt";"BIC";"Bedrag";"Saldo na mutatie";"Datum";"Naam tegenpartij";"Tegenrekening IBAN/BBAN";"Omschrijving"
+"NL00RABO0000000001";"EUR";"RABONL2U";"3200,00";"6200,00";"01-07-2026";"ACME B.V.";"NL00ACME0000000001";"Maandsalaris juli"
+"NL00RABO0000000001";"EUR";"";"-48,65";"6151,35";"02-07-2026";"ALBERT HEIJN 1338 AMSTERDAM NLD";"";"Kaartbetaling"
+"NL00RABO0000000001";"EUR";"";"-12,40";"6138,95";"03-07-2026";"NS GROEP N.V.";"NL00NS000000000001";"Treinreis Amsterdam - Utrecht"
+"NL00RABO0000000001";"EUR";"";"-10,99";"6127,96";"04-07-2026";"SPOTIFY";"";"Spotify Premium juli"
+"NL00RABO0000000001";"EUR";"";"-125,50";"6002,46";"05-07-2026";"ENECO KLANTEN";"";"Voorschot energie juli"

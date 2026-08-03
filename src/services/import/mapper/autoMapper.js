@@ -55,7 +55,7 @@ export function autoMap(options) {
 
         mapping[definition.id] =
             candidate?.header ??
-            profile.mapping?.[definition.id] ??
+            profile?.mapping?.[definition.id] ??
             null;
 
     }

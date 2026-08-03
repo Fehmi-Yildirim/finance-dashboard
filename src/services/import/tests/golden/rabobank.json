@@ -1,0 +1,42 @@
+[
+    {
+        "date": "2026-07-01",
+        "name": "ACME B.V.",
+        "description": "Maandsalaris juli",
+        "amount": 3200,
+        "type": "income",
+        "category": "salary"
+    },
+    {
+        "date": "2026-07-02",
+        "name": "ALBERT HEIJN 1338 AMSTERDAM NLD",
+        "description": "Kaartbetaling",
+        "amount": 48.65,
+        "type": "expense",
+        "category": "food"
+    },
+    {
+        "date": "2026-07-03",
+        "name": "NS GROEP N.V.",
+        "description": "Treinreis Amsterdam - Utrecht",
+        "amount": 12.40,
+        "type": "expense",
+        "category": "transport"
+    },
+    {
+        "date": "2026-07-04",
+        "name": "SPOTIFY",
+        "description": "Spotify Premium juli",
+        "amount": 10.99,
+        "type": "expense",
+        "category": "leisure"
+    },
+    {
+        "date": "2026-07-05",
+        "name": "ENECO KLANTEN",
+        "description": "Voorschot energie juli",
+        "amount": 125.50,
+        "type": "expense",
+        "category": "energy"
+    }
+]

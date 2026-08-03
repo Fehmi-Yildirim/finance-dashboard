@@ -264,6 +264,7 @@ src/
 |    |   ├── index.js
 |    |   ├── runImportTest.js
 |    |   ├── runPipelineTrace.js
+|    |   |
 |    |   ├── analyzer/
 |    |   |   ├── analyzer.js
 |    |   |   ├── constants.js
@@ -322,11 +323,19 @@ src/
 |    |   └── tests/
 |    |   |    ├── fixtures/
 |    |   |    |   └── ing.csv
+|    |   |    |   └── rabobank.csv
+|    |   |    |
+|    |   |    ├── golden/
+|    |   |    |   └── ing.json
+|    |   |    |   └── rabobank.json
+|    |   |    |
+|    |   |    |
 |    |   |    ├── helpers/
-|    |   |    │   └── loadFixtures.js 
-|    |   |    │   └── importFixture.js      
+|    |   |    │   └── importFixture.js 
+|    |   |    │   └── loadFixtures.js
+|    |   |    │   └── loadGolden.js
 |    |   |    │   └── toComparable.js
-|    |   |    ├── golden-transactions.json 
+|    |   |    │   
 |    |   |    └── import.test.js
 |    |   |
 |    |   └── validators/
@@ -366,31 +375,33 @@ src/
 ---
 
 # Architecture
-                Browser
-                   │
-             readFileAsText()
-                   │
-                   ▼
-              CSV tekst
-                   │
-                   ▼
-              parseCSV()
-                   │
-        ┌──────────┴──────────┐
-        │                     │
-      React               Vitest
-        │                     │
-        └──────────┬──────────┘
-                   ▼
-              ImportEngine
-                   │
-              Analyzer
-                   │
-               Mapping
-                   │
-             Normalizer
-                   │
-             Validation
+Browser
+  │
+  └─ readFileAsText()
+        │
+        ▼
+      CSV tekst
+        │
+        ▼
+      parseCSV()
+        │
+        ┌───────────────┐
+        │               │
+      React          Vitest
+        │               │
+        └───────┬───────┘
+                ▼
+          ImportEngine
+                │
+            Analyzer
+                │
+          Profile Detection
+                │
+             Mapping
+                │
+          Normalization
+                │
+           Validation
 ---
 
 # Version
