@@ -22,26 +22,42 @@ function Budgets() {
         deleteBudget,
     } = useBudgets();
 
+
     const budgetProgress = calculateBudgetProgress(
         budgets,
         transactions
     );
 
 
+    function openDrawer(budget = null) {
+
+        // Remove focus from dropdown/buttons before MUI hides background
+        document.activeElement?.blur();
+
+        setSelectedBudget(budget);
+        setDrawerOpen(true);
+    }
+
+    function closeDrawer() {
+
+        setDrawerOpen(false);
+        setSelectedBudget(null);
+    }
+
     return (
         <div className="budgets-page">
+
             <h1>
                 {t("budgets.title")}
             </h1>
+
             <p>
                 {t("budgets.description")}
             </p>
+
             <button
                 className="add-budget-button"
-                onClick={() => {
-                    setSelectedBudget(null);
-                    setDrawerOpen(true);
-                }}
+                onClick={() => openDrawer()}
             >
                 {t("budgets.addTitle")}
             </button>
@@ -49,10 +65,7 @@ function Budgets() {
             <BudgetList
                 budgets={budgetProgress}
                 deleteBudget={deleteBudget}
-                onEdit={(budget) => {
-                    setSelectedBudget(budget);
-                    setDrawerOpen(true);
-                }}
+                onEdit={openDrawer}
             />
 
             {budgetProgress.map((budget) => (
@@ -64,14 +77,12 @@ function Budgets() {
 
             <BudgetDrawer
                 open={drawerOpen}
-                onClose={() => {
-                    setDrawerOpen(false);
-                    setSelectedBudget(null);
-                }}
+                onClose={closeDrawer}
                 budget={selectedBudget}
                 addBudget={addBudget}
                 updateBudget={updateBudget}
             />
+
         </div>
     );
 }

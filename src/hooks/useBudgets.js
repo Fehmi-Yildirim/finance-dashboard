@@ -16,13 +16,14 @@ export default function useBudgets() {
 
         const storedBudgets = loadBudgets();
 
-        if (!storedBudgets || storedBudgets.length === 0
-        ) {
-            enableBudgetDemoMode();
-            return getDemoBudgets();
+        if (storedBudgets) {
+            return storedBudgets;
         }
 
-        return storedBudgets;
+
+        enableBudgetDemoMode();
+
+        return getDemoBudgets();
 
     });
 
@@ -107,10 +108,10 @@ export default function useBudgets() {
     };
 
     const clearBudgets = () => {
-        enableBudgetDemoMode();
-        setBudgets(
-            getDemoBudgets()
-        );
+
+        disableBudgetDemoMode();
+        setBudgets([]);
+
     };
 
     const initializeBudgets = (categories) => {

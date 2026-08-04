@@ -5,8 +5,8 @@ import Box from "@mui/material/Box";
 import { useTranslation } from "react-i18next";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-
 import BudgetForm from "./BudgetForm";
+
 
 function BudgetDrawer({
     open,
@@ -15,17 +15,29 @@ function BudgetDrawer({
     addBudget,
     updateBudget,
 }) {
+
     const { t } = useTranslation();
 
     const isEditing = !!budget;
+
+    function handleClose() {
+        onClose();
+    }
 
     return (
         <Drawer
             anchor="right"
             open={open}
-            onClose={onClose}
+            onClose={handleClose}
         >
-            <Box sx={{ width: 450, p: 3 }}>
+
+            <Box
+                sx={{
+                    width: 450,
+                    p: 3,
+                }}
+            >
+
                 <Box
                     sx={{
                         display: "flex",
@@ -34,31 +46,43 @@ function BudgetDrawer({
                         mb: 2,
                     }}
                 >
+
                     <Typography variant="h5">
-                        {isEditing
-                            ? t("budgets.editTitle")
-                            : t("budgets.addTitle")}
+                        {
+                            isEditing
+                                ? t("budgets.editTitle")
+                                : t("budgets.addTitle")
+                        }
                     </Typography>
 
                     <IconButton
-                        onClick={onClose}
+                        onClick={handleClose}
                         aria-label={t("common.close")}
                     >
                         <CloseIcon />
                     </IconButton>
+
                 </Box>
 
-                <Divider sx={{ mb: 3 }} />
+
+                <Divider
+                    sx={{
+                        mb: 3,
+                    }}
+                />
 
                 <BudgetForm
                     editingBudget={budget}
                     addBudget={addBudget}
                     updateBudget={updateBudget}
-                    onClose={onClose}
+                    onClose={handleClose}
                 />
+
             </Box>
+
         </Drawer>
     );
 }
+
 
 export default BudgetDrawer;
