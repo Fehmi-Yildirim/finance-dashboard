@@ -47,6 +47,7 @@ function getAmountValue(row, mapping) {
     return null;
 }
 
+
 function parseBankText(value) {
 
     if (!value) {
@@ -100,6 +101,60 @@ function parseBankText(value) {
         result.paymentReference = reference[1].trim();
     }
 
+    // Special for ABN_AMRO
+    if (!result.description) {
+
+        // REK:
+        const rek = text.match(
+            /^(.*?)\s+REK:\s*([A-Z]{2}[0-9A-Z]+)(.*)$/i
+        );
+
+        if (rek) {
+
+            let beforeRek = rek[1].trim();
+
+            const salaryMatch = beforeRek.match(
+                /^(.*?)\s*\b(SALARIS|LOON|PENSIOEN)\b(.*)$/i
+            );
+
+            if (salaryMatch) {
+                result.name = salaryMatch[1].trim();
+                result.description = `${salaryMatch[2]}${salaryMatch[3]}`.trim();
+                result.iban = rek[2];
+                return result;
+
+            } else {
+
+                result.name = beforeRek;
+
+                const remainder = rek[3].trim();
+
+                result.description =
+                    remainder ||
+                    `REK: ${rek[2]}`;
+            }
+
+            return result;
+        }
+
+        // KENMERK (Reference)
+        const kenmerk = text.match(/^(.*?)\s+KENMERK\s+(.+)$/i);
+
+        if (kenmerk) {
+            result.name = kenmerk[1].trim();
+            result.description = `KENMERK ${kenmerk[2].trim()}`;
+            return result;
+        }
+
+        // PAS... (Card number)
+        const pas = text.match(/^(.*?)\s+(PAS\d+.*)$/i);
+
+        if (pas) {
+            result.name = pas[1].replace(/\s*KVK\s*\d+/, "").trim();
+            result.description = `${pas[1].match(/KVK\s*\d+/)?.[0] || ""} ${pas[2]}`.trim();
+            return result;
+        }
+    }
 
     return result;
 }
@@ -123,7 +178,7 @@ function getDescription(row, mapping) {
         return String(raw).trim();
     }
 
-    return "Onbekende transactie";
+    return "Unknown transaction";
 }
 
 
@@ -139,28 +194,32 @@ function getCounterparty(row, mapping) {
         parseBankText(raw);
 
 
+    const bankName =
+        row["Naam tegenpartij"] ||
+        row["Naam uiteindelijke partij"] ||
+        row["Naam initiërende partij"];
+
+
     return {
         name:
-            row[mapping.name] ??
-            parsed?.name ??
-            row["Naam tegenpartij"] ??
-            row["Naam uiteindelijke partij"] ??
-            row["Naam initiërende partij"] ??
+            bankName ||
+            parsed?.name ||
             "",
 
         iban:
-            parsed?.iban ??
-            row["Tegenrekening IBAN/BBAN"] ??
+            parsed?.iban ||
+            row["Tegenrekening IBAN/BBAN"] ||
             "",
 
         paymentReference:
-            parsed?.paymentReference ??
-            row["Betalingskenmerk"] ??
+            parsed?.paymentReference ||
+            row["Betalingskenmerk"] ||
             "",
     };
 }
 
 function buildTransaction(row, mapping) {
+
     const rawAmount =
         convertAmount(
             getAmountValue(
@@ -181,6 +240,9 @@ function buildTransaction(row, mapping) {
     const amount =
         Math.abs(rawAmount);
 
+    //console.log("ROW", row);
+    //console.log("MAPPING", mapping);
+
     const counterparty =
         getCounterparty(
             row,
@@ -193,17 +255,26 @@ function buildTransaction(row, mapping) {
             mapping
         );
 
-    const name =
+
+    //console.log({
+    //   rawName: getValue(row, mapping.name),
+    //   counterparty,
+    //   description
+    //});
+
+    const rawName =
         convertText(
             getValue(
                 row,
                 mapping.name
             )
-        )
-        ||
-        counterparty.name
-        ||
-        description;
+        );
+
+    const name =
+        counterparty.name &&
+            counterparty.name.length < rawName.length
+            ? counterparty.name
+            : rawName || description;
 
     const balance = convertAmount(getValue(row, mapping.balance));
 

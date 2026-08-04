@@ -102,6 +102,9 @@ export const CATEGORY_RULES = {
 
     transport: [
         "ns reis",
+        "ns reizers",
+        "ns reizigers",
+        "ns reizers",
         "ns groep",
         "nederlandse spoorwegen",
         "ov chipkaart",

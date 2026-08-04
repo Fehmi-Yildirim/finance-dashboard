@@ -9,31 +9,36 @@ export default {
 
     supports(analysis) {
 
-        const headers =
-            analysis.normalizedHeaders;
+        const headers = analysis.normalizedHeaders;
 
         let score = 0;
 
-        if (headers.includes("transaction date")) {
+        if (headers.includes("rekeningnummer")) {
             score += 25;
         }
 
-        if (headers.includes("amount")) {
+        if (headers.includes("datum")) {
+            score += 20;
+        }
+
+        if (headers.includes("bedrag")) {
             score += 25;
         }
 
-        if (headers.includes("description")) {
-            score += 25;
-        }
-
-        if (headers.includes("account")) {
-            score += 25;
+        if (headers.includes("omschrijving")) {
+            score += 30;
         }
 
         return score;
-
     },
 
-    mapping: {}
+    mapping: {
+        account: "Rekeningnummer",
+        date: "Transactiedatum",
+        amount: "Transactiebedrag",
+        balance: "Eindsaldo",
+        description: "Omschrijving",
+        notes: "Omschrijving"
+    }
 
 };

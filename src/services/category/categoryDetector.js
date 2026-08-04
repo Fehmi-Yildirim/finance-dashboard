@@ -1,71 +1,27 @@
 import { CATEGORY_RULES } from "./categoryRules";
 
 
-export default function detectCategory(transaction = {}) {
+function detectCategory(transaction) {
 
     const text = [
         transaction.name,
         transaction.description,
         transaction.notes,
+        transaction.counterparty?.name
     ]
         .filter(Boolean)
         .join(" ")
-        .toLowerCase()
-        .replace(/[^a-z0-9\s]/g, " ");
+        .toLowerCase();
 
-
-    const type = transaction.type;
-
-
-    let bestMatch = {
-        category:
-            type === "income"
-                ? "otherIncome"
-                : "otherExpense",
-        score: 0,
-    };
-
-
-    for (const [category, keywords] of Object.entries(CATEGORY_RULES)) {
-
-        for (const keyword of keywords) {
-
+    for (const category in CATEGORY_RULES) {
+        for (const keyword of CATEGORY_RULES[category]) {
             if (text.includes(keyword)) {
-
-                const score = keyword.length;
-
-                if (score > bestMatch.score) {
-
-                    bestMatch = {
-                        category,
-                        score,
-                    };
-
-                }
+                return category;
             }
         }
     }
 
-
-    if (bestMatch.score < 5) {
-
-        return type === "income"
-            ? "otherIncome"
-            : "otherExpense";
-
-    }
-
-
-    if (
-        type === "income" &&
-        bestMatch.category !== "salary"
-    ) {
-
-        return "otherIncome";
-
-    }
-
-
-    return bestMatch.category;
-
+    return "otherExpense";
 }
+
+export default detectCategory;
