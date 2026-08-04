@@ -167,8 +167,6 @@ src/
 └──  assets
 │
 └──  components
-│   ├── ActionsDropdown.jsx
-│   ├── AddTransaction.jsx
 |   |
 |   ├── budgets/
 │   │   ├── BudgetCard.jsx
@@ -180,7 +178,7 @@ src/
 |   └── common/
 |   |   ├── ConfirmationDialog.jsx
 |   |   ├── ActionsDropdown.jsx
-|   |   └── 
+|   |   
 |   |
 |   └── charts/
 |   |   ├── IncomeExpenseChart.jsx
@@ -207,15 +205,7 @@ src/
 │   |
 │   ├── Card.jsx
 │   ├── Cards.jsx
-│   ├── CategorySummary.jsx
-│   ├── ComfirmationDialog.jsx
 │   ├── CSVImport.jsx
-│   ├── Footer.jsx
-│   ├── Header.css
-│   ├── Header.jsx
-│   ├── ReportSection.jsx
-│   ├── Sidebar.css
-│   ├── Sidebar.jsx
 │   ├── StatisticsCards.jsx
 │
 ├── config
