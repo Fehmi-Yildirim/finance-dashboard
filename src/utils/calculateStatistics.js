@@ -19,8 +19,8 @@ export function calculateStatistics(transactions) {
                     stats.expenses += amount;
                     stats.expenseCount++;
 
-                    if (amount > stats.largestExpense) {
-                        stats.largestExpense = amount;
+                    if (amount < stats.largestExpense) {
+                        stats.largestExpense = amount; // Find the smallest (most negative) value
                     }
                 }
                 return stats;
@@ -42,8 +42,7 @@ export function calculateStatistics(transactions) {
         expenses:
             statistics.expenses,
         balance:
-            statistics.income -
-            statistics.expenses,
+            statistics.income + statistics.expenses,
         totalTransactions:
             statistics.totalTransactions,
         averageExpense:
@@ -51,8 +50,7 @@ export function calculateStatistics(transactions) {
                 ? statistics.expenses /
                 statistics.expenseCount
                 : 0,
-        largestExpense:
-            statistics.largestExpense,
+        largestExpense: Math.abs(statistics.largestExpense),
 
     };
 
