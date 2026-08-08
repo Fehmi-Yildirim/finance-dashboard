@@ -1,6 +1,3 @@
-import detectCategory
-    from "../../category/categoryDetector";
-
 import {
     createTransaction
 }
@@ -27,11 +24,6 @@ export function normalize(options) {
             createTransaction(
                 row,
                 mapping
-            );
-
-        transaction.category =
-            detectCategory(
-                transaction
             );
 
         return transaction;

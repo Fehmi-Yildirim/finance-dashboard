@@ -42,12 +42,12 @@
         "budgets": "Budgetten",
         "clearTransactions": "Alle transacties wissen",
         "clearBudgets": "Alle budgetten wissen",
-        "clearBudgetsDescription": "Verwijdert alle opgeslagen budgetten.",
+        "clearBudgetsDescription": "Verwijdert alle opgeslagen budgetten en herstelt de demobudgetten.",
         "application": "Toepassing",
-        "clearApplicationData": "Alle toepassingsgegevens wissen",
+        "clearApplicationData": "Alle transacties en budgetten wissen",
         "clearTransactionsDescription": "Verwijdert alle opgeslagen transacties en voegt de demotransacties terug.",
-        "clearApplicationDescription": "Verwijdert alle toepassingsgegevens, inclusief transacties, budgetten en instellingen.",
-        "clearBudgetsMessage": "Weet je zeker dat je alle budgetten wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+        "clearApplicationDescription": "Verwijdert alle opgeslagen transacties en budgetten en herstelt de demogegevens.",
+        "clearBudgetsMessage": "Weet je zeker dat je alle budgetten wilt verwijderen? Daarna worden de demobudgetten hersteld.",
         "messages": {
             "dataCleared": "Alle transacties zijn succesvol verwijderd.",
             "csvExportSuccess": "CSV-bestand succesvol geëxporteerd.",
@@ -84,10 +84,10 @@
         "clothing": "Kleding",
         "fixed_costs": "Vaste Lasten",
         "healthcare": "Zorgverzekering",
-        "personal": "Persoonlijke verzorging",
+        "personalCare": "Persoonlijke verzorging",
         "taxes": "Belastingen",
         "savings": "Sparen",
-        "banking": "Bankkosten"
+        "bankFees": "Bankkosten"
     },
     "importView": {
         "chooseFile": "Bestand kiezen",

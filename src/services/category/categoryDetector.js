@@ -1,27 +1,16 @@
-import { CATEGORY_RULES } from "./categoryRules";
+import {
+    detectMerchantCategory,
+    detectTextCategory,
+} from "./detectors";
 
+export default function detectCategory(transaction) {
 
-function detectCategory(transaction) {
+    return (
+        detectMerchantCategory(transaction)
+        ??
+        detectTextCategory(transaction)
+        ??
+        "otherExpense"
+    );
 
-    const text = [
-        transaction.name,
-        transaction.description,
-        transaction.notes,
-        transaction.counterparty?.name
-    ]
-        .filter(Boolean)
-        .join(" ")
-        .toLowerCase();
-
-    for (const category in CATEGORY_RULES) {
-        for (const keyword of CATEGORY_RULES[category]) {
-            if (text.includes(keyword)) {
-                return category;
-            }
-        }
-    }
-
-    return "otherExpense";
 }
-
-export default detectCategory;

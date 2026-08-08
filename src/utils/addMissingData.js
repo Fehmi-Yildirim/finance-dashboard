@@ -1,5 +1,3 @@
-import { migrateCategory } from "../services/categoryMigration";
-
 export function addMissingData(transaction = {}) {
 
     const fallbackCategory =
@@ -7,16 +5,16 @@ export function addMissingData(transaction = {}) {
             ? "otherIncome"
             : "otherExpense";
 
+
     return {
         ...transaction,
+
         date:
             transaction.date ??
             new Date().toISOString(),
+
         category:
-            migrateCategory(
-                transaction.category ??
-                fallbackCategory,
-                transaction.type
-            ),
+            transaction.category ??
+            fallbackCategory,
     };
 }

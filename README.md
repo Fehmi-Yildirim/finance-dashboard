@@ -164,43 +164,42 @@ public/
 screenshots/
 │
 src/
-└──  assets
+└── assets
 │
 └──  components
 |   |
 |   ├── budgets/
-│   │   ├── BudgetCard.jsx
-│   │   ├── BudgetDrawer.jsx
-│   │   ├── BudgetForm.jsx
-│   │   ├── BudgetList.jsx
+│   │   └── BudgetCard.jsx
+│   │   └── BudgetDrawer.jsx
+│   │   └── BudgetForm.jsx
+│   │   └── BudgetList.jsx
 │   │   └── BudgetProgress.jsx
-|   |
-|   └── common/
-|   |   ├── ConfirmationDialog.jsx
-|   |   ├── ActionsDropdown.jsx
 |   |   
-|   |
 |   └── charts/
-|   |   ├── IncomeExpenseChart.jsx
-|   |   ├── MonthlyCashflowChart.jsx
+|   |   └── IncomeExpenseChart.jsx
+|   |   └── MonthlyCashflowChart.jsx
 |   |   └── ExpenseCategoryChart.jsx
 |   |
+|   └── common/
+|   |   └── ConfirmationDialog.jsx
+|   |   └── ActionsDropdown.jsx
+|   |
 |   ├── layout/
-│   |   ├── Header.jsx
-│   |   ├── Header.css
-│   |   ├── Sidebar.jsx
-│   |   ├── Sidebar.css
 │   |   └── Footer.jsx
+│   |   └── Header.jsx
+│   |   └── Header.css
+│   |   └── Sidebar.jsx
+│   |   └── Sidebar.css
 |   |
 |   └── reports/
-|   |    ├── ReportSection.jsx
-|   |    └── CategorySummary.jsx
+|   |   └── CategorySummary.jsx
+|   |   └── ReportSection.jsx
 |   |
 |   ├── transactions/
-|   │   ├── AddTransaction.jsx
-|   │   ├── TransactionDrawer.jsx
-|   │   ├── TransactionsList.jsx
-|   │   ├── TransactionsToolbar.jsx
+|   │   └── AddTransaction.jsx
+|   │   └── TransactionDrawer.jsx
+|   │   └── TransactionsList.jsx
+|   │   └── TransactionsToolbar.jsx
 |   │   └── SortableHeader.jsx
 │   |
 │   ├── Card.jsx
@@ -212,13 +211,12 @@ src/
 │   └── appConfig.js
 │
 ├── css
-│   ├── components.css
-│   ├── darkmode.css
-│   ├── layout.css
+│   └── components.css
+│   └── darkmode.css
+│   └── layout.css
 │   └── variables.css
 │
 ├── data
-│   ├── categories.js
 │   └── demoBudgets.js
 │   └── demoTransactions.js
 │   └── categoryDefinitions.js 
@@ -235,26 +233,25 @@ src/
 │   └── nl.json
 │
 ├── pages
-│   ├── Dashboard.jsx
-│   ├── Transactions.jsx
-│   ├── Reports.jsx
-│   ├── Settings.jsx
-│   ├── Budgets.jsx
+│   └── Dashboard.jsx
+│   └── Transactions.jsx
+│   └── Reports.jsx
+│   └── Settings.jsx
+│   └── Budgets.jsx
 │   └── AboutApp.jsx
 │
-└── services/
-|    ├── categoryDetector.js
-|    ├── transactionKey.js
-|    ├── transactionId.js
-│    ├── categoryService.js         
-│    ├── categoryMigration.js       
-│    └── budgetMigration.js        
+└── services/ 
 |    │
-|    └── import/
-|    |   ├── index.js
-|    |   ├── runImportTest.js
-|    |   ├── runPipelineTrace.js
+|    └── category/
+|    |   ├── detectors/
+|    |   ├── engine/
+|    |   ├── helpers/
+|    |   ├── rules/
+|    |   ├── tests/
+|    |   ├── categoryDetectors.js
+|    |   ├── categoryService.js
 |    |   |
+|    └── import/
 |    |   ├── analyzer/
 |    |   |   ├── analyzer.js
 |    |   |   ├── constants.js
@@ -329,13 +326,26 @@ src/
 |    |   |    └── import.test.js
 |    |   |
 |    |   └── validators/
-|    |       └── AmountValidator.js 
-|    |       └── DateValidator.js
-|    |       └── DuplicateValidator.js 
-|    |       └── RequiredValidator.js
-|    |       └── ValidationEngine.js
-|    |       └── ValidationResult.js
-|    |       └── Validator.js
+|    |   |   └── AmountValidator.js 
+|    |   |   └── DateValidator.js
+|    |   |   └── DuplicateValidator.js 
+|    |   |   └── RequiredValidator.js
+|    |   |   └── ValidationEngine.js
+|    |   |   └── ValidationResult.js
+|    |   |   └── Validator.js
+|    |   |
+|    |   ├── index.js
+|    |   ├── runImportTest.js
+|    |   ├── runPipelineTrace.js
+|    |   |
+|    └── storage/
+|    |   └──  budgetStorage.js
+|    |   └──  transactionStorage.js
+|    |   └──  transactionId.js
+|    |   └──  transactionKey.js
+|    |   
+|    ├── transactionKey.js
+|    ├── transactionId.js   
 |    |   
 ├── utils
 │   ├── addMissingData.js
@@ -364,35 +374,7 @@ src/
 
 ---
 
-# Architecture
-Browser
-  │
-  └─ readFileAsText()
-        │
-        ▼
-      CSV tekst
-        │
-        ▼
-      parseCSV()
-        │
-        ┌───────────────┐
-        │               │
-      React          Vitest
-        │               │
-        └───────┬───────┘
-                ▼
-          ImportEngine
-                │
-            Analyzer
-                │
-          Profile Detection
-                │
-             Mapping
-                │
-          Normalization
-                │
-           Validation
----
+
 
 # Version
 

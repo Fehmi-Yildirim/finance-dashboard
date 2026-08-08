@@ -218,6 +218,24 @@ function getCounterparty(row, mapping) {
     };
 }
 
+function getBankMetadata(row) {
+
+    return {
+        code:
+            row["Code"] ||
+            row["Mutatiesoort"] ||
+            null,
+
+        mutationType:
+            row["Mutatiesoort"] ||
+            null,
+
+        provider:
+            null,
+    };
+
+}
+
 function buildTransaction(row, mapping) {
 
     const rawAmount =
@@ -288,8 +306,25 @@ function buildTransaction(row, mapping) {
 
     const date = convertDate(getValue(row, mapping.date));
     const account = convertText(getValue(row, mapping.account));
+    const bank = getBankMetadata(row);
 
-    const transaction = { date, name, description, amount, balance, account, type, counterparty, notes };
+    const transaction = {
+
+        date,
+        name,
+        description,
+        amount,
+        balance,
+        account,
+        type,
+        counterparty,
+        notes,
+
+        metadata: {
+            bank
+        }
+
+    };
 
     transaction.category = detectCategory(transaction);
     transaction.id = transactionKey(transaction);

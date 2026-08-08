@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback, } from "react";
 import { calculateStatistics } from "../utils/calculateStatistics";
 import {
     loadTransactions,
@@ -7,15 +7,18 @@ import {
     disableDemoMode,
     getDemoTransactions,
     normalizeTransaction,
+    isDemoMode,
 } from "../services/storage/transactionStorage";
 
-
 export function useTransactions() {
-
     const [transactions, setTransactions] = useState(() => {
-        const storedTransactions = loadTransactions();
+        const storedTransactions =
+            loadTransactions();
 
-        if (!storedTransactions || storedTransactions.length === 0) {
+        if (
+            !storedTransactions ||
+            storedTransactions.length === 0
+        ) {
             enableDemoMode();
 
             return getDemoTransactions();
@@ -24,14 +27,15 @@ export function useTransactions() {
         return storedTransactions;
     });
 
-
     useEffect(() => {
         saveTransactions(transactions);
     }, [transactions]);
 
-
     const statistics = useMemo(
-        () => calculateStatistics(transactions),
+        () =>
+            calculateStatistics(
+                transactions
+            ),
         [transactions]
     );
 
@@ -39,7 +43,8 @@ export function useTransactions() {
         return [...transactions]
             .sort(
                 (a, b) =>
-                    new Date(b.date) - new Date(a.date)
+                    new Date(b.date) -
+                    new Date(a.date)
             )
             .slice(0, 10);
     }, [transactions]);
@@ -47,13 +52,17 @@ export function useTransactions() {
     const addTransaction = (transaction) => {
         disableDemoMode();
 
-        setTransactions(current => [
-            ...current.filter(t => !t.isDemo),
+        setTransactions((current) => [
+            ...current.filter(
+                (item) => !item.isDemo
+            ),
             {
-                ...normalizeTransaction(transaction),
-                id: crypto.randomUUID(), // Always generate a new unique ID
+                ...normalizeTransaction(
+                    transaction
+                ),
+                id: crypto.randomUUID(),
                 isDemo: false,
-            }
+            },
         ]);
     };
 
@@ -62,16 +71,33 @@ export function useTransactions() {
             (newTransactions) => {
                 disableDemoMode();
 
-                const imported = newTransactions.map((t) => {
-                    const normalized = normalizeTransaction(t);
-                    const value = Math.abs(Number(normalized.amount));
-                    return {
-                        ...normalized,
-                        amount: normalized.type === "expense" ? -value : value,
-                        id: crypto.randomUUID(), // Always generate a new unique ID for imported items
-                        isDemo: false,
-                    };
-                });
+                const imported =
+                    newTransactions.map(
+                        (transaction) => {
+                            const normalized =
+                                normalizeTransaction(
+                                    transaction
+                                );
+
+                            const value =
+                                Math.abs(
+                                    Number(
+                                        normalized.amount
+                                    )
+                                );
+
+                            return {
+                                ...normalized,
+                                amount:
+                                    normalized.type ===
+                                        "expense"
+                                        ? -value
+                                        : value,
+                                id: crypto.randomUUID(),
+                                isDemo: false,
+                            };
+                        }
+                    );
 
                 setTransactions(
                     imported
@@ -86,12 +112,14 @@ export function useTransactions() {
     ) => {
         disableDemoMode();
 
-        setTransactions(current =>
-            current.map(transaction =>
+        setTransactions((current) =>
+            current.map((transaction) =>
                 transaction.id === id
-                    ? { // When updating, keep the original transaction's ID
+                    ? {
                         ...transaction,
-                        ...normalizeTransaction(transactionData), // Apply normalization
+                        ...normalizeTransaction(
+                            transactionData
+                        ),
                         id: transaction.id,
                         isDemo: false,
                     }
@@ -103,9 +131,9 @@ export function useTransactions() {
     const deleteTransaction = (id) => {
         disableDemoMode();
 
-        setTransactions(current =>
+        setTransactions((current) =>
             current.filter(
-                transaction =>
+                (transaction) =>
                     transaction.id !== id
             )
         );
@@ -129,5 +157,6 @@ export function useTransactions() {
         statistics,
         recentTransactions,
         clearTransactions,
+        isDemo: isDemoMode(),  // True while demo transactions are active.
     };
 }

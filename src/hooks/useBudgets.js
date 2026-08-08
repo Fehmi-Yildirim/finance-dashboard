@@ -1,131 +1,123 @@
 import { useEffect, useState } from "react";
-import { migrateBudget } from "../services/budgetMigration";
-
 import {
     loadBudgets,
     saveBudgets,
     enableBudgetDemoMode,
     disableBudgetDemoMode,
     getDemoBudgets,
+    isDemoBudgetMode,
 } from "../services/storage/budgetStorage";
 
-
 export default function useBudgets() {
-
     const [budgets, setBudgets] = useState(() => {
+        const storedBudgets =
+            loadBudgets();
 
-        const storedBudgets = loadBudgets();
-
-        if (storedBudgets) {
+        if (
+            storedBudgets &&
+            storedBudgets.length > 0
+        ) {
             return storedBudgets;
         }
-
 
         enableBudgetDemoMode();
 
         return getDemoBudgets();
-
     });
 
     useEffect(() => {
-        saveBudgets(
-            budgets
-        );
+        saveBudgets(budgets);
     }, [budgets]);
 
     const addBudget = (newBudget) => {
         disableBudgetDemoMode();
-        setBudgets(
-            currentBudgets => {
-                const existing =
-                    currentBudgets.find(
-                        budget =>
-                            budget.category === newBudget.category
-                    );
 
-                if (existing) {
-                    return currentBudgets.map(
-                        budget =>
-                            budget.category === newBudget.category
-                                ?
-                                {
-                                    ...budget,
-                                    amount:
-                                        newBudget.amount,
-                                    isDemo: false,
-                                }
-                                :
-                                budget
-                    );
+        setBudgets((currentBudgets) => {
+            const existing =
+                currentBudgets.find(
+                    (budget) =>
+                        budget.category ===
+                        newBudget.category
+                );
 
-                }
-
-                return [
-                    ...currentBudgets.filter(
-                        budget =>
-                            !budget.isDemo
-                    ),
-                    migrateBudget({
-                        ...newBudget,
-                        id: crypto.randomUUID(),
-                        isDemo: false,
-                    }),
-                ];
+            if (existing) {
+                return currentBudgets.map(
+                    (budget) =>
+                        budget.category ===
+                            newBudget.category
+                            ? {
+                                ...budget,
+                                amount:
+                                    newBudget.amount,
+                                isDemo: false,
+                            }
+                            : budget
+                );
             }
-        );
+
+            return [
+                ...currentBudgets.filter(
+                    (budget) =>
+                        !budget.isDemo
+                ),
+                {
+                    ...newBudget,
+                    id: crypto.randomUUID(),
+                    isDemo: false,
+                },
+            ];
+        });
     };
 
-
-    const updateBudget = (updatedBudget) => {
-
+    const updateBudget = (
+        updatedBudget
+    ) => {
         disableBudgetDemoMode();
 
-        setBudgets(
-            previousBudgets =>
-                previousBudgets.map(
-                    budget =>
-                        budget.id === updatedBudget.id
-                            ?
-                            migrateBudget({
-                                ...updatedBudget,
-                                isDemo: false,
-                            })
-                            :
-                            budget
-                )
+        setBudgets((previousBudgets) =>
+            previousBudgets.map((budget) =>
+                budget.id ===
+                    updatedBudget.id
+                    ? {
+                        ...updatedBudget,
+                        isDemo: false,
+                    }
+                    : budget
+            )
         );
     };
 
     const deleteBudget = (id) => {
         disableBudgetDemoMode();
-        setBudgets(
-            previousBudgets =>
-                previousBudgets.filter(
-                    budget =>
-                        budget.id !== id
-                )
+
+        setBudgets((previousBudgets) =>
+            previousBudgets.filter(
+                (budget) =>
+                    budget.id !== id
+            )
         );
     };
 
     const clearBudgets = () => {
+        enableBudgetDemoMode();
 
-        disableBudgetDemoMode();
-        setBudgets([]);
-
+        setBudgets(
+            getDemoBudgets()
+        );
     };
 
-    const initializeBudgets = (categories) => {
+    const initializeBudgets = (
+        categories
+    ) => {
         disableBudgetDemoMode();
+
         setBudgets(
-            categories.map(
-                category =>
-                    migrateBudget({
-                        id: crypto.randomUUID(),
-                        category,
-                        amount: 0,
-                        isDemo: false,
-                    })
-            )
+            categories.map((category) => ({
+                id: crypto.randomUUID(),
+                category,
+                amount: 0,
+                isDemo: false,
+            }))
         );
     };
 
@@ -136,5 +128,8 @@ export default function useBudgets() {
         deleteBudget,
         clearBudgets,
         initializeBudgets,
+
+        // True while demo budgets are active.
+        isDemo: isDemoBudgetMode(),
     };
 }

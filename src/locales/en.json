@@ -43,10 +43,10 @@
         "application": "Application",
         "clearTransactions": "Clear all transactions",
         "clearBudgets": "Clear all budgets",
-        "clearApplicationData": "Clear application data",
+        "clearApplicationData": "Delete all transactions and budgets",
         "clearTransactionsDescription": "Delete all stored transactions and restore the demo transactions.",
         "clearBudgetsDescription": "Delete all stored budgets.",
-        "clearApplicationDescription": "Delete all application data, including transactions, budgets, and settings.",
+        "clearApplicationDescription": "Deletes all saved transactions and budgets and restores the demo data.",
         "clearBudgetsMessage": "Are you sure you want to delete all budgets? This action cannot be undone.",
         "messages": {
             "dataCleared": "All transactions have been deleted successfully.",

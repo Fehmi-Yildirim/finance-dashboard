@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getExpenseCategoryIds } from "../../data/categories";
+import { getExpenseCategoryIds } from "../../services/category/categoryService";
 
 const expenseCategories = getExpenseCategoryIds();
 

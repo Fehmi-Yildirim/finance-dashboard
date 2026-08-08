@@ -40,17 +40,17 @@ export const categoryDefinitions = {
         group: "daily",
     },
 
+    housing: {
+        type: "expense",
+        group: "fixed",
+    },
+
     energy: {
         type: "expense",
         group: "fixed",
     },
 
     internet: {
-        type: "expense",
-        group: "fixed",
-    },
-
-    housing: {
         type: "expense",
         group: "fixed",
     },
@@ -75,24 +75,19 @@ export const categoryDefinitions = {
         group: "health",
     },
 
-    personal: {
+    personalCare: {
         type: "expense",
         group: "personal",
     },
 
-    taxes: {
+    shopping: {
         type: "expense",
-        group: "fixed",
+        group: "shopping",
     },
 
-    savings: {
+    clothing: {
         type: "expense",
-        group: "saving",
-    },
-
-    banking: {
-        type: "expense",
-        group: "fixed",
+        group: "shopping",
     },
 
     leisure: {
@@ -100,9 +95,19 @@ export const categoryDefinitions = {
         group: "leisure",
     },
 
-    clothing: {
+    bankFees: {
         type: "expense",
-        group: "personal",
+        group: "financial",
+    },
+
+    taxes: {
+        type: "expense",
+        group: "government",
+    },
+
+    savings: {
+        type: "expense",
+        group: "financial",
     },
 
     otherExpense: {

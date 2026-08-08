@@ -1,0 +1,1 @@
+export { buildSearchText } from "./buildSearchText";

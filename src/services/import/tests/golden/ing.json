@@ -29,7 +29,7 @@
         "description": "Spotify Premium juli",
         "amount": 10.99,
         "type": "expense",
-        "category": "leisure"
+        "category": "subscriptions"
     },
     {
         "date": "2026-07-05",

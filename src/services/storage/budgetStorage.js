@@ -1,35 +1,49 @@
 import { demoBudgets } from "../../data/demoBudgets";
-import { migrateBudget } from "../budgetMigration";
 import { STORAGE_KEYS } from "./storageKeys";
 
-const STORAGE_KEY = STORAGE_KEYS.budgets;
-const DEMO_KEY = STORAGE_KEYS.demoBudgets;
+const STORAGE_KEY =
+    STORAGE_KEYS.budgets;
 
+const DEMO_KEY =
+    STORAGE_KEYS.demoBudgets;
 
-export function normalizeBudget(budget = {}) {
-
-    return migrateBudget(
-        budget
-    );
-
+export function normalizeBudget(
+    budget = {}
+) {
+    return {
+        ...budget,
+    };
 }
-
 
 export function isDemoBudgetMode() {
-
     const value =
-        localStorage.getItem(DEMO_KEY);
+        localStorage.getItem(
+            DEMO_KEY
+        );
 
-    return value === "true";
-
+    return (
+        value === null ||
+        value === "true"
+    );
 }
 
-
 export function loadBudgets() {
-
     try {
         const saved =
-            localStorage.getItem(STORAGE_KEY);
+            localStorage.getItem(
+                STORAGE_KEY
+            );
+
+        /*
+         * First visit or demo mode:
+         * return demo budgets.
+         */
+        if (
+            !saved &&
+            isDemoBudgetMode()
+        ) {
+            return getDemoBudgets();
+        }
 
         if (!saved) {
             return [];
@@ -45,15 +59,20 @@ export function loadBudgets() {
         return parsed.map(
             normalizeBudget
         );
-
     } catch {
         return [];
     }
-
 }
 
-
 export function saveBudgets(budgets) {
+    /*
+     * Demo budgets are temporary and
+     * must not be saved as user data.
+     */
+    if (isDemoBudgetMode()) {
+        return;
+    }
+
     localStorage.setItem(
         STORAGE_KEY,
         JSON.stringify(budgets)
@@ -64,6 +83,7 @@ export function enableBudgetDemoMode() {
     localStorage.removeItem(
         STORAGE_KEY
     );
+
     localStorage.setItem(
         DEMO_KEY,
         "true"
@@ -79,7 +99,7 @@ export function disableBudgetDemoMode() {
 
 export function getDemoBudgets() {
     return demoBudgets.map(
-        budget => ({
+        (budget) => ({
             ...normalizeBudget(budget),
             isDemo: true,
         })
