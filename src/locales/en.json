@@ -84,7 +84,7 @@
         "clothing": "Clothing",
         "fixed_costs": "Fixed Costs",
         "healthcare": "Health Insurance",
-        "personal": "Personal Care",
+        "personalCare": "Personal Care",
         "taxes": "Taxes",
         "savings": "Savings",
         "bankFees": "Bank Fees"
