@@ -174,13 +174,14 @@ src/
 │   │   └── BudgetForm.jsx
 │   │   └── BudgetList.jsx
 │   │   └── BudgetProgress.jsx
+│   │   └── CategoryDrawer.jsx
 |   |   
-|   └── charts/
+|   ├── charts/
 |   |   └── IncomeExpenseChart.jsx
 |   |   └── MonthlyCashflowChart.jsx
 |   |   └── ExpenseCategoryChart.jsx
 |   |
-|   └── common/
+|   ├── common/
 |   |   └── ConfirmationDialog.jsx
 |   |   └── ActionsDropdown.jsx
 |   |
@@ -191,7 +192,7 @@ src/
 │   |   └── Sidebar.jsx
 │   |   └── Sidebar.css
 |   |
-|   └── reports/
+|   ├── reports/
 |   |   └── CategorySummary.jsx
 |   |   └── ReportSection.jsx
 |   |

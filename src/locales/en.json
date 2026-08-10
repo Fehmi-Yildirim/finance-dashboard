@@ -64,7 +64,7 @@
         "gift": "Gift",
         "otherIncome": "Other income",
         "food": "Food",
-        "oceries": "Groceries",
+        "groceries": "Groceries",
         "transport": "Transport",
         "rent": "Rent",
         "shopping": "Shopping",
@@ -87,7 +87,7 @@
         "personal": "Personal Care",
         "taxes": "Taxes",
         "savings": "Savings",
-        "banking": "Bank Fees"
+        "bankFees": "Bank Fees"
     },
     "importView": {
         "chooseFile": "Choose file",
@@ -148,7 +148,10 @@
         "status": "Status",
         "editTitle": "Edit budget",
         "deleteTitle": "Delete budget",
-        "deleteMessage": "Are you sure you want to delete this budget?"
+        "deleteMessage": "Are you sure you want to delete this budget?",
+        "transactions": "Transactions",
+        "noTransactions": "No transactions for this category.",
+        "progress": "Progress"
     },
     "budgetActions": {
         "edit": "Edit",

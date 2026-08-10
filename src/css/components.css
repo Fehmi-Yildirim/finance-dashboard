@@ -70,6 +70,34 @@ aside a:hover {
     margin-left: auto;
 }
 
+.transaction-form-actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.transaction-form textarea {
+    width: 100%;
+    min-height: 90px;
+    resize: vertical;
+    box-sizing: border-box;
+    padding: .65rem .8rem;
+    border-radius: 8px;
+    background: var(--input-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    font-family: inherit;
+}
+
+.transaction-form textarea::placeholder {
+    color: var(--muted-color);
+}
+
+.transaction-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
 .toolbar {
     display: flex;
     gap: 15px;

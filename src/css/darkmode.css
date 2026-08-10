@@ -20,7 +20,7 @@ html.dark-mode {
     --surface-color: #1f2937;
     --text-color: #f9fafb;
     --muted-color: #9ca3af;
-    --border-color: #374151;
+    --border-color: #64748b;
     --hover-color: #374151;
     --input-bg: #1f2937;
     --shadow-color: rgba(0, 0, 0, .4);
@@ -167,4 +167,23 @@ html.dark-mode .table tbody td {
 
 html.dark-mode .table-hover tbody tr:hover td {
     background-color: var(--hover-color);
+}
+
+/* MUI IconButton - Dark Mode */
+html.dark-mode .MuiIconButton-root {
+    color: var(--text-color);
+    background-color: transparent;
+}
+
+html.dark-mode .MuiIconButton-root:hover {
+    color: var(--text-color);
+    background-color: var(--hover-color);
+}
+
+html.dark-mode .MuiIconButton-root .MuiSvgIcon-root {
+    color: currentColor;
+}
+
+html.dark-mode .MuiDivider-root {
+    border-color: var(--border-color);
 }
