@@ -230,5 +230,51 @@
         "license": "License",
         "email": "Email",
         "licenseName": "MIT License"
+    },
+    "login": {
+        "welcome": "Welcome back",
+        "description": "Sign in to access your financial dashboard.",
+        "email": "Email address",
+        "emailPlaceholder": "name@example.com",
+        "password": "Password",
+        "passwordPlaceholder": "Enter your password",
+        "submit": "Sign in",
+        "submitting": "Signing in...",
+        "invalidCredentials": "Invalid email address or password.",
+        "info": {
+            "eyebrow": "Financial overview",
+            "title": "Take control of your money. Make better financial decisions.",
+            "description": "FY Finance Dashboard helps you manage income, expenses, transactions, and budgets in one clear overview.",
+            "features": {
+                "overview": {
+                    "title": "Understand your finances",
+                    "description": "View your income and expenses through clear overviews and charts."
+                },
+                "budgets": {
+                    "title": "Manage your budgets",
+                    "description": "Set budgets and easily track your progress."
+                },
+                "transactions": {
+                    "title": "Import transactions",
+                    "description": "Import bank transactions and organize them automatically."
+                }
+            },
+            "footer": "Sign in to get immediate access to your financial dashboard.",
+            "preview": {
+                "title": "Finance Dashboard",
+                "period": "Jan – Dec"
+            }
+        },
+        "demo": {
+            "title": "Demo account",
+            "description": "Use these credentials to explore the demo.",
+            "email": "Email address",
+            "password": "Password",
+            "submit": "Sign in to demo",
+            "submitting": "Signing in..."
+        }
+    },
+    "auth": {
+        "logout": "Sign out"
     }
 }

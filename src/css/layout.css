@@ -1,24 +1,36 @@
-.layout {
-    min-height: 100vh;
-}
+/* Main content */
 
 .layout main {
     margin-left: var(--sidebar-width);
+    padding: 2rem;
+    max-width: 1200px;
+    min-height: calc(100vh - var(--header-height));
+    background-color: var(--bg-color);
 }
+
+
+/* Sidebar */
 
 aside {
     position: fixed;
-    top: 70px;
+    top: var(--header-height);
     left: 0;
+
     width: var(--sidebar-width);
-    height: calc(100vh - 70px);
-    background: var(--surface-color);
+    height: calc(100vh - var(--header-height));
+
+    background-color: var(--surface-color);
     border-right: 1px solid var(--border-color);
+
     padding: 1.5rem;
+
+    overflow-y: auto;
 }
 
 aside ul {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 aside li {
@@ -35,12 +47,7 @@ aside a:hover {
     color: var(--primary-color);
 }
 
-main {
-    padding: 2rem;
-    max-width: 1200px;
-    flex: 1;
-    padding-top: calc(var(--header-height) + 20px);
-}
+/* Application container */
 
 .app {
     min-height: 100vh;
@@ -48,11 +55,15 @@ main {
     flex-direction: column;
 }
 
+/* Footer */
+
 .app-footer {
     margin-top: 40px;
     padding: 20px;
-    background: var(--surface-color);
+
+    background-color: var(--surface-color);
     border-top: 1px solid var(--border-color);
+
     text-align: center;
     color: var(--muted-color);
     font-size: 14px;

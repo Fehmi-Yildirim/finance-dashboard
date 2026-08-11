@@ -230,5 +230,51 @@
         "license": "Licentie",
         "email": "E-mail",
         "licenseName": "MIT Licentie"
+    },
+    "login": {
+        "welcome": "Welkom terug",
+        "description": "Log in om toegang te krijgen tot je financiële dashboard.",
+        "email": "E-mailadres",
+        "emailPlaceholder": "naam@voorbeeld.nl",
+        "password": "Wachtwoord",
+        "passwordPlaceholder": "Vul je wachtwoord in",
+        "submit": "Inloggen",
+        "submitting": "Bezig met inloggen...",
+        "invalidCredentials": "Het e-mailadres of wachtwoord is onjuist.",
+        "info": {
+            "eyebrow": "Financieel overzicht",
+            "title": "Krijg controle over je geld. Maak betere financiële keuzes.",
+            "description": "FY Finance Dashboard helpt je om inkomsten, uitgaven, transacties en budgetten overzichtelijk op één plek te beheren.",
+            "features": {
+                "overview": {
+                    "title": "Inzicht in je financiën",
+                    "description": "Bekijk je inkomsten en uitgaven met duidelijke overzichten en grafieken."
+                },
+                "budgets": {
+                    "title": "Beheer je budgetten",
+                    "description": "Stel budgetten in en houd eenvoudig je voortgang bij."
+                },
+                "transactions": {
+                    "title": "Transacties importeren",
+                    "description": "Importeer banktransacties en organiseer ze automatisch."
+                }
+            },
+            "footer": "Log in voor directe toegang tot je financiële dashboard.",
+            "preview": {
+                "title": "Finance Dashboard",
+                "period": "Jan – Dec"
+            }
+        },
+        "demo": {
+            "title": "Demo-account",
+            "description": "Gebruik deze gegevens om de demo te bekijken.",
+            "email": "E-mailadres",
+            "password": "Wachtwoord",
+            "submit": "Inloggen op demo",
+            "submitting": "Bezig met inloggen..."
+        }
+    },
+    "auth": {
+        "logout": "Uitloggen"
     }
 }

@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import useBudgets from "../hooks/useBudgets";
 
 function Settings() {
+
     const { t, i18n } = useTranslation();
 
     const [language, setLanguage] = useState(

@@ -167,6 +167,15 @@ src/
 └── assets
 │
 └──  components
+src/
+├── components/
+│   └── auth/
+│   │   ├── LoginForm.jsx
+│   │   └── LoginForm.css
+│   │   └── ProtectedRoute.jsx
+│   │
+│   └── context/
+│   │   ├── AuthContext.jsx
 |   |
 |   ├── budgets/
 │   │   └── BudgetCard.jsx
@@ -223,8 +232,9 @@ src/
 │   └── categoryDefinitions.js 
 │
 ├── hooks
+│   └── useAuth.js
 │   └── useTransactions.js
-│   └── useBudgets.js
+│   └── useBudgets.js  
 │
 ├── layouts
 │   └── MainLayout.jsx
@@ -235,6 +245,8 @@ src/
 │
 ├── pages
 │   └── Dashboard.jsx
+|   └── Login.jsx
+|   └── Login.css
 │   └── Transactions.jsx
 │   └── Reports.jsx
 │   └── Settings.jsx
@@ -242,6 +254,8 @@ src/
 │   └── AboutApp.jsx
 │
 └── services/ 
+|    └── auth/
+|    |    └── authService.js
 |    │
 |    └── category/
 |    |   ├── detectors/
@@ -345,8 +359,6 @@ src/
 |    |   └──  transactionId.js
 |    |   └──  transactionKey.js
 |    |   
-|    ├── transactionKey.js
-|    ├── transactionId.js   
 |    |   
 ├── utils
 │   ├── addMissingData.js
