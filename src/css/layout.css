@@ -1,50 +1,18 @@
+.layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 /* Main content */
 
 .layout main {
     margin-left: var(--sidebar-width);
     padding: 2rem;
+    width: calc(100% - var(--sidebar-width));
     max-width: 1200px;
     min-height: calc(100vh - var(--header-height));
     background-color: var(--bg-color);
-}
-
-
-/* Sidebar */
-
-aside {
-    position: fixed;
-    top: var(--header-height);
-    left: 0;
-
-    width: var(--sidebar-width);
-    height: calc(100vh - var(--header-height));
-
-    background-color: var(--surface-color);
-    border-right: 1px solid var(--border-color);
-
-    padding: 1.5rem;
-
-    overflow-y: auto;
-}
-
-aside ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-aside li {
-    margin-bottom: 1rem;
-}
-
-aside a {
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 500;
-}
-
-aside a:hover {
-    color: var(--primary-color);
 }
 
 /* Application container */
@@ -71,4 +39,33 @@ aside a:hover {
 
 .footer-content p {
     margin: 5px 0;
+}
+
+/* Mobile layout */
+
+@media (max-width: 767px) {
+    .layout main {
+        margin-left: 0;
+        width: 100%;
+        max-width: none;
+        padding: 1rem;
+        min-height: calc(100vh - var(--header-height));
+    }
+
+    .app-footer {
+        margin-top: 24px;
+        padding: 16px 1rem;
+    }
+}
+
+/* Small mobile screens */
+
+@media (max-width: 480px) {
+    .layout main {
+        padding: 0.75rem;
+    }
+
+    .app-footer {
+        font-size: 0.8rem;
+    }
 }

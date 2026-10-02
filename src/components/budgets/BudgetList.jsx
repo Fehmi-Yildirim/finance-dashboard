@@ -16,120 +16,136 @@ function BudgetList({
 
     if (budgets.length === 0) {
         return (
-            <p>
+            <p className="budget-list-empty">
                 {t("budgets.noBudgets")}
             </p>
         );
     }
 
     return (
-        <div className="card shadow-sm">
+        <div className="card shadow-sm budget-list-card">
             <div className="card-body">
-                <h3>
+                <h3 className="budget-list-title">
                     {t("budgets.listTitle")}
                 </h3>
 
-                <table className="table table-hover align-middle budget-table">
-                    <thead>
-                        <tr>
-                            <th>
-                                {t("transactions.category")}
-                            </th>
-                            <th>
-                                {t("budgets.amount")}
-                            </th>
-                            <th>
-                                {t("budgets.spent")}
-                            </th>
-                            <th>
-                                {t("budgets.remaining")}
-                            </th>
-                            <th>
-                                {t("budgets.status")}
-                            </th>
-                            <th>
-                                {t("budgets.actions")}
-                            </th>
-                        </tr>
-                    </thead>
+                <div className="budget-table-wrapper">
+                    <table className="table table-hover align-middle budget-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    {t("transactions.category")}
+                                </th>
 
-                    <tbody>
-                        {sortedBudgets.map((budget) => {
-                            const status =
-                                budget.remaining < 0
-                                    ? "🔴"
-                                    : budget.percentage >= 80
-                                        ? "🟡"
-                                        : "🟢";
+                                <th className="text-end">
+                                    {t("budgets.amount")}
+                                </th>
 
-                            return (
-                                <tr key={budget.id}>
-                                    <td
-                                        role="button"
-                                        tabIndex={0}
-                                        onClick={() =>
-                                            onCategoryClick(budget)
-                                        }
-                                        onKeyDown={(event) => {
-                                            if (
-                                                event.key === "Enter" ||
-                                                event.key === " "
-                                            ) {
-                                                event.preventDefault();
-                                                onCategoryClick(budget);
+                                <th className="text-end">
+                                    {t("budgets.spent")}
+                                </th>
+
+                                <th className="text-end">
+                                    {t("budgets.remaining")}
+                                </th>
+
+                                <th className="text-center">
+                                    {t("budgets.status")}
+                                </th>
+
+                                <th className="text-center">
+                                    {t("budgets.actions")}
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {sortedBudgets.map((budget) => {
+                                const status =
+                                    budget.remaining < 0
+                                        ? "🔴"
+                                        : budget.percentage >= 80
+                                            ? "🟡"
+                                            : "🟢";
+
+                                return (
+                                    <tr key={budget.id}>
+                                        <td
+                                            role="button"
+                                            tabIndex={0}
+                                            className="budget-category-cell"
+                                            onClick={() =>
+                                                onCategoryClick(budget)
                                             }
-                                        }}
-                                        style={{
-                                            cursor: "pointer",
-                                        }}
-                                    >
-                                        {t(
-                                            `categories.${budget.category}`,
-                                            {
-                                                defaultValue:
-                                                    budget.category
-                                                        .charAt(0)
-                                                        .toUpperCase() +
-                                                    budget.category.slice(1),
-                                            }
-                                        )}
-                                    </td>
+                                            onKeyDown={(event) => {
+                                                if (
+                                                    event.key === "Enter" ||
+                                                    event.key === " "
+                                                ) {
+                                                    event.preventDefault();
+                                                    onCategoryClick(budget);
+                                                }
+                                            }}
+                                        >
+                                            {t(
+                                                `categories.${budget.category}`,
+                                                {
+                                                    defaultValue:
+                                                        budget.category
+                                                            .charAt(0)
+                                                            .toUpperCase() +
+                                                        budget.category.slice(1),
+                                                }
+                                            )}
+                                        </td>
 
-                                    <td>
-                                        {formatCurrency(
-                                            budget.amount
-                                        )}
-                                    </td>
+                                        <td className="text-end budget-amount-cell">
+                                            {formatCurrency(
+                                                budget.amount
+                                            )}
+                                        </td>
 
-                                    <td>
-                                        {formatCurrency(
-                                            budget.spent
-                                        )}
-                                    </td>
+                                        <td className="text-end budget-amount-cell">
+                                            {formatCurrency(
+                                                budget.spent
+                                            )}
+                                        </td>
 
-                                    <td>
-                                        {formatCurrency(
-                                            budget.remaining
-                                        )}
-                                    </td>
+                                        <td className="text-end budget-amount-cell">
+                                            {formatCurrency(
+                                                budget.remaining
+                                            )}
+                                        </td>
 
-                                    <td className="text-center">
-                                        {status}
-                                    </td>
+                                        <td className="text-center budget-status-cell">
+                                            <span
+                                                role="img"
+                                                aria-label={
+                                                    budget.remaining < 0
+                                                        ? "Over budget"
+                                                        : budget.percentage >= 80
+                                                            ? "Budget warning"
+                                                            : "Budget on track"
+                                                }
+                                            >
+                                                {status}
+                                            </span>
+                                        </td>
 
-                                    <td>
-                                        <ActionsDropdown
-                                            item={budget}
-                                            onEdit={onEdit}
-                                            onDelete={deleteBudget}
-                                            translationKey="budgetActions"
-                                        />
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
+                                        <td className="text-center budget-actions-cell">
+                                            <ActionsDropdown
+                                                item={budget}
+                                                onEdit={onEdit}
+                                                onDelete={deleteBudget}
+                                                translationKey="budgetActions"
+                                            />
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );

@@ -106,20 +106,23 @@ function Budgets() {
 
     return (
         <div className="budgets-page">
-            <h1>
-                {t("budgets.title")}
-            </h1>
+            <div className="budgets-page-header">
+                <h1>
+                    {t("budgets.title")}
+                </h1>
 
-            <p>
-                {t("budgets.description")}
-            </p>
+                <p>
+                    {t("budgets.description")}
+                </p>
 
-            <button
-                className="add-budget-button"
-                onClick={() => openDrawer()}
-            >
-                {t("budgets.addTitle")}
-            </button>
+                <button
+                    type="button"
+                    className="add-budget-button"
+                    onClick={() => openDrawer()}
+                >
+                    {t("budgets.addTitle")}
+                </button>
+            </div>
 
             <BudgetList
                 budgets={budgetProgress}
@@ -130,15 +133,19 @@ function Budgets() {
                 }
             />
 
-            {budgetProgress.map((budget) => (
-                <BudgetProgress
-                    key={budget.id}
-                    budget={budget}
-                    onCategoryClick={
-                        openCategoryDrawer
-                    }
-                />
-            ))}
+            {budgetProgress.length > 0 && (
+                <div className="budget-progress-grid">
+                    {budgetProgress.map((budget) => (
+                        <BudgetProgress
+                            key={budget.id}
+                            budget={budget}
+                            onCategoryClick={
+                                openCategoryDrawer
+                            }
+                        />
+                    ))}
+                </div>
+            )}
 
             <BudgetDrawer
                 open={drawerOpen}

@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, NavLink } from "react-router-dom";
-import { Form } from "react-bootstrap";
 import { useAuth } from "../../hooks/useAuth";
 import logo from "../../assets/logo.png";
 import "./Header.css";
 
-function Header() {
+function Header({ sidebarOpen, onMenuToggle }) {
     const { t, i18n } = useTranslation();
     const { user, logout } = useAuth();
     const navigate = useNavigate();
@@ -52,28 +51,49 @@ function Header() {
         <header className="app-header">
             <div className="header-container">
 
-                <NavLink
-                    to="/"
-                    className="brand-link"
-                >
-                    <div className="brand-container">
-                        <img
-                            src={logo}
-                            alt="FY Finance Dashboard Logo"
-                            className="logo"
-                        />
+                <div className="header-left">
 
-                        <span className="brand-text">
-                            <strong className="brand-fy">
-                                FY
-                            </strong>
+                    <button
+                        type="button"
+                        className="mobile-menu-button"
+                        onClick={onMenuToggle}
+                        aria-label={
+                            sidebarOpen
+                                ? "Close navigation menu"
+                                : "Open navigation menu"
+                        }
+                        aria-expanded={sidebarOpen}
+                        aria-controls="main-navigation"
+                    >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
 
-                            <span>
-                                Finance Dashboard
+                    <NavLink
+                        to="/"
+                        className="brand-link"
+                    >
+                        <div className="brand-container">
+                            <img
+                                src={logo}
+                                alt="FY Finance Dashboard Logo"
+                                className="logo"
+                            />
+
+                            <span className="brand-text">
+                                <strong className="brand-fy">
+                                    FY
+                                </strong>
+
+                                <span>
+                                    Finance Dashboard
+                                </span>
                             </span>
-                        </span>
-                    </div>
-                </NavLink>
+                        </div>
+                    </NavLink>
+
+                </div>
 
                 <div className="header-user">
 
@@ -81,7 +101,9 @@ function Header() {
                         type="button"
                         className="language-button"
                         onClick={() =>
-                            handleLanguageChange(language === "nl" ? "en" : "nl")
+                            handleLanguageChange(
+                                language === "nl" ? "en" : "nl"
+                            )
                         }
                         aria-label={
                             language === "nl"
@@ -99,6 +121,7 @@ function Header() {
 
                     <button
                         type="button"
+                        className="dark-mode-button"
                         onClick={handleDarkModeToggle}
                         aria-label={
                             darkMode
@@ -110,20 +133,6 @@ function Header() {
                                 ? "Light mode"
                                 : "Dark mode"
                         }
-                        style={{
-                            width: "38px",
-                            height: "38px",
-                            flex: "0 0 38px",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            padding: 0,
-                            background: "var(--surface-color)",
-                            color: "var(--text-color)",
-                            border: "1px solid var(--border-color)",
-                            borderRadius: "8px",
-                            cursor: "pointer",
-                        }}
                     >
                         {darkMode ? (
                             <svg

@@ -17,28 +17,22 @@ function BudgetProgress({
 
     return (
         <div
-            className="card shadow-sm mb-3"
+            className="card shadow-sm mb-3 budget-progress-card"
             role="button"
             tabIndex={0}
-            onClick={() =>
-                onCategoryClick(budget)
-            }
+            onClick={() => onCategoryClick(budget)}
             onKeyDown={(event) => {
                 if (
                     event.key === "Enter" ||
                     event.key === " "
                 ) {
                     event.preventDefault();
-
                     onCategoryClick(budget);
                 }
             }}
-            style={{
-                cursor: "pointer",
-            }}
         >
             <div className="card-body">
-                <h5>
+                <h5 className="budget-progress-title">
                     {t(
                         `categories.${budget.category}`,
                         {
@@ -48,42 +42,49 @@ function BudgetProgress({
                     )}
                 </h5>
 
-                <ProgressBar
-                    now={budget.percentage}
-                    variant={variant}
-                    label={`${budget.percentage.toFixed(
-                        0
-                    )}%`}
-                />
+                <div className="budget-progress-bar">
+                    <ProgressBar
+                        now={budget.percentage}
+                        variant={variant}
+                        label={`${budget.percentage.toFixed(0)}%`}
+                    />
+                </div>
 
-                <div className="mt-3">
+                <div className="budget-progress-details">
                     <p>
                         <strong>
                             {t("budgets.budget")}
-                        </strong>{" "}
-                        {formatCurrency(
-                            budget.amount
-                        )}
+                        </strong>
+
+                        <span>
+                            {formatCurrency(
+                                budget.amount
+                            )}
+                        </span>
                     </p>
 
                     <p>
                         <strong>
                             {t("budgets.spent")}
-                        </strong>{" "}
-                        {formatCurrency(
-                            budget.spent
-                        )}
+                        </strong>
+
+                        <span>
+                            {formatCurrency(
+                                budget.spent
+                            )}
+                        </span>
                     </p>
 
                     <p>
                         <strong>
-                            {t(
-                                "budgets.remaining"
+                            {t("budgets.remaining")}
+                        </strong>
+
+                        <span>
+                            {formatCurrency(
+                                budget.remaining
                             )}
-                        </strong>{" "}
-                        {formatCurrency(
-                            budget.remaining
-                        )}
+                        </span>
                     </p>
                 </div>
             </div>

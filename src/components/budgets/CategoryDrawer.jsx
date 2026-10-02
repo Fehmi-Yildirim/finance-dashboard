@@ -23,39 +23,53 @@ function CategoryDrawer({
         return null;
     }
 
-    const categoryTransactions =
-        transactions
-            .filter(
-                (transaction) =>
-                    transaction.category ===
-                    budget.category
-            )
-            .sort(
-                (a, b) =>
-                    new Date(b.date) -
-                    new Date(a.date)
-            );
+    const categoryTransactions = transactions
+        .filter(
+            (transaction) =>
+                transaction.category === budget.category
+        )
+        .sort(
+            (a, b) =>
+                new Date(b.date) -
+                new Date(a.date)
+        );
 
     function handleClose() {
         onClose();
     }
 
     function handleAddTransaction() {
-        onAddTransaction(
-            budget.category
-        );
+        onAddTransaction(budget.category);
     }
+
+    const progressColor =
+        budget.percentage >= 100
+            ? "error"
+            : budget.percentage >= 80
+                ? "warning"
+                : "success";
 
     return (
         <Drawer
             anchor="right"
             open={open}
             onClose={handleClose}
+            PaperProps={{
+                sx: {
+                    width: "min(450px, 100vw)",
+                    maxWidth: "100vw",
+                },
+            }}
         >
             <Box
                 sx={{
-                    width: 450,
-                    p: 3,
+                    width: "100%",
+                    maxWidth: "450px",
+                    boxSizing: "border-box",
+                    p: {
+                        xs: 2,
+                        sm: 3,
+                    },
                 }}
             >
                 <Box
@@ -63,10 +77,17 @@ function CategoryDrawer({
                         display: "flex",
                         justifyContent: "space-between",
                         alignItems: "center",
+                        gap: 1,
                         mb: 2,
                     }}
                 >
-                    <Typography variant="h5">
+                    <Typography
+                        variant="h5"
+                        sx={{
+                            minWidth: 0,
+                            overflowWrap: "break-word",
+                        }}
+                    >
                         {t(
                             `categories.${budget.category}`,
                             {
@@ -78,41 +99,38 @@ function CategoryDrawer({
 
                     <IconButton
                         onClick={handleClose}
-                        aria-label={t(
-                            "common.close"
-                        )}
+                        aria-label={t("common.close")}
+                        sx={{
+                            flexShrink: 0,
+                        }}
                     >
                         <CloseIcon />
                     </IconButton>
                 </Box>
 
-                <Divider
-                    sx={{
-                        mb: 2
-                    }}
-                />
+                <Divider sx={{ mb: 2 }} />
 
-                <Box >
+                <Box>
                     <Box
                         sx={{
                             display: "flex",
-                            justifyContent:
-                                "space-between",
+                            justifyContent: "space-between",
                             alignItems: "center",
+                            gap: 1,
                             mb: 1,
                         }}
                     >
                         <Typography variant="h6">
-                            {t(
-                                "budgets.progress"
-                            )}
+                            {t("budgets.progress")}
                         </Typography>
 
-                        <Typography variant="body2">
-                            {budget.percentage.toFixed(
-                                0
-                            )}
-                            %
+                        <Typography
+                            variant="body2"
+                            sx={{
+                                flexShrink: 0,
+                            }}
+                        >
+                            {budget.percentage.toFixed(0)}%
                         </Typography>
                     </Box>
 
@@ -122,15 +140,7 @@ function CategoryDrawer({
                             budget.percentage,
                             100
                         )}
-                        color={
-                            budget.percentage >=
-                                100
-                                ? "error"
-                                : budget.percentage >=
-                                    80
-                                    ? "warning"
-                                    : "success"
-                        }
+                        color={progressColor}
                         sx={{
                             height: 10,
                             borderRadius: 5,
@@ -138,58 +148,57 @@ function CategoryDrawer({
                     />
                 </Box>
 
-                <Divider
-                    sx={{
-                        mb: 2
-                    }}
-                />
+                <Divider sx={{ my: 2 }} />
 
-                <Typography variant="h6">
-                    {t("budgets.budget")}
-                </Typography>
+                <Box className="category-drawer-summary">
+                    <Box className="category-drawer-summary-row">
+                        <Typography variant="h6">
+                            {t("budgets.budget")}
+                        </Typography>
 
-                <Typography sx={{ mb: 2 }}>
-                    {formatCurrency(
-                        budget.amount
-                    )}
-                </Typography>
+                        <Typography>
+                            {formatCurrency(
+                                budget.amount
+                            )}
+                        </Typography>
+                    </Box>
 
-                <Typography variant="h6">
-                    {t("budgets.spent")}
-                </Typography>
+                    <Box className="category-drawer-summary-row">
+                        <Typography variant="h6">
+                            {t("budgets.spent")}
+                        </Typography>
 
-                <Typography sx={{ mb: 2 }}>
-                    {formatCurrency(
-                        budget.spent
-                    )}
-                </Typography>
+                        <Typography>
+                            {formatCurrency(
+                                budget.spent
+                            )}
+                        </Typography>
+                    </Box>
 
-                <Typography variant="h6">
-                    {t("budgets.remaining")}
-                </Typography>
+                    <Box className="category-drawer-summary-row">
+                        <Typography variant="h6">
+                            {t("budgets.remaining")}
+                        </Typography>
 
-                <Typography sx={{ mb: 3 }}>
-                    {formatCurrency(
-                        budget.remaining
-                    )}
-                </Typography>
+                        <Typography>
+                            {formatCurrency(
+                                budget.remaining
+                            )}
+                        </Typography>
+                    </Box>
+                </Box>
 
-                <Divider
-                    sx={{
-                        mb: 2
-                    }}
-                />
+                <Divider sx={{ my: 2 }} />
 
                 <Typography
                     variant="h6"
                     sx={{ mb: 2 }}
                 >
-                    {t(
-                        "budgets.transactions"
-                    )}
+                    {t("budgets.transactions")}
                 </Typography>
 
                 <Box
+                    className="category-drawer-actions"
                     sx={{
                         display: "flex",
                         gap: 1,
@@ -211,24 +220,18 @@ function CategoryDrawer({
                     >
                         {t("common.close")}
                     </Button>
-
                 </Box>
 
-                {categoryTransactions.length ===
-                    0 ? (
+                {categoryTransactions.length === 0 ? (
                     <Typography sx={{ mb: 2 }}>
-                        {t(
-                            "budgets.noTransactions"
-                        )}
+                        {t("budgets.noTransactions")}
                     </Typography>
                 ) : (
                     <Box sx={{ mb: 2 }}>
                         {categoryTransactions.map(
                             (transaction) => (
                                 <Box
-                                    key={
-                                        transaction.id
-                                    }
+                                    key={transaction.id}
                                     onClick={() =>
                                         onTransactionClick(
                                             transaction
@@ -236,9 +239,7 @@ function CategoryDrawer({
                                     }
                                     role="button"
                                     tabIndex={0}
-                                    onKeyDown={(
-                                        event
-                                    ) => {
+                                    onKeyDown={(event) => {
                                         if (
                                             event.key ===
                                             "Enter" ||
@@ -246,46 +247,34 @@ function CategoryDrawer({
                                             " "
                                         ) {
                                             event.preventDefault();
+
                                             onTransactionClick(
                                                 transaction
                                             );
                                         }
                                     }}
-                                    sx={{
-                                        display:
-                                            "flex",
-                                        justifyContent:
-                                            "space-between",
-                                        gap: 2,
-                                        py: 1.5,
-                                        borderBottom:
-                                            "1px solid #eee",
-                                        cursor: "pointer",
-                                    }}
+                                    className="category-drawer-transaction"
                                 >
-                                    <Box>
-                                        <Typography>
-                                            {
-                                                transaction.name ||
-                                                transaction.description
-                                            }
+                                    <Box
+                                        className="category-drawer-transaction-info"
+                                    >
+                                        <Typography
+                                            className="category-drawer-transaction-name"
+                                        >
+                                            {transaction.name ||
+                                                transaction.description}
                                         </Typography>
 
                                         <Typography
                                             variant="body2"
                                             color="text.secondary"
                                         >
-                                            {
-                                                transaction.date
-                                            }
+                                            {transaction.date}
                                         </Typography>
                                     </Box>
 
                                     <Typography
-                                        sx={{
-                                            whiteSpace:
-                                                "nowrap",
-                                        }}
+                                        className="category-drawer-transaction-amount"
                                     >
                                         {formatCurrency(
                                             Math.abs(

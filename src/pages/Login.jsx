@@ -1,10 +1,8 @@
-
 import { useState } from "react";
 import LoginForm from "../components/auth/LoginForm";
 import logo from "../assets/logo.png";
 import "./Login.css";
 import { useTranslation } from "react-i18next";
-import { Form } from "react-bootstrap";
 
 function Login() {
     const { t, i18n } = useTranslation();
@@ -23,9 +21,15 @@ function Login() {
         setDarkMode((current) => {
             const newValue = !current;
 
-            localStorage.setItem("darkMode", String(newValue));
+            localStorage.setItem(
+                "darkMode",
+                String(newValue)
+            );
 
-            document.documentElement.classList.toggle("dark-mode", newValue);
+            document.documentElement.classList.toggle(
+                "dark-mode",
+                newValue
+            );
 
             return newValue;
         });
@@ -41,20 +45,16 @@ function Login() {
     return (
         <main className="login-page">
             <section className="login-panel">
-
-                <div
-                    className="login-panel-language-selector"
-                    style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "0.5rem",
-                    }}
-                >
+                <div className="login-panel-language-selector">
                     <button
                         type="button"
                         className="language-button"
                         onClick={() =>
-                            handleLanguageChange(language === "nl" ? "en" : "nl")
+                            handleLanguageChange(
+                                language === "nl"
+                                    ? "en"
+                                    : "nl"
+                            )
                         }
                         aria-label={
                             language === "nl"
@@ -67,11 +67,14 @@ function Login() {
                                 : "Nederlands"
                         }
                     >
-                        {language === "nl" ? "🇳🇱" : "🇬🇧"}
+                        {language === "nl"
+                            ? "🇳🇱"
+                            : "🇬🇧"}
                     </button>
 
                     <button
                         type="button"
+                        className="dark-mode-button"
                         onClick={handleDarkModeToggle}
                         aria-label={
                             darkMode
@@ -83,20 +86,6 @@ function Login() {
                                 ? "Light mode"
                                 : "Dark mode"
                         }
-                        style={{
-                            width: "38px",
-                            height: "38px",
-                            flex: "0 0 38px",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            padding: 0,
-                            background: "var(--surface-color)",
-                            color: "var(--text-color)",
-                            border: "1px solid var(--border-color)",
-                            borderRadius: "8px",
-                            cursor: "pointer",
-                        }}
                     >
                         {darkMode ? (
                             <svg
@@ -110,7 +99,11 @@ function Login() {
                                 strokeLinejoin="round"
                                 aria-hidden="true"
                             >
-                                <circle cx="12" cy="12" r="4" />
+                                <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="4"
+                                />
                                 <path d="M12 2v2" />
                                 <path d="M12 20v2" />
                                 <path d="m4.93 4.93 1.41 1.41" />
@@ -145,7 +138,6 @@ function Login() {
 
             <section className="login-info-panel">
                 <div className="login-info-content">
-
                     <div className="login-info-brand">
                         <img
                             src={logo}
@@ -154,7 +146,8 @@ function Login() {
                         />
 
                         <span>
-                            <strong>FY</strong> Finance Dashboard
+                            <strong>FY</strong>{" "}
+                            Finance Dashboard
                         </span>
                     </div>
 
@@ -168,12 +161,13 @@ function Login() {
                         </h2>
 
                         <p>
-                            {t("login.info.description")}
+                            {t(
+                                "login.info.description"
+                            )}
                         </p>
                     </div>
 
                     <div className="login-features">
-
                         <div className="login-feature">
                             <span
                                 className="login-feature-icon"
@@ -242,15 +236,15 @@ function Login() {
                                 </span>
                             </div>
                         </div>
-
                     </div>
 
                     <div className="login-dashboard-preview">
-
                         <div className="preview-topbar">
                             <div>
                                 <span className="preview-label">
-                                    {t("login.info.preview.title")}
+                                    {t(
+                                        "login.info.preview.title"
+                                    )}
                                 </span>
 
                                 <strong className="preview-title">
@@ -266,15 +260,14 @@ function Login() {
                         </div>
 
                         <div className="preview-cards">
-
                             <div className="preview-card">
                                 <span className="preview-card-label">
-                                    {t("dashboard.income")}
+                                    {t(
+                                        "dashboard.income"
+                                    )}
                                 </span>
 
-                                <strong>
-                                    € 4.280
-                                </strong>
+                                <strong>€ 4.280</strong>
 
                                 <small className="preview-positive">
                                     +8.4%
@@ -283,12 +276,12 @@ function Login() {
 
                             <div className="preview-card">
                                 <span className="preview-card-label">
-                                    {t("dashboard.expenses")}
+                                    {t(
+                                        "dashboard.expenses"
+                                    )}
                                 </span>
 
-                                <strong>
-                                    € 2.145
-                                </strong>
+                                <strong>€ 2.145</strong>
 
                                 <small className="preview-negative">
                                     +2.1%
@@ -297,26 +290,26 @@ function Login() {
 
                             <div className="preview-card">
                                 <span className="preview-card-label">
-                                    {t("dashboard.balance")}
+                                    {t(
+                                        "dashboard.balance"
+                                    )}
                                 </span>
 
-                                <strong>
-                                    € 2.135
-                                </strong>
+                                <strong>€ 2.135</strong>
 
                                 <small className="preview-positive">
                                     +12.7%
                                 </small>
                             </div>
-
                         </div>
 
                         <div className="preview-chart-card">
-
                             <div className="preview-chart-header">
                                 <div>
                                     <span className="preview-card-label">
-                                        {t("reports.monthlyCashflow")}
+                                        {t(
+                                            "reports.monthlyCashflow"
+                                        )}
                                     </span>
 
                                     <strong>
@@ -325,7 +318,9 @@ function Login() {
                                 </div>
 
                                 <span className="preview-chart-period">
-                                    {t("login.info.preview.period")}
+                                    {t(
+                                        "login.info.preview.period"
+                                    )}
                                 </span>
                             </div>
 
@@ -346,15 +341,12 @@ function Login() {
                                 <span className="chart-bar chart-bar-11" />
                                 <span className="chart-bar chart-bar-12" />
                             </div>
-
                         </div>
-
                     </div>
 
                     <footer className="login-info-footer">
                         {t("login.info.footer")}
                     </footer>
-
                 </div>
             </section>
         </main>

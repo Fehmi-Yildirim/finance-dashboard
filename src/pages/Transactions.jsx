@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo } from "react";
 import { useTransactions } from "../hooks/useTransactions";
 import TransactionList from "../components/transactions/TransactionList";
 import TransactionDrawer from "../components/transactions/TransactionDrawer";
@@ -13,41 +13,56 @@ import {
     endOfYear,
 } from "date-fns";
 
-
 function Transactions() {
-
     const { t, i18n } = useTranslation();
+
     const {
         transactions,
         addTransaction,
         updateTransaction,
         deleteTransaction,
     } = useTransactions();
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-    const [selectedTransaction, setSelectedTransaction] = useState(null);
-    const addButtonRef = useRef(null);
+
+    const [isDrawerOpen, setIsDrawerOpen] =
+        useState(false);
+
+    const [
+        selectedTransaction,
+        setSelectedTransaction,
+    ] = useState(null);
 
     const [search, setSearch] = useState("");
     const [filter, setFilter] = useState("all");
-    const [dateFilter, setDateFilter] = useState("custom");
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
+    const [dateFilter, setDateFilter] =
+        useState("custom");
 
-    const [sortColumn, setSortColumn] = useState("date");
-    const [sortDirection, setSortDirection] = useState("desc");
+    const [startDate, setStartDate] =
+        useState(null);
+
+    const [endDate, setEndDate] =
+        useState(null);
+
+    const [sortColumn, setSortColumn] =
+        useState("date");
+
+    const [sortDirection, setSortDirection] =
+        useState("desc");
 
     function getCategorySearchTerms(category) {
         return [
             category,
-            i18n.t(`categories.${category}`, { lng: "nl" }),
-            i18n.t(`categories.${category}`, { lng: "en" }),
+            i18n.t(`categories.${category}`, {
+                lng: "nl",
+            }),
+            i18n.t(`categories.${category}`, {
+                lng: "en",
+            }),
         ]
             .filter(Boolean)
-            .map(value => value.toLowerCase());
+            .map((value) => value.toLowerCase());
     }
 
     const filteredTransactions = useMemo(() => {
-
         let start;
         let end;
 
@@ -56,14 +71,17 @@ function Transactions() {
                 start = startOfToday();
                 end = endOfToday();
                 break;
+
             case "month":
                 start = startOfMonth(new Date());
                 end = endOfMonth(new Date());
                 break;
+
             case "year":
                 start = startOfYear(new Date());
                 end = endOfYear(new Date());
                 break;
+
             case "custom":
                 start = startDate;
                 end = endDate
@@ -71,45 +89,70 @@ function Transactions() {
                     : null;
 
                 if (end) {
-                    end.setHours(23, 59, 59, 999);
+                    end.setHours(
+                        23,
+                        59,
+                        59,
+                        999
+                    );
                 }
                 break;
+
             default:
                 break;
         }
 
-        return transactions.filter(transaction => {
+        return transactions.filter(
+            (transaction) => {
+                const transactionDate =
+                    new Date(transaction.date);
 
-            const transactionDate = new Date(transaction.date);
+                if (
+                    start &&
+                    transactionDate < start
+                ) {
+                    return false;
+                }
 
-            if (start && transactionDate < start) {
-                return false;
+                if (
+                    end &&
+                    transactionDate > end
+                ) {
+                    return false;
+                }
+
+                const searchTerm =
+                    search.toLowerCase().trim();
+
+                const categoryTerms =
+                    getCategorySearchTerms(
+                        transaction.category
+                    );
+
+                const matchesSearch =
+                    transaction.description
+                        .toLowerCase()
+                        .includes(searchTerm) ||
+                    transaction.name
+                        .toLowerCase()
+                        .includes(searchTerm) ||
+                    categoryTerms.some((term) =>
+                        term.includes(searchTerm)
+                    ) ||
+                    String(transaction.amount)
+                        .toLowerCase()
+                        .includes(searchTerm);
+
+                const matchesFilter =
+                    filter === "all" ||
+                    transaction.type === filter;
+
+                return (
+                    matchesSearch &&
+                    matchesFilter
+                );
             }
-
-            if (end && transactionDate > end) {
-                return false;
-            }
-
-            const searchTerm = search.toLowerCase().trim();
-            const categoryTerms = getCategorySearchTerms(transaction.category);
-            const matchesSearch =
-                transaction.description
-                    .toLowerCase()
-                    .includes(searchTerm) ||
-                transaction.name
-                    .toLowerCase()
-                    .includes(searchTerm) ||
-                categoryTerms.some(term =>
-                    term.includes(searchTerm)
-                ) ||
-                String(transaction.amount).toLowerCase().includes(searchTerm);
-
-            const matchesFilter =
-                filter === "all" ||
-                transaction.type === filter;
-
-            return matchesSearch && matchesFilter;
-        });
+        );
     }, [
         transactions,
         search,
@@ -120,48 +163,50 @@ function Transactions() {
         i18n.language,
     ]);
 
-
     const sortedTransactions = useMemo(() => {
+        return [...filteredTransactions].sort(
+            (a, b) => {
+                const aValue = a[sortColumn];
+                const bValue = b[sortColumn];
 
-        return [...filteredTransactions].sort((a, b) => {
-            const aValue = a[sortColumn];
-            const bValue = b[sortColumn];
+                if (sortColumn === "amount") {
+                    const valA = a.amount;
+                    const valB = b.amount;
 
-            if (sortColumn === 'amount') {
-                const valA = a.amount;
-                const valB = b.amount;
-                return sortDirection === 'asc' ? valA - valB : valB - valA;
+                    return sortDirection === "asc"
+                        ? valA - valB
+                        : valB - valA;
+                }
+
+                if (aValue < bValue) {
+                    return sortDirection === "asc"
+                        ? -1
+                        : 1;
+                }
+
+                if (aValue > bValue) {
+                    return sortDirection === "asc"
+                        ? 1
+                        : -1;
+                }
+
+                return 0;
             }
-
-            if (aValue < bValue) {
-                return sortDirection === "asc" ? -1 : 1;
-            }
-            if (aValue > bValue) {
-                return sortDirection === "asc" ? 1 : -1;
-            }
-
-            return 0;
-        });
-
+        );
     }, [
         filteredTransactions,
         sortColumn,
         sortDirection,
     ]);
 
-
     function handleSort(column) {
-
         if (sortColumn === column) {
-
             setSortDirection(
                 sortDirection === "asc"
                     ? "desc"
                     : "asc"
             );
-
         } else {
-
             setSortColumn(column);
             setSortDirection("asc");
         }
@@ -187,11 +232,11 @@ function Transactions() {
             <h1>
                 {t("transactions.title")}
             </h1>
+
             <button
-                ref={addButtonRef}
-                onClick={() => {
-                    handleAdd();
-                }}
+                type="button"
+                className="add-transaction-button"
+                onClick={handleAdd}
             >
                 {t("transactions.new")}
             </button>
@@ -199,9 +244,13 @@ function Transactions() {
             <TransactionDrawer
                 open={isDrawerOpen}
                 onClose={handleCloseDrawer}
-                transaction={selectedTransaction}
+                transaction={
+                    selectedTransaction
+                }
                 addTransaction={addTransaction}
-                updateTransaction={updateTransaction}
+                updateTransaction={
+                    updateTransaction
+                }
             />
 
             <TransactionToolbar
@@ -221,16 +270,15 @@ function Transactions() {
                 title={t("transactions.title")}
                 transactions={sortedTransactions}
                 editTransaction={handleEdit}
-                deleteTransaction={deleteTransaction}
+                deleteTransaction={
+                    deleteTransaction
+                }
                 sortColumn={sortColumn}
                 sortDirection={sortDirection}
                 handleSort={handleSort}
             />
-
         </div>
-
     );
 }
-
 
 export default Transactions;

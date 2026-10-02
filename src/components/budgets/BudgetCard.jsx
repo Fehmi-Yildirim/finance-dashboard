@@ -9,17 +9,21 @@ function BudgetCard({
     remaining,
     percentage,
 }) {
-
     const { t } = useTranslation();
 
     if (totalBudget === 0) {
         return (
             <Cards>
-                <Card>
-                    {t("budgets.overview")}
-                    <p>
-                        {t("budgets.noBudgets")}
-                    </p>
+                <Card className="budget-card">
+                    <Card.Body>
+                        <Card.Title>
+                            {t("budgets.overview")}
+                        </Card.Title>
+
+                        <p className="budget-empty">
+                            {t("budgets.noBudgets")}
+                        </p>
+                    </Card.Body>
                 </Card>
             </Cards>
         );
@@ -33,38 +37,53 @@ function BudgetCard({
                 : "success";
 
     return (
-        <Card className="cards">
+        <Card className="cards budget-card">
             <Card.Body>
                 <Card.Title>
                     {t("budgets.overview")}
                 </Card.Title>
-                <ProgressBar
-                    now={percentage}
-                    label={`${percentage.toFixed(0)}%`}
-                    variant={variant}
-                />
+
+                <div className="budget-progress">
+                    <ProgressBar
+                        now={percentage}
+                        label={`${percentage.toFixed(0)}%`}
+                        variant={variant}
+                    />
+                </div>
+
                 <hr />
-                <p>
-                    <strong>
-                        {t("budgets.totalBudget")}
-                    </strong>
-                    {" "}
-                    {formatCurrency(totalBudget)}
-                </p>
-                <p>
-                    <strong>
-                        {t("budgets.spent")}
-                    </strong>
-                    {" "}
-                    {formatCurrency(totalSpent)}
-                </p>
-                <p>
-                    <strong>
-                        {t("budgets.remaining")}
-                    </strong>
-                    {" "}
-                    {formatCurrency(remaining)}
-                </p>
+
+                <div className="budget-details">
+                    <p>
+                        <strong>
+                            {t("budgets.totalBudget")}
+                        </strong>
+
+                        <span>
+                            {formatCurrency(totalBudget)}
+                        </span>
+                    </p>
+
+                    <p>
+                        <strong>
+                            {t("budgets.spent")}
+                        </strong>
+
+                        <span>
+                            {formatCurrency(totalSpent)}
+                        </span>
+                    </p>
+
+                    <p>
+                        <strong>
+                            {t("budgets.remaining")}
+                        </strong>
+
+                        <span>
+                            {formatCurrency(remaining)}
+                        </span>
+                    </p>
+                </div>
             </Card.Body>
         </Card>
     );
