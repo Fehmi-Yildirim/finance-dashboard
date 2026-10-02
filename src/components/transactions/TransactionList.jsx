@@ -16,19 +16,25 @@ function TransactionList({
     showActions = true,
     showSorting = true,
 }) {
-
     const { t } = useTranslation();
 
     const [sortColumn, setSortColumn] = useState(initialSortColumn);
-    const [sortDirection, setSortDirection] = useState(initialSortDirection);
+    const [sortDirection, setSortDirection] = useState(
+        initialSortDirection
+    );
 
     const itemsPerPage = 10;
+
     const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = Math.ceil(transactions.length / itemsPerPage);
+
+    const totalPages = Math.ceil(
+        transactions.length / itemsPerPage
+    );
 
     const visibleTransactions = useMemo(() => {
         const start =
             (currentPage - 1) * itemsPerPage;
+
         return transactions.slice(
             start,
             start + itemsPerPage
@@ -37,11 +43,14 @@ function TransactionList({
 
     useEffect(() => {
         setCurrentPage(1);
-    }, [
-        transactions
-    ]);
+    }, [transactions]);
 
     useEffect(() => {
+        if (totalPages === 0) {
+            setCurrentPage(1);
+            return;
+        }
+
         if (currentPage > totalPages) {
             setCurrentPage(totalPages);
         }
@@ -50,169 +59,289 @@ function TransactionList({
     const handleSort = (column) => {
         if (onSort) {
             onSort(column);
-        } else {
-            const newDirection = sortColumn === column && sortDirection === 'asc' ? 'desc' : 'asc';
-            setSortColumn(column);
-            setSortDirection(newDirection);
+            return;
         }
+
+        const newDirection =
+            sortColumn === column &&
+                sortDirection === "asc"
+                ? "desc"
+                : "asc";
+
+        setSortColumn(column);
+        setSortDirection(newDirection);
     };
 
-    return (
+    const sortHandler = onSort || handleSort;
 
-        <section>
-            <h2>
-                {title} ({transactions.length})
-            </h2>
+    return (
+        <section className="transaction-list-section">
+            <div className="transaction-list-header">
+                <h2>
+                    {title} ({transactions.length})
+                </h2>
+            </div>
 
             {transactions.length === 0 ? (
-                <p>{t("transactionList.noTransactions")}</p>
+                <p className="transaction-list-empty">
+                    {t("transactionList.noTransactions")}
+                </p>
             ) : (
-                <table className="transaction-table">
-                    <thead>
-                        <tr>
-                            {showSorting ? (
-                                <SortableHeader
-                                    label={t("transactionList.date")}
-                                    column="date"
-                                    sortColumn={sortColumn}
-                                    sortDirection={sortDirection}
-                                    onSort={onSort || handleSort}
-                                />
-                            ) : (
-                                <th className="nowrap">{t("transactionList.date")}</th>
-                            )}
-
-                            {showSorting ? (
-                                <SortableHeader
-                                    label={t("transactionList.name")}
-                                    column="name"
-                                    sortColumn={sortColumn}
-                                    sortDirection={sortDirection}
-                                    onSort={onSort || handleSort}
-                                />
-                            ) : (
-                                <th>{t("transactionList.name")}</th>
-                            )}
-
-                            {showSorting ? (
-                                <SortableHeader
-                                    label={t("transactionList.description")}
-                                    column="description"
-                                    sortColumn={sortColumn}
-                                    sortDirection={sortDirection}
-                                    onSort={onSort || handleSort}
-                                />
-                            ) : (
-                                <th>{t("transactionList.description")}</th>
-                            )}
-
-                            {showSorting ? (
-                                <SortableHeader
-                                    label={t("transactionList.category")}
-                                    column="category"
-                                    sortColumn={sortColumn}
-                                    sortDirection={sortDirection}
-                                    onSort={onSort || handleSort}
-                                />
-                            ) : (
-                                <th className="nowrap">{t("transactionList.category")}</th>
-                            )}
-
-                            {showSorting ? (
-                                <SortableHeader
-                                    label={t("transactionList.type")}
-                                    column="type"
-                                    sortColumn={sortColumn}
-                                    sortDirection={sortDirection}
-                                    onSort={onSort || handleSort}
-                                />
-                            ) : (
-                                <th>{t("transactionList.type")}</th>
-                            )}
-
-                            {showSorting ? (
-                                <SortableHeader
-                                    label={t("transactionList.amount")}
-                                    column="amount"
-                                    sortColumn={sortColumn}
-                                    sortDirection={sortDirection}
-                                    onSort={onSort || handleSort}
-                                />
-                            ) : (
-                                <th className="nowrap">{t("transactionList.amount")}</th>
-                            )}
-
-                            {showActions && <th>{t("transactionList.actions")}</th>}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {visibleTransactions.map((transaction) => (
-
-                            <tr key={transaction.id}>
-                                <td className="nowrap">{formatDate(transaction.date)}</td>
-                                <td>{transaction.name}</td>
-                                <td>{transaction.description}</td>
-                                <td>{t(`categories.${transaction.category}`)}</td>
-                                <td>
-                                    {transaction.type === "income"
-                                        ? t("transactions.income")
-                                        : t("transactions.expense")}
-                                </td>
-                                <td className="nowrap">
-                                    <span
-                                        className={transaction.type === "expense" ? "expense" : "income"}
-                                    >
-                                        {transaction.type === "expense" ? "- " : "+ "}
-                                        {formatCurrency(
-                                            Math.abs(transaction.amount)
+                <div className="transaction-table-wrapper">
+                    <table className="transaction-table">
+                        <thead>
+                            <tr>
+                                {showSorting ? (
+                                    <SortableHeader
+                                        label={t(
+                                            "transactionList.date"
                                         )}
-                                    </span>
-                                </td>
+                                        column="date"
+                                        sortColumn={sortColumn}
+                                        sortDirection={
+                                            sortDirection
+                                        }
+                                        onSort={sortHandler}
+                                    />
+                                ) : (
+                                    <th className="nowrap">
+                                        {t(
+                                            "transactionList.date"
+                                        )}
+                                    </th>
+                                )}
+
+                                {showSorting ? (
+                                    <SortableHeader
+                                        label={t(
+                                            "transactionList.name"
+                                        )}
+                                        column="name"
+                                        sortColumn={sortColumn}
+                                        sortDirection={
+                                            sortDirection
+                                        }
+                                        onSort={sortHandler}
+                                    />
+                                ) : (
+                                    <th>
+                                        {t(
+                                            "transactionList.name"
+                                        )}
+                                    </th>
+                                )}
+
+                                {showSorting ? (
+                                    <SortableHeader
+                                        label={t(
+                                            "transactionList.description"
+                                        )}
+                                        column="description"
+                                        sortColumn={sortColumn}
+                                        sortDirection={
+                                            sortDirection
+                                        }
+                                        onSort={sortHandler}
+                                    />
+                                ) : (
+                                    <th>
+                                        {t(
+                                            "transactionList.description"
+                                        )}
+                                    </th>
+                                )}
+
+                                {showSorting ? (
+                                    <SortableHeader
+                                        label={t(
+                                            "transactionList.category"
+                                        )}
+                                        column="category"
+                                        sortColumn={sortColumn}
+                                        sortDirection={
+                                            sortDirection
+                                        }
+                                        onSort={sortHandler}
+                                    />
+                                ) : (
+                                    <th className="nowrap">
+                                        {t(
+                                            "transactionList.category"
+                                        )}
+                                    </th>
+                                )}
+
+                                {showSorting ? (
+                                    <SortableHeader
+                                        label={t(
+                                            "transactionList.type"
+                                        )}
+                                        column="type"
+                                        sortColumn={sortColumn}
+                                        sortDirection={
+                                            sortDirection
+                                        }
+                                        onSort={sortHandler}
+                                    />
+                                ) : (
+                                    <th>
+                                        {t(
+                                            "transactionList.type"
+                                        )}
+                                    </th>
+                                )}
+
+                                {showSorting ? (
+                                    <SortableHeader
+                                        label={t(
+                                            "transactionList.amount"
+                                        )}
+                                        column="amount"
+                                        sortColumn={sortColumn}
+                                        sortDirection={
+                                            sortDirection
+                                        }
+                                        onSort={sortHandler}
+                                    />
+                                ) : (
+                                    <th className="nowrap">
+                                        {t(
+                                            "transactionList.amount"
+                                        )}
+                                    </th>
+                                )}
+
                                 {showActions && (
-                                    <td>
-                                        <ActionsDropdown
-                                            item={transaction}
-                                            onEdit={editTransaction}
-                                            onDelete={deleteTransaction}
-                                            translationKey="transactionActions"
-                                        />
-                                    </td>
+                                    <th className="nowrap">
+                                        {t(
+                                            "transactionList.actions"
+                                        )}
+                                    </th>
                                 )}
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
 
+                        <tbody>
+                            {visibleTransactions.map(
+                                (transaction) => (
+                                    <tr key={transaction.id}>
+                                        <td className="nowrap">
+                                            {formatDate(
+                                                transaction.date
+                                            )}
+                                        </td>
+
+                                        <td className="transaction-name">
+                                            {transaction.name}
+                                        </td>
+
+                                        <td className="transaction-description">
+                                            {
+                                                transaction.description
+                                            }
+                                        </td>
+
+                                        <td>
+                                            {t(
+                                                `categories.${transaction.category}`
+                                            )}
+                                        </td>
+
+                                        <td className="nowrap">
+                                            {transaction.type ===
+                                                "income"
+                                                ? t(
+                                                    "transactions.income"
+                                                )
+                                                : t(
+                                                    "transactions.expense"
+                                                )}
+                                        </td>
+
+                                        <td className="nowrap">
+                                            <span
+                                                className={
+                                                    transaction.type ===
+                                                        "expense"
+                                                        ? "expense"
+                                                        : "income"
+                                                }
+                                            >
+                                                {transaction.type ===
+                                                    "expense"
+                                                    ? "- "
+                                                    : "+ "}
+
+                                                {formatCurrency(
+                                                    Math.abs(
+                                                        transaction.amount
+                                                    )
+                                                )}
+                                            </span>
+                                        </td>
+
+                                        {showActions && (
+                                            <td className="transaction-actions-cell">
+                                                <ActionsDropdown
+                                                    item={
+                                                        transaction
+                                                    }
+                                                    onEdit={
+                                                        editTransaction
+                                                    }
+                                                    onDelete={
+                                                        deleteTransaction
+                                                    }
+                                                    translationKey="transactionActions"
+                                                />
+                                            </td>
+                                        )}
+                                    </tr>
+                                )
+                            )}
+                        </tbody>
+                    </table>
+                </div>
             )}
-            {transactions.length > itemsPerPage && (
 
+            {transactions.length > itemsPerPage && (
                 <div className="pagination">
                     <button
+                        type="button"
                         disabled={currentPage === 1}
                         onClick={() =>
-                            setCurrentPage(page => page - 1)
+                            setCurrentPage(
+                                (page) => page - 1
+                            )
                         }
                     >
                         {t("pagination.previous")}
                     </button>
+
                     <span>
                         {t("pagination.pageOf", {
                             current: currentPage,
                             total: totalPages,
                         })}
                     </span>
+
                     <button
-                        disabled={currentPage === totalPages}
+                        type="button"
+                        disabled={
+                            currentPage === totalPages
+                        }
                         onClick={() =>
-                            setCurrentPage(page => page + 1)
+                            setCurrentPage(
+                                (page) => page + 1
+                            )
                         }
                     >
                         {t("pagination.next")}
                     </button>
                 </div>
-
             )}
         </section>
     );
 }
+
 export default TransactionList;

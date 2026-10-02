@@ -28,11 +28,22 @@ function TransactionDrawer({
             anchor="right"
             open={open}
             onClose={handleClose}
+            PaperProps={{
+                sx: {
+                    width: "min(450px, 100vw)",
+                    maxWidth: "100vw",
+                },
+            }}
         >
             <Box
                 sx={{
-                    width: 450,
-                    p: 3,
+                    width: "100%",
+                    maxWidth: "450px",
+                    boxSizing: "border-box",
+                    p: {
+                        xs: 2,
+                        sm: 3,
+                    },
                 }}
             >
                 <Box
@@ -40,10 +51,17 @@ function TransactionDrawer({
                         display: "flex",
                         justifyContent: "space-between",
                         alignItems: "center",
+                        gap: 1,
                         mb: 2,
                     }}
                 >
-                    <Typography variant="h5">
+                    <Typography
+                        variant="h5"
+                        sx={{
+                            minWidth: 0,
+                            overflowWrap: "break-word",
+                        }}
+                    >
                         {isEditing
                             ? t("transactions.edit")
                             : t("transactions.new")}
@@ -52,12 +70,22 @@ function TransactionDrawer({
                     <IconButton
                         onClick={handleClose}
                         aria-label={t("common.close")}
+                        sx={{
+                            flexShrink: 0,
+                        }}
                     >
                         <CloseIcon />
                     </IconButton>
                 </Box>
 
-                <Divider sx={{ mb: 3 }} />
+                <Divider
+                    sx={{
+                        mb: {
+                            xs: 2,
+                            sm: 3,
+                        },
+                    }}
+                />
 
                 <AddTransaction
                     open={open}

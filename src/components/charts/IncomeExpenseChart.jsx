@@ -20,7 +20,6 @@ ChartJS.register(
 );
 
 function IncomeExpenseChart({ transactions }) {
-
     const { t } = useTranslation();
 
     const {
@@ -29,7 +28,20 @@ function IncomeExpenseChart({ transactions }) {
         expenses,
     } = getMonthlyIncomeExpenses(transactions);
 
-    const hasData = income.some(value => value > 0) || expenses.some(value => value > 0);
+    const hasData =
+        income.some((value) => value > 0) ||
+        expenses.some((value) => value > 0);
+
+    const isDarkMode =
+        document.documentElement.classList.contains("dark-mode");
+
+    const textColor = isDarkMode
+        ? "#ffffff"
+        : "#374151";
+
+    const gridColor = isDarkMode
+        ? "rgba(255,255,255,0.2)"
+        : "#eeeeee";
 
     const data = {
         labels,
@@ -40,38 +52,49 @@ function IncomeExpenseChart({ transactions }) {
                 data: income,
                 backgroundColor: "#22c55e",
                 borderRadius: 6,
+                maxBarThickness: 36,
             },
             {
                 label: t("chart.expenses"),
                 data: expenses,
                 backgroundColor: "#ef4444",
                 borderRadius: 6,
+                maxBarThickness: 36,
             },
         ],
     };
 
-    const isDarkMode = document.documentElement.classList.contains("dark-mode");
-
-    const textColor = isDarkMode ? "#ffffff" : "#374151";
-    const gridColor = isDarkMode
-        ? "rgba(255,255,255,0.2)"
-        : "#eeeeee";
-
     const options = {
         responsive: true,
+        maintainAspectRatio: false,
+
+        interaction: {
+            mode: "index",
+            intersect: false,
+        },
 
         plugins: {
             legend: {
                 position: "top",
+
                 labels: {
                     color: textColor,
+                    usePointStyle: true,
+                    pointStyle: "rectRounded",
+                    padding: 16,
+                    boxWidth: 10,
+                    font: {
+                        size: 13,
+                    },
                 },
             },
 
             tooltip: {
                 callbacks: {
                     label(context) {
-                        return `${context.dataset.label}: ${euroFormatter.format(context.raw)}`;
+                        return `${context.dataset.label}: ${euroFormatter.format(
+                            context.raw
+                        )}`;
                     },
                 },
             },
@@ -81,6 +104,13 @@ function IncomeExpenseChart({ transactions }) {
             x: {
                 ticks: {
                     color: textColor,
+                    maxRotation: 0,
+                    minRotation: 0,
+                    autoSkip: true,
+                    maxTicksLimit: 6,
+                    font: {
+                        size: 11,
+                    },
                 },
 
                 grid: {
@@ -89,10 +119,18 @@ function IncomeExpenseChart({ transactions }) {
             },
 
             y: {
+                beginAtZero: true,
+
                 ticks: {
                     color: textColor,
+                    maxTicksLimit: 6,
+
                     callback(value) {
                         return euroFormatter.format(value);
+                    },
+
+                    font: {
+                        size: 11,
                     },
                 },
 
@@ -108,13 +146,16 @@ function IncomeExpenseChart({ transactions }) {
             <h2>
                 {t("chart.title")}
             </h2>
+
             {hasData ? (
-                <Bar
-                    data={data}
-                    options={options}
-                />
+                <div className="chart-wrapper">
+                    <Bar
+                        data={data}
+                        options={options}
+                    />
+                </div>
             ) : (
-                <p>
+                <p className="chart-no-data">
                     {t("chart.noData")}
                 </p>
             )}

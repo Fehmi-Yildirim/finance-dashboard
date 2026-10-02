@@ -9,7 +9,6 @@ import { useTranslation } from "react-i18next";
 import useBudgets from "../hooks/useBudgets";
 
 function Settings() {
-
     const { t, i18n } = useTranslation();
 
     const [language, setLanguage] = useState(
@@ -103,7 +102,7 @@ function Settings() {
     };
 
     return (
-        <div>
+        <div className="settings-page">
             <h1>
                 {t("settings.title")}
             </h1>
@@ -114,15 +113,13 @@ function Settings() {
                 </h2>
 
                 <Form.Select
+                    className="settings-language-select"
                     value={language}
                     onChange={(e) =>
                         handleLanguageChange(
                             e.target.value
                         )
                     }
-                    style={{
-                        maxWidth: "250px",
-                    }}
                 >
                     <option value="nl">
                         🇳🇱 Nederlands
@@ -143,13 +140,8 @@ function Settings() {
                     {message &&
                         message.section === "data" && (
                             <Alert
-                                variant={
-                                    message.type
-                                }
-                                style={{
-                                    marginTop:
-                                        "1rem",
-                                }}
+                                variant={message.type}
+                                className="settings-alert"
                             >
                                 {message.text}
                             </Alert>
@@ -208,9 +200,8 @@ function Settings() {
                 {message &&
                     message.section === "import" && (
                         <Alert
-                            variant={
-                                message.type
-                            }
+                            variant={message.type}
+                            className="settings-alert"
                         >
                             {message.text}
                         </Alert>
@@ -224,47 +215,41 @@ function Settings() {
                     )}
                 </h2>
 
-                <Button
-                    variant="primary"
-                    onClick={
-                        handleExportToCSV
-                    }
-                    disabled={
-                        transactions.length === 0
-                    }
-                >
-                    {t(
-                        "settings.exportCsv"
-                    )}
-                </Button>
+                <div className="settings-export-buttons">
+                    <Button
+                        variant="primary"
+                        onClick={
+                            handleExportToCSV
+                        }
+                        disabled={
+                            transactions.length === 0
+                        }
+                    >
+                        {t(
+                            "settings.exportCsv"
+                        )}
+                    </Button>
 
-                <Button
-                    variant="secondary"
-                    onClick={
-                        handleExportToPDF
-                    }
-                    style={{
-                        marginLeft: "1rem",
-                    }}
-                    disabled={
-                        transactions.length === 0
-                    }
-                >
-                    {t(
-                        "settings.exportPdf"
-                    )}
-                </Button>
+                    <Button
+                        variant="secondary"
+                        onClick={
+                            handleExportToPDF
+                        }
+                        disabled={
+                            transactions.length === 0
+                        }
+                    >
+                        {t(
+                            "settings.exportPdf"
+                        )}
+                    </Button>
+                </div>
 
                 {message &&
                     message.section === "export" && (
                         <Alert
-                            variant={
-                                message.type
-                            }
-                            style={{
-                                marginTop:
-                                    "1rem",
-                            }}
+                            variant={message.type}
+                            className="settings-alert"
                         >
                             {message.text}
                         </Alert>
