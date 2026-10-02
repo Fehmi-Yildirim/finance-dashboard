@@ -36,31 +36,33 @@ function ExpenseCategoryChart({ transactions }) {
     }
 
     return (
-        <table className="category-table">
+        <div className="category-table-wrapper">
+            <table className="category-table">
 
-            <thead>
-                <tr>
-                    <th>{t("transactions.category")}</th>
-                    <th>{t("reports.amount")}</th>
-                </tr>
-            </thead>
+                <thead>
+                    <tr>
+                        <th>{t("transactions.category")}</th>
+                        <th>{t("reports.amount")}</th>
+                    </tr>
+                </thead>
 
-            <tbody>
-                {
-                    categoryData.map(item => (
+                <tbody>
+                    {categoryData.map(item => (
                         <tr key={item.category}>
                             <td>
                                 {t(`categories.${item.category}`, {
-                                    defaultValue: item.category.charAt(0).toUpperCase() + item.category.slice(1)
+                                    defaultValue:
+                                        item.category.charAt(0).toUpperCase() +
+                                        item.category.slice(1)
                                 })}
                             </td>
                             <td>{formatCurrency(item.amount)}</td>
                         </tr>
-                    ))
-                }
-            </tbody>
+                    ))}
+                </tbody>
 
-        </table>
+            </table>
+        </div>
     );
 }
 

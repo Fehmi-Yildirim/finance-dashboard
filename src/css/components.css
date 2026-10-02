@@ -433,6 +433,9 @@ button:hover {
 
 .add-transaction-button {
     margin-top: 0.5rem;
+    min-height: 42px;
+    padding: 0.65rem 1rem;
+    border-radius: 8px;
 }
 
 
@@ -1074,7 +1077,8 @@ button,
 
     /* General sections */
 
-    .add-transaction-button {
+    .add-transaction-button,
+    .add-budget-button {
         width: 100%;
     }
 
